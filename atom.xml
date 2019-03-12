@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Work4j</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-02-18T12:47:27.752Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>小万万</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>快进来看看</title>
+    <link href="http://yoursite.com/2019/02/18/work4j/"/>
+    <id>http://yoursite.com/2019/02/18/work4j/</id>
+    <published>2019-02-18T12:47:27.751Z</published>
+    <updated>2019-02-18T12:47:27.752Z</updated>
+    
+    <content type="html"><![CDATA[<p>欢迎来到我的博客~<br>Work For Java~</p><h1 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h1><p>本人帅气java开发工程师一只，关于博客，自己在博客园、csdn等都注册有账号，但是一直想自己写一个博客程序，因为感觉这样比较骚气。鼓捣了很多次，受限于很多原因，比如木有money去买云服务器、对于博客的设计要求高、工作忙、生活忙等等（其实就是懒），最终不了了之。</p><p>网上冲浪的时候，经常浏览一些他人的个人博客，看一些技术类的文章，偶然一个机会看到一篇博客的评论里有人问到博主：“请问博主这个网站使用什么框架开发的，我也想学下，谢谢！”，在博主的回复里，得知了hexo。然后百度了后发现了新大陆，原来辣么多的个人博客是这样来的。当天就搭建起了这个博客，主题选了见过很多次的next。下面是链接：</p><p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">HEXO博客框架</a></p><p><a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">NEXT主题</a></p><h1 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h1><p>博客的内容三大部分：</p><ul><li>java技术栈（java涉及的知识点）</li><li>项目实战（框架应用的实战，就从“work4j社区”项目开始吧，比较实用，希望后面会有人使用）</li><li>生活杂谈（更多是搞笑的，正能量的文章，不涉及个人感情的东西，因为我有很多小秘密，不能告诉你~=。=）</li></ul><h1 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h1><p>每个人都有工作，生活中还有许多琐事，但是自己该总结的还是要总结。技术是不断改进的，自己的知识储备不更新，不积累，不与时俱进，那。那。。那。。。就太可怕了~</p><p>6:00-7:00——博客时间</p><p>19:00-20:30——coding时间</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;欢迎来到我的博客~&lt;br&gt;Work For Java~&lt;/p&gt;
+&lt;h1 id=&quot;起源&quot;&gt;&lt;a href=&quot;#起源&quot; class=&quot;headerlink&quot; title=&quot;起源&quot;&gt;&lt;/a&gt;起源&lt;/h1&gt;&lt;p&gt;本人帅气java开发工程师一只，关于博客，自己在博客园、csdn等都注
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>博客的搭建与维护</title>
+    <link href="http://yoursite.com/2018/09/03/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/index/"/>
+    <id>http://yoursite.com/2018/09/03/博客搭建/index/</id>
+    <published>2018-09-03T07:53:44.000Z</published>
+    <updated>2019-02-18T12:47:27.755Z</updated>
+    
+    <content type="html"><![CDATA[<p>工欲善其事，必先利其器，所以写博客之前，先要熟悉下写博客中间常用的一些配置、语法和命令。其实就是我自己老是记不住（=。=），好记性不如烂笔头，所以还是老老实实记下来吧。既然是关于博客的，那索性就把博客搭建的过程也记下来，方便各位有兴趣的也能搭建一个自己的博客。</p><h1 id="Hexo博客的搭建"><a href="#Hexo博客的搭建" class="headerlink" title="Hexo博客的搭建"></a>Hexo博客的搭建</h1><p>Hexo官方网站上也有文档，<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档地址</a>，可以去了解下。下面是具体的搭建过程，按照这个下来，保证能搭建成功。</p><p>真不成功的话，那就忽略上面说的话。（是不是很严谨，=。=）</p><h2 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h2><p>Hexo是基于nodeJS环境的静态博客，官方要求，所以老老实实的安装了吧，我的电脑系统是windows的，所以下面是windows的安装说明：</p><ul><li>node.js下载地址</li><li>下载好msi文件后，双击打开安装，一路next，不过在Custom Setup这一步记得选<code>Add to PATH,</code>这样你就不用自己去配置电脑上环境变量了。 </li><li>装完后按 <code>win + r</code> 快捷键调出【运行】，然后输入cmd后点确定，在cmd中输入查看版本命令：node -v</li></ul><p>能够查看到node版本后就算安装成功了。</p><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h1 id="发布博客的常用配置"><a href="#发布博客的常用配置" class="headerlink" title="发布博客的常用配置"></a>发布博客的常用配置</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><h2 id="博客里添加本地图片"><a href="#博客里添加本地图片" class="headerlink" title="博客里添加本地图片"></a>博客里添加本地图片</h2><h1 id="Markdown语法"><a href="#Markdown语法" class="headerlink" title="Markdown语法"></a>Markdown语法</h1><h1 id="把本地博客文档上传至github"><a href="#把本地博客文档上传至github" class="headerlink" title="把本地博客文档上传至github"></a>把本地博客文档上传至github</h1><h1 id="git命令"><a href="#git命令" class="headerlink" title="git命令"></a>git命令</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;工欲善其事，必先利其器，所以写博客之前，先要熟悉下写博客中间常用的一些配置、语法和命令。其实就是我自己老是记不住（=。=），好记性不如烂笔头，所以还是老老实实记下来吧。既然是关于博客的，那索性就把博客搭建的过程也记下来，方便各位有兴趣的也能搭建一个自己的博客。&lt;/p&gt;
+&lt;h
+      
+    
+    </summary>
+    
+    
+      <category term="博客搭建" scheme="http://yoursite.com/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>equals()和hashCode()的区别</title>
+    <link href="http://yoursite.com/2018/06/20/java%E6%8A%80%E6%9C%AF%E6%A0%88/equals%E5%92%8ChashCode/"/>
+    <id>http://yoursite.com/2018/06/20/java技术栈/equals和hashCode/</id>
+    <published>2018-06-20T05:59:19.000Z</published>
+    <updated>2019-02-18T12:47:27.720Z</updated>
+    
+    <content type="html"><![CDATA[<p>equals()和hashCode()的区别</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;equals()和hashCode()的区别&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="技术栈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+      <category term="java基础" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>equals()和==的区别</title>
+    <link href="http://yoursite.com/2018/06/20/java%E6%8A%80%E6%9C%AF%E6%A0%88/equals%E5%92%8C%E7%AD%89%E7%AD%89/"/>
+    <id>http://yoursite.com/2018/06/20/java技术栈/equals和等等/</id>
+    <published>2018-06-20T05:59:19.000Z</published>
+    <updated>2019-02-18T12:47:27.724Z</updated>
+    
+    <content type="html"><![CDATA[<p>equals()和==的区别</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;equals()和==的区别&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="技术栈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+      <category term="java基础" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java技术栈</title>
+    <link href="http://yoursite.com/2018/06/14/java%E6%8A%80%E6%9C%AF%E6%A0%88/java%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    <id>http://yoursite.com/2018/06/14/java技术栈/java技术栈/</id>
+    <published>2018-06-14T05:59:19.000Z</published>
+    <updated>2019-02-18T12:47:27.727Z</updated>
+    
+    <content type="html"><![CDATA[<p>一直在纠结怎样去系统的整理一下java知识。百度了一堆，偶然发现一个词——”技术栈“。然后就开始纠结，哪个java技术栈整理的流行且全面。感觉再这样纠结下去，time flies~，还是赶紧动起来，一点一滴的积累，沉淀。</p><h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul><li><a href="https://work4j.github.io/2018/06/14/java%E6%8A%80%E6%9C%AF%E6%A0%88/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/" target="_blank" rel="noopener">字符串常量池</a></li><li>equals()和==的区别</li><li>equals()和hashCode()的区别</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一直在纠结怎样去系统的整理一下java知识。百度了一堆，偶然发现一个词——”技术栈“。然后就开始纠结，哪个java技术栈整理的流行且全面。感觉再这样纠结下去，time flies~，还是赶紧动起来，一点一滴的积累，沉淀。&lt;/p&gt;
+&lt;h1 id=&quot;java基础&quot;&gt;&lt;a hre
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="技术栈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>springboot目录</title>
+    <link href="http://yoursite.com/2018/06/14/springboot/springboot%E7%9B%AE%E5%BD%95/"/>
+    <id>http://yoursite.com/2018/06/14/springboot/springboot目录/</id>
+    <published>2018-06-14T05:59:19.000Z</published>
+    <updated>2019-02-18T12:47:27.748Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>字符串常量池</title>
+    <link href="http://yoursite.com/2018/06/14/java%E6%8A%80%E6%9C%AF%E6%A0%88/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/"/>
+    <id>http://yoursite.com/2018/06/14/java技术栈/字符串常量池/</id>
+    <published>2018-06-14T05:59:19.000Z</published>
+    <updated>2019-02-18T12:47:27.729Z</updated>
+    
+    <content type="html"><![CDATA[<p>字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。</p><p>JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。</p><p>java中字符串对象创建有两种形式：</p><p>一种为字面量形式，如String str=” wsp”；</p><p>另一种就是使用标准的构造对象的方法，如String str=new String（”wsp”）；</p><h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>当代码中出现字面量形式创建字符串对象时，JVM就会首先对这个字面量进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回，否则新的字符串对象就被创建，然后将这个引用放入字符串常量池中，并返回该引用。</p><p>String str1=”wan”;</p><p>JVM检测这个字面量，这里我们认为没有内容为“wan”的对象存在。JVM通过字符串常量池查找不到内容为”wan”的字符串对象存在，那么会创建这个字符串对象，然后将刚创建的对象的引用放入到字符串常量池中，并且将引用返回给变量str1。</p><p>String str2=”wan”;</p><p>同样JVM还是要检测这个字面量，JVM通过查找字符串常量池，发现内容为”wan”字符串对象存在，于是将已经存在的字符串对象的引用返回给变量str2。注意这里不会重新创建新的字符串对象。</p><p>验证是否为str1和str2是否指向同一对象，我们可以通过这段代码</p><p>System.out.println(str1 == str2);</p><p>结果为true。</p><p>String str3 = new String(“wan”)</p><p>当我们使用了new来构造字符串对象的时候，不管字符串常量池中有没有相同内容的对象的引用，新的字符串对象都会创建。因此我们使用下面代码测试一下，</p><p>String str3 = new String(“wan”);<br>System.out.println(str1 == str3);</p><p>结果如我们所想，为false，表明这两个变量指向的为不同的对象。</p><p><strong>intern</strong></p><p>对于上面使用new创建的字符串对象，如果想将这个对象的引用加入到字符串常量池，可以使用intern方法。</p><p>调用intern后，首先检查字符串常量池中是否有该对象的引用，如果存在，则将这个引用返回给变量，否则将引用加入并返回给变量。</p><p>String str4 = str3.intern();</p><p>System.out.println(str4 == str1);</p><p>输出的结果为true。</p><p><strong>前提条件？</strong></p><p>字符串常量池实现的前提条件就是Java中String对象是不可变的，这样可以安全保证多个变量共享同一个对象。如果Java中的String对象可变的话，一个引用操作改变了对象的值，那么其他的变量也会受到影响，显然这样是不合理的。</p><p><strong>引用 or 对象</strong></p><p>字符串常量池中存放的时引用还是对象，这个问题是最常见的。字符串常量池存放的是对象引用，不是对象。在Java中，对象都创建在堆内存中。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。&lt;/p&gt;
+&lt;p&gt;JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。&lt;/p&gt;
+&lt;p&gt;java中字符串对象创建有两种形式：&lt;/p&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="技术栈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+      <category term="字符串" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>swagger2常用注解</title>
+    <link href="http://yoursite.com/2018/06/14/swagger2/"/>
+    <id>http://yoursite.com/2018/06/14/swagger2/</id>
+    <published>2018-06-14T02:00:00.000Z</published>
+    <updated>2019-02-18T12:47:27.750Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Api</span>：用在请求的类上，表示对类的说明</span><br><span class="line">    tags=<span class="string">"说明该类的作用，可以在UI界面上看到的注解"</span></span><br><span class="line">    value=<span class="string">"该参数没什么意义，在UI界面上也看到，所以不需要配置"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@ApiOperation</span>：用在请求的方法上，说明方法的用途、作用</span><br><span class="line">    value=<span class="string">"说明方法的用途、作用"</span></span><br><span class="line">    notes=<span class="string">"方法的备注说明"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@ApiImplicitParams</span>：用在请求的方法上，表示一组参数说明</span><br><span class="line">    <span class="meta">@ApiImplicitParam</span>：用在<span class="meta">@ApiImplicitParams</span>注解中，指定一个请求参数的各个方面</span><br><span class="line">        name：参数名</span><br><span class="line">        value：参数的汉字说明、解释</span><br><span class="line">        required：参数是否必须传</span><br><span class="line">        paramType：参数放在哪个地方</span><br><span class="line">            · header --&gt; 请求参数的获取：<span class="meta">@RequestHeader</span></span><br><span class="line">            · query --&gt; 请求参数的获取：<span class="meta">@RequestParam</span></span><br><span class="line">            · path（用于restful接口）--&gt; 请求参数的获取：<span class="meta">@PathVariable</span></span><br><span class="line">            · body（不常用）</span><br><span class="line">            · form（不常用）    </span><br><span class="line">        dataType：参数类型，默认String，其它值dataType=<span class="string">"Integer"</span>       </span><br><span class="line">        defaultValue：参数的默认值</span><br><span class="line"></span><br><span class="line"><span class="meta">@ApiResponses</span>：用在请求的方法上，表示一组响应</span><br><span class="line">    <span class="meta">@ApiResponse</span>：用在<span class="meta">@ApiResponses</span>中，一般用于表达一个错误的响应信息</span><br><span class="line">        code：数字，例如<span class="number">400</span></span><br><span class="line">        message：信息，例如<span class="string">"请求参数没填好"</span></span><br><span class="line">        response：抛出异常的类</span><br><span class="line"></span><br><span class="line"><span class="meta">@ApiModel</span>：用于响应类上，表示一个返回响应数据的信息</span><br><span class="line">            （这种一般用在post创建的时候，使用<span class="meta">@RequestBody</span>这样的场景，</span><br><span class="line">            请求参数无法使用<span class="meta">@ApiImplicitParam</span>注解进行描述的时候）</span><br><span class="line">    <span class="meta">@ApiModelProperty</span>：用在属性上，描述响应类的属性</span><br></pre></td></tr></table></figure><h2 id="1、-Api：用在请求的类上，说明该类的作用"><a href="#1、-Api：用在请求的类上，说明该类的作用" class="headerlink" title="1、@Api：用在请求的类上，说明该类的作用"></a>1、@Api：用在请求的类上，说明该类的作用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Api</span>：用在请求的类上，说明该类的作用</span><br><span class="line">    tags=<span class="string">"说明该类的作用"</span></span><br><span class="line">    value=<span class="string">"该参数没什么意义，所以不需要配置"</span></span><br></pre></td></tr></table></figure><p>示例：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Api</span>(tags=<span class="string">"APP用户注册Controller"</span>)</span><br></pre></td></tr></table></figure><h2 id="2、-ApiOperation：用在请求的方法上，说明方法的作用"><a href="#2、-ApiOperation：用在请求的方法上，说明方法的作用" class="headerlink" title="2、@ApiOperation：用在请求的方法上，说明方法的作用"></a>2、@ApiOperation：用在请求的方法上，说明方法的作用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiOperation</span>：<span class="string">"用在请求的方法上，说明方法的作用"</span></span><br><span class="line">    value=<span class="string">"说明方法的作用"</span></span><br><span class="line">    notes=<span class="string">"方法的备注说明"</span></span><br></pre></td></tr></table></figure><p>示例：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiOperation</span>(value=<span class="string">"用户注册"</span>,notes=<span class="string">"手机号、密码都是必输项，年龄随边填，但必须是数字"</span>)</span><br></pre></td></tr></table></figure><h2 id="3、-ApiImplicitParams：用在请求的方法上，包含一组参数说明"><a href="#3、-ApiImplicitParams：用在请求的方法上，包含一组参数说明" class="headerlink" title="3、@ApiImplicitParams：用在请求的方法上，包含一组参数说明"></a>3、@ApiImplicitParams：用在请求的方法上，包含一组参数说明</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiImplicitParams</span>：用在请求的方法上，包含一组参数说明</span><br><span class="line">    <span class="meta">@ApiImplicitParam</span>：用在 <span class="meta">@ApiImplicitParams</span> 注解中，指定一个请求参数的配置信息       </span><br><span class="line">        name：参数名</span><br><span class="line">        value：参数的汉字说明、解释</span><br><span class="line">        required：参数是否必须传</span><br><span class="line">        paramType：参数放在哪个地方</span><br><span class="line">            · header --&gt; 请求参数的获取：<span class="meta">@RequestHeader</span></span><br><span class="line">            · query --&gt; 请求参数的获取：<span class="meta">@RequestParam</span></span><br><span class="line">            · path（用于restful接口）--&gt; 请求参数的获取：<span class="meta">@PathVariable</span></span><br><span class="line">            · body（不常用）</span><br><span class="line">            · form（不常用）    </span><br><span class="line">        dataType：参数类型，默认String，其它值dataType=<span class="string">"Integer"</span>       </span><br><span class="line">        defaultValue：参数的默认值</span><br></pre></td></tr></table></figure><p>示列：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiImplicitParams</span>(&#123;</span><br><span class="line">    <span class="meta">@ApiImplicitParam</span>(name=<span class="string">"mobile"</span>,value=<span class="string">"手机号"</span>,required=<span class="keyword">true</span>,paramType=<span class="string">"form"</span>),</span><br><span class="line">    <span class="meta">@ApiImplicitParam</span>(name=<span class="string">"password"</span>,value=<span class="string">"密码"</span>,required=<span class="keyword">true</span>,paramType=<span class="string">"form"</span>),</span><br><span class="line">    <span class="meta">@ApiImplicitParam</span>(name=<span class="string">"age"</span>,value=<span class="string">"年龄"</span>,required=<span class="keyword">true</span>,paramType=<span class="string">"form"</span>,dataType=<span class="string">"Integer"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h2 id="4、-ApiResponses：用于请求的方法上，表示一组响应"><a href="#4、-ApiResponses：用于请求的方法上，表示一组响应" class="headerlink" title="4、@ApiResponses：用于请求的方法上，表示一组响应"></a>4、@ApiResponses：用于请求的方法上，表示一组响应</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiResponses</span>：用于请求的方法上，表示一组响应</span><br><span class="line">    <span class="meta">@ApiResponse</span>：用在<span class="meta">@ApiResponses</span>中，一般用于表达一个错误的响应信息</span><br><span class="line">        code：数字，例如<span class="number">400</span></span><br><span class="line">        message：信息，例如<span class="string">"请求参数没填好"</span></span><br><span class="line">        response：抛出异常的类</span><br></pre></td></tr></table></figure><p>示例：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiOperation</span>(value = <span class="string">"select1请求"</span>,notes = <span class="string">"多个参数，多种的查询参数类型"</span>)</span><br><span class="line"><span class="meta">@ApiResponses</span>(&#123;</span><br><span class="line">    <span class="meta">@ApiResponse</span>(code=<span class="number">400</span>,message=<span class="string">"请求参数没填好"</span>),</span><br><span class="line">    <span class="meta">@ApiResponse</span>(code=<span class="number">404</span>,message=<span class="string">"请求路径没有或页面跳转路径不对"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h2 id="5、-ApiModel：用于响应类上，表示一个返回响应数据的信息"><a href="#5、-ApiModel：用于响应类上，表示一个返回响应数据的信息" class="headerlink" title="5、@ApiModel：用于响应类上，表示一个返回响应数据的信息"></a>5、@ApiModel：用于响应类上，表示一个返回响应数据的信息</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiModel</span>：用于响应类上，表示一个返回响应数据的信息</span><br><span class="line">            （这种一般用在post创建的时候，使用<span class="meta">@RequestBody</span>这样的场景，</span><br><span class="line">            请求参数无法使用<span class="meta">@ApiImplicitParam</span>注解进行描述的时候）</span><br><span class="line">    <span class="meta">@ApiModelProperty</span>：用在属性上，描述响应类的属性</span><br></pre></td></tr></table></figure><p>示例:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io.swagger.annotations.ApiModel;</span><br><span class="line"><span class="keyword">import</span> io.swagger.annotations.ApiModelProperty;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ApiModel</span>(description= <span class="string">"返回响应数据"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestMessage</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty</span>(value = <span class="string">"是否成功"</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> success=<span class="keyword">true</span>;</span><br><span class="line">    <span class="meta">@ApiModelProperty</span>(value = <span class="string">"返回对象"</span>)</span><br><span class="line">    <span class="keyword">private</span> Object data;</span><br><span class="line">    <span class="meta">@ApiModelProperty</span>(value = <span class="string">"错误编号"</span>)</span><br><span class="line">    <span class="keyword">private</span> Integer errCode;</span><br><span class="line">    <span class="meta">@ApiModelProperty</span>(value = <span class="string">"错误信息"</span>)</span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* getter/setter */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=
+      
+    
+    </summary>
+    
+      <category term="开源框架" scheme="http://yoursite.com/categories/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/"/>
+    
+    
+      <category term="swagger" scheme="http://yoursite.com/tags/swagger/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>idea使用手册</title>
+    <link href="http://yoursite.com/2018/06/12/idea%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2018/06/12/idea使用/</id>
+    <published>2018-06-12T02:00:00.000Z</published>
+    <updated>2019-02-18T12:47:27.718Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用idea已经有很长一段时间了，下面记录一下常用的配置吧~</p><h1 id="设置篇"><a href="#设置篇" class="headerlink" title="设置篇"></a>设置篇</h1><ul><li><h2 id="更改IntelliJ-IDEA生成的注释的user的默认值"><a href="#更改IntelliJ-IDEA生成的注释的user的默认值" class="headerlink" title="更改IntelliJ IDEA生成的注释的user的默认值"></a>更改IntelliJ IDEA生成的注释的user的默认值</h2></li></ul><p>1、file –&gt;  settings –&gt; File and Code Templates<br>2、中间的，选择 includes ，选中File Header。<br>3、右侧会出现 Created by ${USER} on ${DATE}.<br>4、把这个 ${USER} 直接替换掉 Created by myname on ${DATE}.</p><h1 id="插件篇"><a href="#插件篇" class="headerlink" title="插件篇"></a>插件篇</h1><ul><li><h2 id="lombok插件"><a href="#lombok插件" class="headerlink" title="lombok插件"></a>lombok插件</h2></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;使用idea已经有很长一段时间了，下面记录一下常用的配置吧~&lt;/p&gt;
+&lt;h1 id=&quot;设置篇&quot;&gt;&lt;a href=&quot;#设置篇&quot; class=&quot;headerlink&quot; title=&quot;设置篇&quot;&gt;&lt;/a&gt;设置篇&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h2 id=&quot;更改IntelliJ-IDE
+      
+    
+    </summary>
+    
+      <category term="工具" scheme="http://yoursite.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="idea" scheme="http://yoursite.com/tags/idea/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo安装部署流程</title>
+    <link href="http://yoursite.com/2018/06/09/install/"/>
+    <id>http://yoursite.com/2018/06/09/install/</id>
+    <published>2018-06-09T00:17:05.269Z</published>
+    <updated>2018-06-09T00:17:05.269Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装部署流程~<br>Work For Java~</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;安装部署流程~&lt;br&gt;Work For Java~&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+      <category term="bbb" scheme="http://yoursite.com/tags/bbb/"/>
+    
+  </entry>
+  
+</feed>

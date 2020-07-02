@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="MQ,RabbitMQ,中间件," />
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="不忘初心，方得始终">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Work4j">
-<meta property="og:url" content="http://yoursite.com/tags/博客搭建/index.html">
+<meta name="description" content="MQ的基本概念 MQ概述 MQ全称 Message Queue（消息队列），是在消息的传输过程中保存消息的容器。多用于分布式系统直接进行通信。  MQ，消息队列，存储消息的中间件 分布式系统通信两种方式：直接远程调用 和 借助第三方（MQ就是）完成间接通信 发送方成为生产者，接收方称为消费者   MQ的优势和劣势 优势：  应用解耦（系统的耦合性越高，容错性就越低，可维护性就越低，提高系统容错性和">
+<meta name="keywords" content="MQ,RabbitMQ,中间件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MQ的基本概念">
+<meta property="og:url" content="http://yoursite.com/2018/06/12/RabbitMQ/MQ的基本概念/index.html">
 <meta property="og:site_name" content="Work4j">
-<meta property="og:description" content="不忘初心，方得始终">
+<meta property="og:description" content="MQ的基本概念 MQ概述 MQ全称 Message Queue（消息队列），是在消息的传输过程中保存消息的容器。多用于分布式系统直接进行通信。  MQ，消息队列，存储消息的中间件 分布式系统通信两种方式：直接远程调用 和 借助第三方（MQ就是）完成间接通信 发送方成为生产者，接收方称为消费者   MQ的优势和劣势 优势：  应用解耦（系统的耦合性越高，容错性就越低，可维护性就越低，提高系统容错性和">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-07-02T15:11:41.450Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Work4j">
-<meta name="twitter:description" content="不忘初心，方得始终">
+<meta name="twitter:title" content="MQ的基本概念">
+<meta name="twitter:description" content="MQ的基本概念 MQ概述 MQ全称 Message Queue（消息队列），是在消息的传输过程中保存消息的容器。多用于分布式系统直接进行通信。  MQ，消息队列，存储消息的中间件 分布式系统通信两种方式：直接远程调用 和 借助第三方（MQ就是）完成间接通信 发送方成为生产者，接收方称为消费者   MQ的优势和劣势 优势：  应用解耦（系统的耦合性越高，容错性就越低，可维护性就越低，提高系统容错性和">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/博客搭建/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/12/RabbitMQ/MQ的基本概念/"/>
 
 
 
 
 
-  <title>标签: 博客搭建 | Work4j</title>
+  <title>MQ的基本概念 | Work4j</title>
   
 
 
@@ -145,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -283,54 +285,221 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>博客搭建<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/RabbitMQ/MQ的基本概念/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小万万">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Work4j">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/09/03/博客搭建/index/" itemprop="url">
-              
-                <span itemprop="name">博客的搭建与维护</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">MQ的基本概念</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-03T15:53:44+08:00"
-              content="2018-09-03" >
-          09-03
-        </time>
-      </div>
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T10:00:00+08:00">
+                2018-06-12
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/06/12/RabbitMQ/MQ的基本概念/" class="leancloud_visitors" data-flag-title="MQ的基本概念">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="MQ的基本概念"><a href="#MQ的基本概念" class="headerlink" title="MQ的基本概念"></a>MQ的基本概念</h2><ol>
+<li><p><strong>MQ概述</strong></p>
+<p>MQ全称 Message Queue（消息队列），是在消息的传输过程中保存消息的容器。多用于分布式系统直接进行通信。</p>
+<ul>
+<li>MQ，消息队列，存储消息的中间件</li>
+<li>分布式系统通信两种方式：直接远程调用 和 借助第三方（MQ就是）完成间接通信</li>
+<li>发送方成为生产者，接收方称为消费者</li>
+</ul>
+</li>
+<li><p><strong>MQ的优势和劣势</strong></p>
+<p>优势：</p>
+<ul>
+<li>应用解耦（系统的耦合性越高，容错性就越低，可维护性就越低，<strong>提高系统容错性和可维护性</strong>）</li>
+<li>异步提速（<strong>提升用户体验和系统吞吐量</strong>，即单位时间内处理请求的数目）</li>
+<li>削峰填谷（可以<strong>提高系统稳定性</strong>）</li>
+</ul>
+<p>劣势：</p>
+<ul>
+<li>系统可用性降低</li>
+<li>系统复杂度提高</li>
+<li>一致性问题</li>
+</ul>
+<p>既然MQ有优势也有劣势，那么使用MQ需要满足什么条件呢？</p>
+<p>1. </p>
+</li>
+</ol>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/weixin.png" alt="小万万 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/zhifubao.png" alt="小万万 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MQ/" rel="tag"># MQ</a>
+          
+            <a href="/tags/RabbitMQ/" rel="tag"># RabbitMQ</a>
+          
+            <a href="/tags/中间件/" rel="tag"># 中间件</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/09/install/" rel="next" title="Hexo安装部署流程">
+                <i class="fa fa-chevron-left"></i> Hexo安装部署流程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/12/idea使用/" rel="prev" title="idea使用手册">
+                idea使用手册 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -338,6 +507,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -358,8 +531,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -460,6 +642,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MQ的基本概念"><span class="nav-number">1.</span> <span class="nav-text">MQ的基本概念</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -600,6 +798,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

@@ -34,6 +34,15 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[java技术栈]]></title>
+    <url>%2F2018%2F06%2F14%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2F</url>
+    <content type="text"><![CDATA[一直在纠结怎样去系统的整理一下java知识。百度了一堆，偶然发现一个词——”技术栈“。然后就开始纠结，哪个java技术栈整理的流行且全面。感觉再这样纠结下去，time flies~，还是赶紧动起来，一点一滴的积累，沉淀。 java基础基础 字符串常量池 equals()和==的区别 equals()和hashCode()的区别]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>技术栈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[字符串常量池]]></title>
     <url>%2F2018%2F06%2F14%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%2F</url>
     <content type="text"><![CDATA[字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。 JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。 java中字符串对象创建有两种形式： 一种为字面量形式，如String str=” wsp”； 另一种就是使用标准的构造对象的方法，如String str=new String（”wsp”）； 工作原理当代码中出现字面量形式创建字符串对象时，JVM就会首先对这个字面量进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回，否则新的字符串对象就被创建，然后将这个引用放入字符串常量池中，并返回该引用。 String str1=”wan”; JVM检测这个字面量，这里我们认为没有内容为“wan”的对象存在。JVM通过字符串常量池查找不到内容为”wan”的字符串对象存在，那么会创建这个字符串对象，然后将刚创建的对象的引用放入到字符串常量池中，并且将引用返回给变量str1。 String str2=”wan”; 同样JVM还是要检测这个字面量，JVM通过查找字符串常量池，发现内容为”wan”字符串对象存在，于是将已经存在的字符串对象的引用返回给变量str2。注意这里不会重新创建新的字符串对象。 验证是否为str1和str2是否指向同一对象，我们可以通过这段代码 System.out.println(str1 == str2); 结果为true。 String str3 = new String(“wan”) 当我们使用了new来构造字符串对象的时候，不管字符串常量池中有没有相同内容的对象的引用，新的字符串对象都会创建。因此我们使用下面代码测试一下， String str3 = new String(“wan”);System.out.println(str1 == str3); 结果如我们所想，为false，表明这两个变量指向的为不同的对象。 intern 对于上面使用new创建的字符串对象，如果想将这个对象的引用加入到字符串常量池，可以使用intern方法。 调用intern后，首先检查字符串常量池中是否有该对象的引用，如果存在，则将这个引用返回给变量，否则将引用加入并返回给变量。 String str4 = str3.intern(); System.out.println(str4 == str1); 输出的结果为true。 前提条件？ 字符串常量池实现的前提条件就是Java中String对象是不可变的，这样可以安全保证多个变量共享同一个对象。如果Java中的String对象可变的话，一个引用操作改变了对象的值，那么其他的变量也会受到影响，显然这样是不合理的。 引用 or 对象 字符串常量池中存放的时引用还是对象，这个问题是最常见的。字符串常量池存放的是对象引用，不是对象。在Java中，对象都创建在堆内存中。]]></content>
@@ -45,26 +54,17 @@
   </entry>
   <entry>
     <title><![CDATA[java技术栈]]></title>
-    <url>%2F2018%2F06%2F14%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2F</url>
-    <content type="text"><![CDATA[一直在纠结怎样去系统的整理一下java知识。百度了一堆，偶然发现一个词——”技术栈“。然后就开始纠结，哪个java技术栈整理的流行且全面。感觉再这样纠结下去，time flies~，还是赶紧动起来，一点一滴的积累，沉淀。 java基础基础 字符串常量池 equals()和==的区别 equals()和hashCode()的区别]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>技术栈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[springboot目录]]></title>
-    <url>%2F2018%2F06%2F14%2Fspringboot%2Fspringboot%E7%9B%AE%E5%BD%95%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[java技术栈]]></title>
     <url>%2F2018%2F06%2F14%2Fjava%E9%9D%A2%E8%AF%95%2Fjava%E9%9D%A2%E8%AF%95%2F</url>
     <content type="text"><![CDATA[java成长的道路上，各种各样的知识都得会。不管你用不用，但是面试肯定是要问，木得办法。 线程 字符串常量池 equals()和==的区别 equals()和hashCode()的区别]]></content>
       <tags>
         <tag>java</tag>
         <tag>面试</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[springboot目录]]></title>
+    <url>%2F2018%2F06%2F14%2Fspringboot%2Fspringboot%E7%9B%AE%E5%BD%95%2F</url>
+    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[swagger2常用注解]]></title>
@@ -86,6 +86,16 @@
       </categories>
       <tags>
         <tag>idea</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MQ的基本概念]]></title>
+    <url>%2F2018%2F06%2F12%2FRabbitMQ%2FMQ%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%2F</url>
+    <content type="text"><![CDATA[MQ的基本概念 MQ概述 MQ全称 Message Queue（消息队列），是在消息的传输过程中保存消息的容器。多用于分布式系统直接进行通信。 MQ，消息队列，存储消息的中间件 分布式系统通信两种方式：直接远程调用 和 借助第三方（MQ就是）完成间接通信 发送方成为生产者，接收方称为消费者 MQ的优势和劣势 优势： 应用解耦（系统的耦合性越高，容错性就越低，可维护性就越低，提高系统容错性和可维护性） 异步提速（提升用户体验和系统吞吐量，即单位时间内处理请求的数目） 削峰填谷（可以提高系统稳定性） 劣势： 系统可用性降低 系统复杂度提高 一致性问题 既然MQ有优势也有劣势，那么使用MQ需要满足什么条件呢？ 1.]]></content>
+      <tags>
+        <tag>MQ</tag>
+        <tag>RabbitMQ</tag>
+        <tag>中间件</tag>
       </tags>
   </entry>
   <entry>

@@ -119,6 +119,36 @@
   </entry>
   
   <entry>
+    <title>字符串常量池</title>
+    <link href="http://yoursite.com/2018/06/14/java%E6%8A%80%E6%9C%AF%E6%A0%88/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/"/>
+    <id>http://yoursite.com/2018/06/14/java技术栈/字符串常量池/</id>
+    <published>2018-06-14T05:59:19.000Z</published>
+    <updated>2019-02-18T12:47:27.729Z</updated>
+    
+    <content type="html"><![CDATA[<p>字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。</p><p>JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。</p><p>java中字符串对象创建有两种形式：</p><p>一种为字面量形式，如String str=” wsp”；</p><p>另一种就是使用标准的构造对象的方法，如String str=new String（”wsp”）；</p><h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>当代码中出现字面量形式创建字符串对象时，JVM就会首先对这个字面量进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回，否则新的字符串对象就被创建，然后将这个引用放入字符串常量池中，并返回该引用。</p><p>String str1=”wan”;</p><p>JVM检测这个字面量，这里我们认为没有内容为“wan”的对象存在。JVM通过字符串常量池查找不到内容为”wan”的字符串对象存在，那么会创建这个字符串对象，然后将刚创建的对象的引用放入到字符串常量池中，并且将引用返回给变量str1。</p><p>String str2=”wan”;</p><p>同样JVM还是要检测这个字面量，JVM通过查找字符串常量池，发现内容为”wan”字符串对象存在，于是将已经存在的字符串对象的引用返回给变量str2。注意这里不会重新创建新的字符串对象。</p><p>验证是否为str1和str2是否指向同一对象，我们可以通过这段代码</p><p>System.out.println(str1 == str2);</p><p>结果为true。</p><p>String str3 = new String(“wan”)</p><p>当我们使用了new来构造字符串对象的时候，不管字符串常量池中有没有相同内容的对象的引用，新的字符串对象都会创建。因此我们使用下面代码测试一下，</p><p>String str3 = new String(“wan”);<br>System.out.println(str1 == str3);</p><p>结果如我们所想，为false，表明这两个变量指向的为不同的对象。</p><p><strong>intern</strong></p><p>对于上面使用new创建的字符串对象，如果想将这个对象的引用加入到字符串常量池，可以使用intern方法。</p><p>调用intern后，首先检查字符串常量池中是否有该对象的引用，如果存在，则将这个引用返回给变量，否则将引用加入并返回给变量。</p><p>String str4 = str3.intern();</p><p>System.out.println(str4 == str1);</p><p>输出的结果为true。</p><p><strong>前提条件？</strong></p><p>字符串常量池实现的前提条件就是Java中String对象是不可变的，这样可以安全保证多个变量共享同一个对象。如果Java中的String对象可变的话，一个引用操作改变了对象的值，那么其他的变量也会受到影响，显然这样是不合理的。</p><p><strong>引用 or 对象</strong></p><p>字符串常量池中存放的时引用还是对象，这个问题是最常见的。字符串常量池存放的是对象引用，不是对象。在Java中，对象都创建在堆内存中。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。&lt;/p&gt;
+&lt;p&gt;JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。&lt;/p&gt;
+&lt;p&gt;java中字符串对象创建有两种形式：&lt;/p&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="技术栈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+      <category term="字符串" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>java技术栈</title>
     <link href="http://yoursite.com/2018/06/14/java%E6%8A%80%E6%9C%AF%E6%A0%88/java%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
     <id>http://yoursite.com/2018/06/14/java技术栈/java技术栈/</id>
@@ -159,22 +189,21 @@
   </entry>
   
   <entry>
-    <title>字符串常量池</title>
-    <link href="http://yoursite.com/2018/06/14/java%E6%8A%80%E6%9C%AF%E6%A0%88/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/"/>
-    <id>http://yoursite.com/2018/06/14/java技术栈/字符串常量池/</id>
+    <title>java技术栈</title>
+    <link href="http://yoursite.com/2018/06/14/java%E9%9D%A2%E8%AF%95/java%E9%9D%A2%E8%AF%95/"/>
+    <id>http://yoursite.com/2018/06/14/java面试/java面试/</id>
     <published>2018-06-14T05:59:19.000Z</published>
-    <updated>2019-02-18T12:47:27.729Z</updated>
+    <updated>2019-03-13T13:24:04.024Z</updated>
     
-    <content type="html"><![CDATA[<p>字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。</p><p>JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。</p><p>java中字符串对象创建有两种形式：</p><p>一种为字面量形式，如String str=” wsp”；</p><p>另一种就是使用标准的构造对象的方法，如String str=new String（”wsp”）；</p><h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>当代码中出现字面量形式创建字符串对象时，JVM就会首先对这个字面量进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回，否则新的字符串对象就被创建，然后将这个引用放入字符串常量池中，并返回该引用。</p><p>String str1=”wan”;</p><p>JVM检测这个字面量，这里我们认为没有内容为“wan”的对象存在。JVM通过字符串常量池查找不到内容为”wan”的字符串对象存在，那么会创建这个字符串对象，然后将刚创建的对象的引用放入到字符串常量池中，并且将引用返回给变量str1。</p><p>String str2=”wan”;</p><p>同样JVM还是要检测这个字面量，JVM通过查找字符串常量池，发现内容为”wan”字符串对象存在，于是将已经存在的字符串对象的引用返回给变量str2。注意这里不会重新创建新的字符串对象。</p><p>验证是否为str1和str2是否指向同一对象，我们可以通过这段代码</p><p>System.out.println(str1 == str2);</p><p>结果为true。</p><p>String str3 = new String(“wan”)</p><p>当我们使用了new来构造字符串对象的时候，不管字符串常量池中有没有相同内容的对象的引用，新的字符串对象都会创建。因此我们使用下面代码测试一下，</p><p>String str3 = new String(“wan”);<br>System.out.println(str1 == str3);</p><p>结果如我们所想，为false，表明这两个变量指向的为不同的对象。</p><p><strong>intern</strong></p><p>对于上面使用new创建的字符串对象，如果想将这个对象的引用加入到字符串常量池，可以使用intern方法。</p><p>调用intern后，首先检查字符串常量池中是否有该对象的引用，如果存在，则将这个引用返回给变量，否则将引用加入并返回给变量。</p><p>String str4 = str3.intern();</p><p>System.out.println(str4 == str1);</p><p>输出的结果为true。</p><p><strong>前提条件？</strong></p><p>字符串常量池实现的前提条件就是Java中String对象是不可变的，这样可以安全保证多个变量共享同一个对象。如果Java中的String对象可变的话，一个引用操作改变了对象的值，那么其他的变量也会受到影响，显然这样是不合理的。</p><p><strong>引用 or 对象</strong></p><p>字符串常量池中存放的时引用还是对象，这个问题是最常见的。字符串常量池存放的是对象引用，不是对象。在Java中，对象都创建在堆内存中。</p>]]></content>
+    <content type="html"><![CDATA[<p>java成长的道路上，各种各样的知识都得会。不管你用不用，但是面试肯定是要问，木得办法。</p><h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><ul><li><a href="https://work4j.github.io/2018/06/14/java%E6%8A%80%E6%9C%AF%E6%A0%88/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/" target="_blank" rel="noopener">字符串常量池</a></li><li>equals()和==的区别</li><li>equals()和hashCode()的区别</li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。&lt;/p&gt;
-&lt;p&gt;JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。&lt;/p&gt;
-&lt;p&gt;java中字符串对象创建有两种形式：&lt;/p&gt;
-&lt;p&gt;
+        &lt;p&gt;java成长的道路上，各种各样的知识都得会。不管你用不用，但是面试肯定是要问，木得办法。&lt;/p&gt;
+&lt;h2 id=&quot;线程&quot;&gt;&lt;a href=&quot;#线程&quot; class=&quot;headerlink&quot; title=&quot;线程&quot;&gt;&lt;/a&gt;线程&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;htt
       
     
     </summary>
@@ -182,9 +211,7 @@
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
-      <category term="技术栈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
-    
-      <category term="字符串" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   

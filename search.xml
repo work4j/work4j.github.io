@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[快进来看看]]></title>
+    <url>%2F2019%2F02%2F18%2Fwork4j%2F</url>
+    <content type="text"><![CDATA[欢迎来到我的博客~Work For Java~ 起源本人帅气java开发工程师一只，关于博客，自己在博客园、csdn等都注册有账号，但是一直想自己写一个博客程序，因为感觉这样比较骚气。鼓捣了很多次，受限于很多原因，比如木有money去买云服务器、对于博客的设计要求高、工作忙、生活忙等等（其实就是懒），最终不了了之。 网上冲浪的时候，经常浏览一些他人的个人博客，看一些技术类的文章，偶然一个机会看到一篇博客的评论里有人问到博主：“请问博主这个网站使用什么框架开发的，我也想学下，谢谢！”，在博主的回复里，得知了hexo。然后百度了后发现了新大陆，原来辣么多的个人博客是这样来的。当天就搭建起了这个博客，主题选了见过很多次的next。下面是链接： HEXO博客框架 NEXT主题 规划博客的内容三大部分： java技术栈（java涉及的知识点） 项目实战（框架应用的实战，就从“work4j社区”项目开始吧，比较实用，希望后面会有人使用） 生活杂谈（更多是搞笑的，正能量的文章，不涉及个人感情的东西，因为我有很多小秘密，不能告诉你~=。=） 计划每个人都有工作，生活中还有许多琐事，但是自己该总结的还是要总结。技术是不断改进的，自己的知识储备不更新，不积累，不与时俱进，那。那。。那。。。就太可怕了~ 6:00-7:00——博客时间 19:00-20:30——coding时间]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[博客的搭建与维护]]></title>
+    <url>%2F2018%2F09%2F03%2F%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2Findex%2F</url>
+    <content type="text"><![CDATA[工欲善其事，必先利其器，所以写博客之前，先要熟悉下写博客中间常用的一些配置、语法和命令。其实就是我自己老是记不住（=。=），好记性不如烂笔头，所以还是老老实实记下来吧。既然是关于博客的，那索性就把博客搭建的过程也记下来，方便各位有兴趣的也能搭建一个自己的博客。 Hexo博客的搭建Hexo官方网站上也有文档，官方文档地址，可以去了解下。下面是具体的搭建过程，按照这个下来，保证能搭建成功。 真不成功的话，那就忽略上面说的话。（是不是很严谨，=。=） 安装node.jsHexo是基于nodeJS环境的静态博客，官方要求，所以老老实实的安装了吧，我的电脑系统是windows的，所以下面是windows的安装说明： node.js下载地址 下载好msi文件后，双击打开安装，一路next，不过在Custom Setup这一步记得选Add to PATH,这样你就不用自己去配置电脑上环境变量了。 装完后按 win + r 快捷键调出【运行】，然后输入cmd后点确定，在cmd中输入查看版本命令：node -v 能够查看到node版本后就算安装成功了。 安装git安装hexo发布博客的常用配置基础主题博客里添加本地图片Markdown语法把本地博客文档上传至githubgit命令]]></content>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[equals()和hashCode()的区别]]></title>
+    <url>%2F2018%2F06%2F20%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2Fequals%E5%92%8ChashCode%2F</url>
+    <content type="text"><![CDATA[equals()和hashCode()的区别]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>技术栈</tag>
+        <tag>java基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[equals()和==的区别]]></title>
+    <url>%2F2018%2F06%2F20%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2Fequals%E5%92%8C%E7%AD%89%E7%AD%89%2F</url>
+    <content type="text"><![CDATA[equals()和==的区别]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>技术栈</tag>
+        <tag>java基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[字符串常量池]]></title>
+    <url>%2F2018%2F06%2F14%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%2F</url>
+    <content type="text"><![CDATA[字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。 JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。 java中字符串对象创建有两种形式： 一种为字面量形式，如String str=” wsp”； 另一种就是使用标准的构造对象的方法，如String str=new String（”wsp”）； 工作原理当代码中出现字面量形式创建字符串对象时，JVM就会首先对这个字面量进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回，否则新的字符串对象就被创建，然后将这个引用放入字符串常量池中，并返回该引用。 String str1=”wan”; JVM检测这个字面量，这里我们认为没有内容为“wan”的对象存在。JVM通过字符串常量池查找不到内容为”wan”的字符串对象存在，那么会创建这个字符串对象，然后将刚创建的对象的引用放入到字符串常量池中，并且将引用返回给变量str1。 String str2=”wan”; 同样JVM还是要检测这个字面量，JVM通过查找字符串常量池，发现内容为”wan”字符串对象存在，于是将已经存在的字符串对象的引用返回给变量str2。注意这里不会重新创建新的字符串对象。 验证是否为str1和str2是否指向同一对象，我们可以通过这段代码 System.out.println(str1 == str2); 结果为true。 String str3 = new String(“wan”) 当我们使用了new来构造字符串对象的时候，不管字符串常量池中有没有相同内容的对象的引用，新的字符串对象都会创建。因此我们使用下面代码测试一下， String str3 = new String(“wan”);System.out.println(str1 == str3); 结果如我们所想，为false，表明这两个变量指向的为不同的对象。 intern 对于上面使用new创建的字符串对象，如果想将这个对象的引用加入到字符串常量池，可以使用intern方法。 调用intern后，首先检查字符串常量池中是否有该对象的引用，如果存在，则将这个引用返回给变量，否则将引用加入并返回给变量。 String str4 = str3.intern(); System.out.println(str4 == str1); 输出的结果为true。 前提条件？ 字符串常量池实现的前提条件就是Java中String对象是不可变的，这样可以安全保证多个变量共享同一个对象。如果Java中的String对象可变的话，一个引用操作改变了对象的值，那么其他的变量也会受到影响，显然这样是不合理的。 引用 or 对象 字符串常量池中存放的时引用还是对象，这个问题是最常见的。字符串常量池存放的是对象引用，不是对象。在Java中，对象都创建在堆内存中。]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>技术栈</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[java技术栈]]></title>
+    <url>%2F2018%2F06%2F14%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2F</url>
+    <content type="text"><![CDATA[一直在纠结怎样去系统的整理一下java知识。百度了一堆，偶然发现一个词——”技术栈“。然后就开始纠结，哪个java技术栈整理的流行且全面。感觉再这样纠结下去，time flies~，还是赶紧动起来，一点一滴的积累，沉淀。 java基础基础 字符串常量池 equals()和==的区别 equals()和hashCode()的区别]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>技术栈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[springboot目录]]></title>
+    <url>%2F2018%2F06%2F14%2Fspringboot%2Fspringboot%E7%9B%AE%E5%BD%95%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[java技术栈]]></title>
+    <url>%2F2018%2F06%2F14%2Fjava%E9%9D%A2%E8%AF%95%2Fjava%E9%9D%A2%E8%AF%95%2F</url>
+    <content type="text"><![CDATA[java成长的道路上，各种各样的知识都得会。不管你用不用，但是面试肯定是要问，木得办法。 线程 字符串常量池 equals()和==的区别 equals()和hashCode()的区别]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[swagger2常用注解]]></title>
+    <url>%2F2018%2F06%2F14%2Fswagger2%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829303132@Api：用在请求的类上，表示对类的说明 tags="说明该类的作用，可以在UI界面上看到的注解" value="该参数没什么意义，在UI界面上也看到，所以不需要配置"@ApiOperation：用在请求的方法上，说明方法的用途、作用 value="说明方法的用途、作用" notes="方法的备注说明"@ApiImplicitParams：用在请求的方法上，表示一组参数说明 @ApiImplicitParam：用在@ApiImplicitParams注解中，指定一个请求参数的各个方面 name：参数名 value：参数的汉字说明、解释 required：参数是否必须传 paramType：参数放在哪个地方 · header --&gt; 请求参数的获取：@RequestHeader · query --&gt; 请求参数的获取：@RequestParam · path（用于restful接口）--&gt; 请求参数的获取：@PathVariable · body（不常用） · form（不常用） dataType：参数类型，默认String，其它值dataType="Integer" defaultValue：参数的默认值@ApiResponses：用在请求的方法上，表示一组响应 @ApiResponse：用在@ApiResponses中，一般用于表达一个错误的响应信息 code：数字，例如400 message：信息，例如"请求参数没填好" response：抛出异常的类@ApiModel：用于响应类上，表示一个返回响应数据的信息 （这种一般用在post创建的时候，使用@RequestBody这样的场景， 请求参数无法使用@ApiImplicitParam注解进行描述的时候） @ApiModelProperty：用在属性上，描述响应类的属性 1、@Api：用在请求的类上，说明该类的作用123@Api：用在请求的类上，说明该类的作用 tags="说明该类的作用" value="该参数没什么意义，所以不需要配置" 示例： 1@Api(tags="APP用户注册Controller") 2、@ApiOperation：用在请求的方法上，说明方法的作用123@ApiOperation："用在请求的方法上，说明方法的作用" value="说明方法的作用" notes="方法的备注说明" 示例： 1@ApiOperation(value="用户注册",notes="手机号、密码都是必输项，年龄随边填，但必须是数字") 3、@ApiImplicitParams：用在请求的方法上，包含一组参数说明12345678910111213@ApiImplicitParams：用在请求的方法上，包含一组参数说明 @ApiImplicitParam：用在 @ApiImplicitParams 注解中，指定一个请求参数的配置信息 name：参数名 value：参数的汉字说明、解释 required：参数是否必须传 paramType：参数放在哪个地方 · header --&gt; 请求参数的获取：@RequestHeader · query --&gt; 请求参数的获取：@RequestParam · path（用于restful接口）--&gt; 请求参数的获取：@PathVariable · body（不常用） · form（不常用） dataType：参数类型，默认String，其它值dataType="Integer" defaultValue：参数的默认值 示列： 12345@ApiImplicitParams(&#123; @ApiImplicitParam(name="mobile",value="手机号",required=true,paramType="form"), @ApiImplicitParam(name="password",value="密码",required=true,paramType="form"), @ApiImplicitParam(name="age",value="年龄",required=true,paramType="form",dataType="Integer")&#125;) 4、@ApiResponses：用于请求的方法上，表示一组响应12345@ApiResponses：用于请求的方法上，表示一组响应 @ApiResponse：用在@ApiResponses中，一般用于表达一个错误的响应信息 code：数字，例如400 message：信息，例如"请求参数没填好" response：抛出异常的类 示例： 12345@ApiOperation(value = "select1请求",notes = "多个参数，多种的查询参数类型")@ApiResponses(&#123; @ApiResponse(code=400,message="请求参数没填好"), @ApiResponse(code=404,message="请求路径没有或页面跳转路径不对")&#125;) 5、@ApiModel：用于响应类上，表示一个返回响应数据的信息1234@ApiModel：用于响应类上，表示一个返回响应数据的信息 （这种一般用在post创建的时候，使用@RequestBody这样的场景， 请求参数无法使用@ApiImplicitParam注解进行描述的时候） @ApiModelProperty：用在属性上，描述响应类的属性 示例: 12345678910111213141516171819import io.swagger.annotations.ApiModel;import io.swagger.annotations.ApiModelProperty;import java.io.Serializable;@ApiModel(description= "返回响应数据")public class RestMessage implements Serializable&#123; @ApiModelProperty(value = "是否成功") private boolean success=true; @ApiModelProperty(value = "返回对象") private Object data; @ApiModelProperty(value = "错误编号") private Integer errCode; @ApiModelProperty(value = "错误信息") private String message; /* getter/setter */&#125;]]></content>
+      <categories>
+        <category>开源框架</category>
+      </categories>
+      <tags>
+        <tag>swagger</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[idea使用手册]]></title>
+    <url>%2F2018%2F06%2F12%2Fidea%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[使用idea已经有很长一段时间了，下面记录一下常用的配置吧~ 设置篇 更改IntelliJ IDEA生成的注释的user的默认值 1、file –&gt; settings –&gt; File and Code Templates2、中间的，选择 includes ，选中File Header。3、右侧会出现 Created by ${USER} on ${DATE}.4、把这个 ${USER} 直接替换掉 Created by myname on ${DATE}. 插件篇 lombok插件]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>idea</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo安装部署流程]]></title>
+    <url>%2F2018%2F06%2F09%2Finstall%2F</url>
+    <content type="text"><![CDATA[安装部署流程~Work For Java~]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>bbb</tag>
+      </tags>
+  </entry>
+</search>

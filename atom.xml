@@ -49,7 +49,7 @@
     <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89Java%E5%9F%BA%E7%A1%80/"/>
     <id>http://yoursite.com/2019/03/13/java面试/Java面试题（一）Java基础/</id>
     <published>2019-03-13T03:43:51.000Z</published>
-    <updated>2020-12-02T08:33:05.236Z</updated>
+    <updated>2020-12-03T03:12:45.758Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Java面试题汇总（一）Java基础"><a href="#Java面试题汇总（一）Java基础" class="headerlink" title="Java面试题汇总（一）Java基础"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（一）Java基础</h2><h4 id="JDK和JRE有什么区别？"><a href="#JDK和JRE有什么区别？" class="headerlink" title="JDK和JRE有什么区别？"></a>JDK和JRE有什么区别？</h4><ul><li>JDK：Java Development Kit 的简称，java 开发工具包，提供了 java 的开发环境和运行环境。</li><li>JRE：Java Runtime Environment 的简称，java 运行环境，为 java 的运行提供了所需环境。</li></ul><p>其实JDK包含了JRE，同时还包含了编辑java源码的编译器javac，还包含了很多java程序调试和分析的工具，简单来说：如果你需要运行java程序，只需要安装JRE就可以了，如果你还需要编写java程序，需要安装JDK。</p><h4 id="和-equals-的区别是什么？"><a href="#和-equals-的区别是什么？" class="headerlink" title="== 和 equals 的区别是什么？"></a>== 和 equals 的区别是什么？</h4><p>==对于基本类型比较的是值，对于引用类型比较的是引用（内存地址）。</p><p>equals是Object类的一个方法，它里面返回的就是==的判断，由于所有的类都是继承自java.lang.Object类的，所以适用于所有对象，如果没有对该方法进行覆盖的话，那它就是比较的内存地址。但是实际应用中，我们往往重写equals方法，来比较两个对象的内容是否相等，比如我们常用的String，Integer等类，它们就重写了equals方法，比较的是对象里的内容。</p><p><strong>java.lang.Object类里的equals方法：</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>java.lang.String类里的equals方法：</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">        String anotherString = (String)anObject;</span><br><span class="line">        <span class="keyword">int</span> n = value.length;</span><br><span class="line">        <span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">            <span class="keyword">char</span> v1[] = value;</span><br><span class="line">            <span class="keyword">char</span> v2[] = anotherString.value;</span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v1[i] != v2[i])</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>总结</strong> ：== 对于基本类型来说是值比较，对于引用类型来说是比较的是引用；而 equals 默认情况下是引用比较，只是很多类重写了 equals 方法，比如 String、Integer 等把它变成了值比较，所以一般情况下 equals 比较的是值是否相等。</p><h4 id="两个对象的-hashCode-相同，则-equals-也一定为-true，对吗？"><a href="#两个对象的-hashCode-相同，则-equals-也一定为-true，对吗？" class="headerlink" title="两个对象的 hashCode()相同，则 equals()也一定为 true，对吗？"></a>两个对象的 hashCode()相同，则 equals()也一定为 true，对吗？</h4><p>错，两个对象的 hashCode()相同， equals()不一定为 true。</p><p>——》单独文章说明。</p><h4 id="final-在-java-中有什么作用？"><a href="#final-在-java-中有什么作用？" class="headerlink" title="final 在 java 中有什么作用？"></a>final 在 java 中有什么作用？</h4><ul><li>final 修饰的类叫最终类，该类不能被继承；</li><li>final 修饰的方法不能被重写，但是可以被重载；</li><li>final 修饰的变量叫常量，常量使用时必须被初始化， 初始化之后就不能被修改。final修饰的变量一些情况下可以先声明后赋值：1.类里面的成员变量可以先声明，在代码块或者构造函数里面赋值，有多个构造函数时，每个构造函数里都需要赋值。2.方法里的变量可以先声明，使用时必须先赋值。</li></ul><h4 id="java-中的-Math-round-1-5-等于多少？"><a href="#java-中的-Math-round-1-5-等于多少？" class="headerlink" title="java 中的 Math.round(-1.5) 等于多少？"></a>java 中的 Math.round(-1.5) 等于多少？</h4><p>等于 -1，因为在数轴上取值时，中间值（0.5）向右取整，所以正 0.5 是往上取整，负 0.5 是直接舍弃。</p><p>round() 方法返回一个最接近的 int、long 型值，四舍五入。算法为<strong>Math.floor(x+0.5)</strong> ，即将原来的数字加上 0.5 后再向下取整，所以 Math.round(11.5) 的结果为 12，Math.round(-11.5) 的结果为 -11，语法格式：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">round</span><span class="params">(<span class="keyword">double</span> d)</span></span></span><br><span class="line"><span class="function">    </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">round</span><span class="params">(<span class="keyword">float</span> f)</span></span></span><br></pre></td></tr></table></figure><h4 id="String-属于基础的数据类型吗？"><a href="#String-属于基础的数据类型吗？" class="headerlink" title="String 属于基础的数据类型吗？"></a>String 属于基础的数据类型吗？</h4><p>String是引用类型，不属于基础的数据类型。基础数据类型有8种：byte，short，int，long，float，double，char，boolean。</p><h4 id="java-中操作字符串都有哪些类？它们之间有什么区别？"><a href="#java-中操作字符串都有哪些类？它们之间有什么区别？" class="headerlink" title="java 中操作字符串都有哪些类？它们之间有什么区别？"></a>java 中操作字符串都有哪些类？它们之间有什么区别？</h4><p>操作字符串的类有：String、StringBuffer、StringBuilder。</p><p>String 和 StringBuffer、StringBuilder 的区别在于 String 声明的是不可变的对象，每次操作都会生成新的 String 对象，然后将指针指向新的 String 对象，而 StringBuffer、StringBuilder 可以在原有对象的基础上进行操作，所以在经常改变字符串内容的情况下最好不要使用 String。</p><p>StringBuffer 和 StringBuilder 最大的区别在于，StringBuffer 是线程安全的，而 StringBuilder 是非线程安全的，但 StringBuilder 的性能却高于 StringBuffer，所以在单线程环境下推荐使用 StringBuilder，多线程环境下推荐使用 StringBuffer。</p><h4 id="String-str-”i”与-String-str-new-String-“i”-一样吗？"><a href="#String-str-”i”与-String-str-new-String-“i”-一样吗？" class="headerlink" title="String str=”i”与 String str=new String(“i”)一样吗？"></a>String str=”i”与 String str=new String(“i”)一样吗？</h4><p>不一样，因为内存的分配方式不一样。String str=”i”的方式，java虚拟机会将其分配到常量池中；而String str=new String(“i”)则会被分配到堆内存中。</p><h4 id="如何将字符串反转？"><a href="#如何将字符串反转？" class="headerlink" title="如何将字符串反转？"></a>如何将字符串反转？</h4><p>使用 StringBuilder 或者 StringBuffer 类的 reverse() 方法。</p><h4 id="String-类的常用方法都有那些？"><a href="#String-类的常用方法都有那些？" class="headerlink" title="String 类的常用方法都有那些？"></a>String 类的常用方法都有那些？</h4><ul><li>indexOf()：返回指定字符的索引；</li><li>charAt()：返回指定索引处的字符；</li><li>split()：根据指定字符串进行分割字符串，返回一个String数组；</li><li>substring()：截取字符串；</li><li>replace()：字符串替换；</li><li>equals()：字符串比较；</li><li>trim()：去除字符串两端空白；</li><li>getBytes()：返回字符串的byte类型数据；</li><li>length()：返回字符串的长度；</li><li>toLowerCase()：将字符串转为小写字母；</li><li>toUpperCase()：将字符串转为大写字母；</li></ul><h4 id="抽象类必须要有抽象方法吗？"><a href="#抽象类必须要有抽象方法吗？" class="headerlink" title="抽象类必须要有抽象方法吗？"></a>抽象类必须要有抽象方法吗？</h4><p>不需要，抽象类不一定非要有抽象方法。</p><h4 id="普通类和抽象类有哪些区别？"><a href="#普通类和抽象类有哪些区别？" class="headerlink" title="普通类和抽象类有哪些区别？"></a>普通类和抽象类有哪些区别？</h4><ul><li>普通类不能包含抽象方法，抽象类可以包含抽象方法；</li><li>普通类可以直接实例化，抽象类不能直接实例化。</li></ul><h4 id="抽象类能使用-final-修饰吗？"><a href="#抽象类能使用-final-修饰吗？" class="headerlink" title="抽象类能使用 final 修饰吗？"></a>抽象类能使用 final 修饰吗？</h4><p>不能，抽象类就是让其他类继承的，被final修饰的类不能被继承，这样就矛盾了，所以抽象类不能使用final修饰。</p><h4 id="接口和抽象类有什么区别？"><a href="#接口和抽象类有什么区别？" class="headerlink" title="接口和抽象类有什么区别？"></a>接口和抽象类有什么区别？</h4><ul><li>实现：接口是被实现的，使用implements来实现接口，而抽象类是被继承的，用extends来继承；</li><li>构造函数：接口没有构造函数，抽象类有；</li><li>实现数量：类可以实现多个接口，但是只能继承一个抽象类；</li><li>访问修饰符：接口中的方法默认使用public修饰；抽象类中的方法可以是任意访问修饰符。</li></ul><h4 id="java-中-IO-流分为几种？"><a href="#java-中-IO-流分为几种？" class="headerlink" title="java 中 IO 流分为几种？"></a>java 中 IO 流分为几种？</h4><p>按功能来分有两种：输入流（input）、输出流（output）。</p><p>按类型来分：字节流和字符流。</p><p>字节流和字符流的区别是：字节流按8位传输以字节为单位输入输出数据，字符流按16位传输以字符流为单位输入输出数据。</p><h4 id="BIO、NIO、AIO-有什么区别？"><a href="#BIO、NIO、AIO-有什么区别？" class="headerlink" title="BIO、NIO、AIO 有什么区别？"></a>BIO、NIO、AIO 有什么区别？</h4><ul><li>BIO：Block IO 同步阻塞式IO，平时使用的传统IO，模式简单使用方便，但是并发处理能力低；</li><li>NIO：New IO 同步非阻塞IO，传统IO的升级，客户端和服务端通过Channel（通道）通讯，实现了多路复用；</li><li>AIO：Asynchronous IO 是 NIO 的升级，又称为 NIO2，实现了异步非阻塞IO，异步IO的操作基于事件和回调机制。</li></ul><h4 id="Files的常用方法都有哪些？"><a href="#Files的常用方法都有哪些？" class="headerlink" title="Files的常用方法都有哪些？"></a>Files的常用方法都有哪些？</h4><p>java.nio.file.Files：</p><ul><li>Files.exists()：检测文件是否存在；</li><li>Files.createFile()：创建文件；</li><li>FIles.createDirectory()：创建文件夹；</li><li>Files.delete()：删除文件；</li><li>Files.copy()：复制文件；</li><li>Files.move()：移动文件；</li><li>FIles.size()：查看文件个数；</li><li>Files.read()：读取文件；</li><li>FIles.write()：写入文件。</li></ul>]]></content>
     
@@ -68,6 +68,35 @@
       <category term="面试题" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
       <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java面试题汇总（三）网络</title>
+    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89%E7%BD%91%E7%BB%9C/"/>
+    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（三）网络/</id>
+    <published>2019-03-13T03:43:51.000Z</published>
+    <updated>2020-12-03T14:17:34.904Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Java面试题汇总（三）网络"><a href="#Java面试题汇总（三）网络" class="headerlink" title="Java面试题汇总（三）网络"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（三）网络</h2><h4 id="OSI-的七层模型都有哪些？"><a href="#OSI-的七层模型都有哪些？" class="headerlink" title="OSI 的七层模型都有哪些？"></a>OSI 的七层模型都有哪些？</h4><ol><li>物理层：主要定义了物理设备的标准，如网线的类型、光纤的接口类型、各种传输介质的传输速率等，主要作用是传输比特流，将0101二进制码转换为电流强弱，传输到目的地后再解析为0101的二级制机器码。<strong>网卡</strong>就是工作在这一层的。</li><li>数据链路层：将比特数据转换成了帧，<strong>交换机</strong>就工作在这一层，对帧解码，并把帧中包含的信息正确的发送到接收方。</li><li>网络层：将网络地址翻译成对应的物理地址，并决定数据如何从发送方路由到接收方。<strong>路由器</strong>、IP协议在这一层。</li><li>传输层：解决了主机间的数据传输，传输质量，流量控制，数据分割传输及排序等。TCP、UDP。</li><li>会话层：建立和管理应用程序之间的通信，自动收发包和寻址。</li><li>表示层：解决不同系统之间通信语法的问题。</li><li>应用层：规定了发送方和接收方使用一个固定的消息头等信息，方便接收方解析发送方的数据。HTTP</li></ol><h4 id="说说TCP的三次握手？"><a href="#说说TCP的三次握手？" class="headerlink" title="说说TCP的三次握手？"></a>说说TCP的三次握手？</h4><p>在TCP/IP协议中，TCP协议提供了可靠的连接服务，采用三次握手建立一个连接。</p><p>第一次握手：建立连接时，客户端发送SYN包（seq=x）到服务器，并进入SYN_SEND状态，等待服务器确认；</p><p>第二次握手：服务端收到SYN包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（seq=y），即SYN+ACK包，此时服务器进入SYN_RECV状态；</p><p>第三次握手：客户端收到服务端的SYN+ACK包，向服务端发送确认包ACK（ack=y+1），此包发送完毕后，客户端和服务端都进入ESTABLISHED状态，完成三次握手。</p><p>之所以需要三次握手，一是为了保证双方都能确认自己和对方的发送和接收是正常的，二是为了初始化sequence number的初始值，因为TCP需要根据该值，保证序号不会乱序，能够正确的拼接数据。</p><p>首次握手的隐患——SYN超时，服务端收到客户端的SYN包，并发送了SYN+ACK包后没有收到回复，服务端会不断重试直至超时，Linux默认63秒后才断开连接。</p><p>同时会有SYN Flood防护机制（SYN Cookie），保活机制（发送保活探测报文）来应对各种情况。</p><h4 id="说说TCP的四次挥手？"><a href="#说说TCP的四次挥手？" class="headerlink" title="说说TCP的四次挥手？"></a>说说TCP的四次挥手？</h4><p>挥手是为了终止连接。</p><p>第一次挥手：客户端发送一个FIN，用来关闭客户端到服务端的数据传输，客户端进入FIN_WAIT_1状态；</p><p>第二次挥手：服务端能收到FIN后，发送一个ACK给到客户端，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），服务端进入CLOSE_WAIT状态；</p><p>第三次挥手：服务端发送一个FIN，用来关闭服务端到客户端的数据传输，服务端进入LAST_ACK状态；</p><p>第四次挥手：客户端收到FIN后，客户端进入TIME_WAIT状态，接着发送一个ACK给服务端，确认序号为收到序号+1，服务端进入CLOSED状态，完成四次挥手。</p><p>之所以有TIME_WAIT状态，一是为了确保有足够的时间让对方收到ACK包，二是避免新旧连接混淆。</p><p>需要四次挥手是因为全双工（通信允许数据在两个方向上同时传输），发送方和接收方都需要FIN报文和ACK报文，所以一方的2次挥手乘以双方，就是四次挥手了。</p><p>举个例⼦：A 和 B 打电话，通话即将结束后，A 说“我没啥要说的了”，B回答“我知道了”，但是 B 可 能还会有要说的话，A 不能要求 B 跟着⾃⼰的节奏结束通话，于是 B 可能⼜巴拉巴拉说了⼀通，最后 B 说“我说完了”，A 回答“知道了”，这样通话才算结束。</p><h4 id="TCP和UDP的区别？"><a href="#TCP和UDP的区别？" class="headerlink" title="TCP和UDP的区别？"></a>TCP和UDP的区别？</h4><ul><li>TCP面向连接，UDP无连接</li><li>TCP可靠，UDP不可靠</li><li>TCP有序，UDP无序</li><li>TCP所需资源多，传输效率比UDP慢</li><li>TCP适合需要可靠传输的场景，比如：文件传输、发送和接收邮件等，UDP适合不需要确认回复的场景，比如即时通信、QQ语音、视频、直播等</li></ul><h4 id="TCP协议如何保证可靠传输？"><a href="#TCP协议如何保证可靠传输？" class="headerlink" title="TCP协议如何保证可靠传输？"></a>TCP协议如何保证可靠传输？</h4><ul><li>数据分割传输，每个包进行编号，接收方进行排序。</li><li><strong>流量控制</strong>：TCP通过<strong>滑动窗口</strong>实现流量控制，流量控制是为了控制发送方发送速率，保证接收方来得及接收。</li><li><strong>阻塞控制</strong>：当网络阻塞时，减少数据的发送。</li><li><strong>ARQ协议</strong>：自动重传请求。基本原理是每发完一个分组就停止发送，等待对方确认，收到确认后再发送下一分组。</li><li><strong>超时重传</strong>：当TCP发出一个段后，启动一个定时器，等待接收端确认收到这个报文段，如果不能及时的收到一个确认，将会重发这个报文段。</li></ul><h4 id="在浏览器中输入url地址-gt-gt-显示主页的过程？"><a href="#在浏览器中输入url地址-gt-gt-显示主页的过程？" class="headerlink" title="在浏览器中输入url地址 -&gt;&gt; 显示主页的过程？"></a>在浏览器中输入url地址 -&gt;&gt; 显示主页的过程？</h4><ol><li><strong>DNS解析</strong>，浏览器查找域名的IP地址（DNS查找过程：浏览器缓存、路由器缓存、DNS缓存）</li><li>TCP连接</li><li>发送HTTP请求</li><li>服务器处理请求并返回HTTP报文</li><li>浏览器解析渲染页面</li><li>连接结束</li></ol><h4 id="状态码有哪些？"><a href="#状态码有哪些？" class="headerlink" title="状态码有哪些？"></a>状态码有哪些？</h4><ul><li>1xx：指示信息——表示请求已接收，正在处理</li><li>2xx：成功——表示请求正常处理完毕</li><li>3xx：重定向——表示需要完成请求必须进行进一步的操作</li><li>4xx：客户端错误——表示请求有语法错误或者请求无法实现</li><li>5xx：服务器端错误——表示服务器处理请求出错</li></ul><h4 id="GET请求和POST请求的区别？"><a href="#GET请求和POST请求的区别？" class="headerlink" title="GET请求和POST请求的区别？"></a>GET请求和POST请求的区别？</h4><ul><li>GET请求的信息放在URL（有长度限制），POST放在请求体。</li><li>GET符合幂等性和安全性，POST不符合。GET一般是查询获取资源的，不会对数据造成改变，相对安全。而POST会对数据发生改变。</li><li>GET可以被缓存（浏览器历史记录）、被存储（浏览器书签），而POST不行。GET请求被缓存，CDN加速，可以缓解服务器压力。</li></ul><p>幂等性：就是用户对于同一操作发起的一次请求或者多次请求的结果是一致的，不会因为多次点击而产生了副作用。</p><h4 id="？"><a href="#？" class="headerlink" title="？"></a>？</h4><p>#### </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Java面试题汇总（三）网络&quot;&gt;&lt;a href=&quot;#Java面试题汇总（三）网络&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（三）网络&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13/java面试/Java面试题汇总/&quot;&gt;Java
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="面试题" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -128,19 +157,19 @@
   </entry>
   
   <entry>
-    <title>Java面试题汇总（四）Redis</title>
-    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%9B%9B%EF%BC%89Redis/"/>
-    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（四）Redis/</id>
+    <title>Java面试题汇总（十一）SpringMVC</title>
+    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89SpringMVC/"/>
+    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（十一）SpringMVC/</id>
     <published>2019-03-13T03:43:51.000Z</published>
-    <updated>2020-12-02T08:33:05.252Z</updated>
+    <updated>2020-12-02T14:19:50.333Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Java面试题汇总（四）Redis"><a href="#Java面试题汇总（四）Redis" class="headerlink" title="Java面试题汇总（四）Redis"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（四）Redis</h2><h4 id="Redis和Memecache有什么区别？"><a href="#Redis和Memecache有什么区别？" class="headerlink" title="Redis和Memecache有什么区别？"></a>Redis和Memecache有什么区别？</h4><p>Redis支持</p><h4 id="为什么Redis能这么快？"><a href="#为什么Redis能这么快？" class="headerlink" title="为什么Redis能这么快？"></a>为什么Redis能这么快？</h4><h4 id="Redis的使用场景都有哪些？"><a href="#Redis的使用场景都有哪些？" class="headerlink" title="Redis的使用场景都有哪些？"></a>Redis的使用场景都有哪些？</h4><ol><li>缓存</li><li>计数器</li><li>排行榜，去top n个数据</li><li>pub、sub发布订阅构建实时消息系统</li><li>构建消息队列</li><li>精确的设置过期时间</li><li>各数据类型的应用场景：<ul><li>String：缓存、限流、计数器、分布式锁、分布式Session</li><li>Hash：存储用户信息、用户主页访问量、组合查询</li><li>List：微博关注人时间轴列表、简单队列</li><li>Set：赞、踩、标签、好友关系</li><li>Zset：排行榜</li></ul></li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="Java面试题汇总（十一）SpringMVC"><a href="#Java面试题汇总（十一）SpringMVC" class="headerlink" title="Java面试题汇总（十一）SpringMVC"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（十一）SpringMVC</h2><h4 id="SpringMVC的工作原理（执行流程）是什么？"><a href="#SpringMVC的工作原理（执行流程）是什么？" class="headerlink" title="SpringMVC的工作原理（执行流程）是什么？"></a>SpringMVC的工作原理（执行流程）是什么？</h4><ol><li>客户端（常见的如浏览器）发送请求，直接请求到前端控制器DispatcherServlet。</li><li>DispatcherServlet收到请求后，调用HandlerMapping处理器映射器，请求获取Handler。</li><li>处理器映射器根据请求url找到具体的处理器，生成处理器对象以及处理器拦截器（如果有则生成）一并返回给DispatcherServlet。</li><li>DispatcherServlet调用HandlerAdapter处理器适配器。</li><li>HandlerAdapter会根据Handler来调用真正的处理器开始处理请求，并处理相应的业务逻辑。</li><li>处理器处理完业务后，会返回一个ModelAndView对象给DispatcherServlet，Model是返回的数据对象，View是一个逻辑上的View。</li><li>DispatcherServlet将ModelAndView传给ViewResolver视图解析器进行解析。</li><li>ViewResolver会根据逻辑上的View，查找实际的View。</li><li>DispatcherServlet对View进行渲染视图（将模型数据填充至视图中）。</li><li>将View返回给请求者。</li></ol><h4 id="SpringMVC中如何解决GET-POST请求中文乱码问题？"><a href="#SpringMVC中如何解决GET-POST请求中文乱码问题？" class="headerlink" title="SpringMVC中如何解决GET|POST请求中文乱码问题？"></a>SpringMVC中如何解决GET|POST请求中文乱码问题？</h4><ul><li><p>GET</p><ul><li>每次发送请求之前对URL进行编码：比如encodeURI()方法；</li><li>更简便的方法，在服务器端配置tomcat的server.xml文件，增加URIEncoding=“UTF-8”，然后重启tomcat即可。</li></ul></li><li><p>POST</p><ul><li><p>可以每次在request解析数据时设置编码格式：request.setCharacterEncoding(“utf-8”)；</p></li><li><p>可以使用编码过滤器解决，<strong>最常用的方法</strong>是使用Spring提供的编码过滤器，在web.xml里面添加如下配置：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>charsetFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br></pre></td></tr></table></figure><p>该过滤器做的其实就是强制为请求和响应设置编码格式：</p><p>request.setCharacterEncoding(“utf-8”);<br>response.setCharacterEncoding(“utf-8”);</p></li></ul></li></ul><h4 id="SpringMVC怎样设定重定向和转发的？"><a href="#SpringMVC怎样设定重定向和转发的？" class="headerlink" title="SpringMVC怎样设定重定向和转发的？"></a>SpringMVC怎样设定重定向和转发的？</h4><p>在返回值前面加上redirect:（重定向）或者forward:（请求转发）。</p><h4 id="SpringMVC如何做异常处理？"><a href="#SpringMVC如何做异常处理？" class="headerlink" title="SpringMVC如何做异常处理？"></a>SpringMVC如何做异常处理？</h4><p>可以将异常抛给Spring框架来处理，自定义实现Spring框架的全局异常解析器<strong>HandlerExceptionResolver</strong>。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;Java面试题汇总（四）Redis&quot;&gt;&lt;a href=&quot;#Java面试题汇总（四）Redis&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（四）Redis&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13/java面试/Java面试题
+        &lt;h2 id=&quot;Java面试题汇总（十一）SpringMVC&quot;&gt;&lt;a href=&quot;#Java面试题汇总（十一）SpringMVC&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（十一）SpringMVC&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13
       
     
     </summary>
@@ -152,36 +181,7 @@
     
       <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
-      <category term="Redis" scheme="http://yoursite.com/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java面试题汇总（三）网络</title>
-    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89%E7%BD%91%E7%BB%9C/"/>
-    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（三）网络/</id>
-    <published>2019-03-13T03:43:51.000Z</published>
-    <updated>2020-12-03T14:17:34.904Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Java面试题汇总（三）网络"><a href="#Java面试题汇总（三）网络" class="headerlink" title="Java面试题汇总（三）网络"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（三）网络</h2><h4 id="OSI-的七层模型都有哪些？"><a href="#OSI-的七层模型都有哪些？" class="headerlink" title="OSI 的七层模型都有哪些？"></a>OSI 的七层模型都有哪些？</h4><ol><li>物理层：主要定义了物理设备的标准，如网线的类型、光纤的接口类型、各种传输介质的传输速率等，主要作用是传输比特流，将0101二进制码转换为电流强弱，传输到目的地后再解析为0101的二级制机器码。<strong>网卡</strong>就是工作在这一层的。</li><li>数据链路层：将比特数据转换成了帧，<strong>交换机</strong>就工作在这一层，对帧解码，并把帧中包含的信息正确的发送到接收方。</li><li>网络层：将网络地址翻译成对应的物理地址，并决定数据如何从发送方路由到接收方。<strong>路由器</strong>、IP协议在这一层。</li><li>传输层：解决了主机间的数据传输，传输质量，流量控制，数据分割传输及排序等。TCP、UDP。</li><li>会话层：建立和管理应用程序之间的通信，自动收发包和寻址。</li><li>表示层：解决不同系统之间通信语法的问题。</li><li>应用层：规定了发送方和接收方使用一个固定的消息头等信息，方便接收方解析发送方的数据。HTTP</li></ol><h4 id="说说TCP的三次握手？"><a href="#说说TCP的三次握手？" class="headerlink" title="说说TCP的三次握手？"></a>说说TCP的三次握手？</h4><p>在TCP/IP协议中，TCP协议提供了可靠的连接服务，采用三次握手建立一个连接。</p><p>第一次握手：建立连接时，客户端发送SYN包（seq=x）到服务器，并进入SYN_SEND状态，等待服务器确认；</p><p>第二次握手：服务端收到SYN包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（seq=y），即SYN+ACK包，此时服务器进入SYN_RECV状态；</p><p>第三次握手：客户端收到服务端的SYN+ACK包，向服务端发送确认包ACK（ack=y+1），此包发送完毕后，客户端和服务端都进入ESTABLISHED状态，完成三次握手。</p><p>之所以需要三次握手，一是为了保证双方都能确认自己和对方的发送和接收是正常的，二是为了初始化sequence number的初始值，因为TCP需要根据该值，保证序号不会乱序，能够正确的拼接数据。</p><p>首次握手的隐患——SYN超时，服务端收到客户端的SYN包，并发送了SYN+ACK包后没有收到回复，服务端会不断重试直至超时，Linux默认63秒后才断开连接。</p><p>同时会有SYN Flood防护机制（SYN Cookie），保活机制（发送保活探测报文）来应对各种情况。</p><h4 id="说说TCP的四次挥手？"><a href="#说说TCP的四次挥手？" class="headerlink" title="说说TCP的四次挥手？"></a>说说TCP的四次挥手？</h4><p>挥手是为了终止连接。</p><p>第一次挥手：客户端发送一个FIN，用来关闭客户端到服务端的数据传输，客户端进入FIN_WAIT_1状态；</p><p>第二次挥手：服务端能收到FIN后，发送一个ACK给到客户端，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），服务端进入CLOSE_WAIT状态；</p><p>第三次挥手：服务端发送一个FIN，用来关闭服务端到客户端的数据传输，服务端进入LAST_ACK状态；</p><p>第四次挥手：客户端收到FIN后，客户端进入TIME_WAIT状态，接着发送一个ACK给服务端，确认序号为收到序号+1，服务端进入CLOSED状态，完成四次挥手。</p><p>之所以有TIME_WAIT状态，一是为了确保有足够的时间让对方收到ACK包，二是避免新旧连接混淆。</p><p>需要四次挥手是因为全双工（通信允许数据在两个方向上同时传输），发送方和接收方都需要FIN报文和ACK报文，所以一方的2次挥手乘以双方，就是四次挥手了。</p><p>举个例⼦：A 和 B 打电话，通话即将结束后，A 说“我没啥要说的了”，B回答“我知道了”，但是 B 可 能还会有要说的话，A 不能要求 B 跟着⾃⼰的节奏结束通话，于是 B 可能⼜巴拉巴拉说了⼀通，最后 B 说“我说完了”，A 回答“知道了”，这样通话才算结束。</p><h4 id="TCP和UDP的区别？"><a href="#TCP和UDP的区别？" class="headerlink" title="TCP和UDP的区别？"></a>TCP和UDP的区别？</h4><ul><li>TCP面向连接，UDP无连接</li><li>TCP可靠，UDP不可靠</li><li>TCP有序，UDP无序</li><li>TCP所需资源多，传输效率比UDP慢</li><li>TCP适合需要可靠传输的场景，比如：文件传输、发送和接收邮件等，UDP适合不需要确认回复的场景，比如即时通信、QQ语音、视频、直播等</li></ul><h4 id="TCP协议如何保证可靠传输？"><a href="#TCP协议如何保证可靠传输？" class="headerlink" title="TCP协议如何保证可靠传输？"></a>TCP协议如何保证可靠传输？</h4><ul><li>数据分割传输，每个包进行编号，接收方进行排序。</li><li><strong>流量控制</strong>：TCP通过<strong>滑动窗口</strong>实现流量控制，流量控制是为了控制发送方发送速率，保证接收方来得及接收。</li><li><strong>阻塞控制</strong>：当网络阻塞时，减少数据的发送。</li><li><strong>ARQ协议</strong>：自动重传请求。基本原理是每发完一个分组就停止发送，等待对方确认，收到确认后再发送下一分组。</li><li><strong>超时重传</strong>：当TCP发出一个段后，启动一个定时器，等待接收端确认收到这个报文段，如果不能及时的收到一个确认，将会重发这个报文段。</li></ul><h4 id="在浏览器中输入url地址-gt-gt-显示主页的过程？"><a href="#在浏览器中输入url地址-gt-gt-显示主页的过程？" class="headerlink" title="在浏览器中输入url地址 -&gt;&gt; 显示主页的过程？"></a>在浏览器中输入url地址 -&gt;&gt; 显示主页的过程？</h4><ol><li><strong>DNS解析</strong>，浏览器查找域名的IP地址（DNS查找过程：浏览器缓存、路由器缓存、DNS缓存）</li><li>TCP连接</li><li>发送HTTP请求</li><li>服务器处理请求并返回HTTP报文</li><li>浏览器解析渲染页面</li><li>连接结束</li></ol><h4 id="状态码有哪些？"><a href="#状态码有哪些？" class="headerlink" title="状态码有哪些？"></a>状态码有哪些？</h4><ul><li>1xx：指示信息——表示请求已接收，正在处理</li><li>2xx：成功——表示请求正常处理完毕</li><li>3xx：重定向——表示需要完成请求必须进行进一步的操作</li><li>4xx：客户端错误——表示请求有语法错误或者请求无法实现</li><li>5xx：服务器端错误——表示服务器处理请求出错</li></ul><h4 id="GET请求和POST请求的区别？"><a href="#GET请求和POST请求的区别？" class="headerlink" title="GET请求和POST请求的区别？"></a>GET请求和POST请求的区别？</h4><ul><li>GET请求的信息放在URL（有长度限制），POST放在请求体。</li><li>GET符合幂等性和安全性，POST不符合。GET一般是查询获取资源的，不会对数据造成改变，相对安全。而POST会对数据发生改变。</li><li>GET可以被缓存（浏览器历史记录）、被存储（浏览器书签），而POST不行。GET请求被缓存，CDN加速，可以缓解服务器压力。</li></ul><p>幂等性：就是用户对于同一操作发起的一次请求或者多次请求的结果是一致的，不会因为多次点击而产生了副作用。</p><h4 id="？"><a href="#？" class="headerlink" title="？"></a>？</h4><p>#### </p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;Java面试题汇总（三）网络&quot;&gt;&lt;a href=&quot;#Java面试题汇总（三）网络&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（三）网络&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13/java面试/Java面试题汇总/&quot;&gt;Java
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="面试题" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    
-      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
+      <category term="SpringMVC" scheme="http://yoursite.com/tags/SpringMVC/"/>
     
   </entry>
   
@@ -215,19 +215,19 @@
   </entry>
   
   <entry>
-    <title>Java面试题汇总（十一）SpringMVC</title>
-    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89SpringMVC/"/>
-    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（十一）SpringMVC/</id>
+    <title>Java面试题汇总（四）Redis</title>
+    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%9B%9B%EF%BC%89Redis/"/>
+    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（四）Redis/</id>
     <published>2019-03-13T03:43:51.000Z</published>
-    <updated>2020-12-02T14:19:50.333Z</updated>
+    <updated>2020-12-02T08:33:05.252Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Java面试题汇总（十一）SpringMVC"><a href="#Java面试题汇总（十一）SpringMVC" class="headerlink" title="Java面试题汇总（十一）SpringMVC"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（十一）SpringMVC</h2><h4 id="SpringMVC的工作原理（执行流程）是什么？"><a href="#SpringMVC的工作原理（执行流程）是什么？" class="headerlink" title="SpringMVC的工作原理（执行流程）是什么？"></a>SpringMVC的工作原理（执行流程）是什么？</h4><ol><li>客户端（常见的如浏览器）发送请求，直接请求到前端控制器DispatcherServlet。</li><li>DispatcherServlet收到请求后，调用HandlerMapping处理器映射器，请求获取Handler。</li><li>处理器映射器根据请求url找到具体的处理器，生成处理器对象以及处理器拦截器（如果有则生成）一并返回给DispatcherServlet。</li><li>DispatcherServlet调用HandlerAdapter处理器适配器。</li><li>HandlerAdapter会根据Handler来调用真正的处理器开始处理请求，并处理相应的业务逻辑。</li><li>处理器处理完业务后，会返回一个ModelAndView对象给DispatcherServlet，Model是返回的数据对象，View是一个逻辑上的View。</li><li>DispatcherServlet将ModelAndView传给ViewResolver视图解析器进行解析。</li><li>ViewResolver会根据逻辑上的View，查找实际的View。</li><li>DispatcherServlet对View进行渲染视图（将模型数据填充至视图中）。</li><li>将View返回给请求者。</li></ol><h4 id="SpringMVC中如何解决GET-POST请求中文乱码问题？"><a href="#SpringMVC中如何解决GET-POST请求中文乱码问题？" class="headerlink" title="SpringMVC中如何解决GET|POST请求中文乱码问题？"></a>SpringMVC中如何解决GET|POST请求中文乱码问题？</h4><ul><li><p>GET</p><ul><li>每次发送请求之前对URL进行编码：比如encodeURI()方法；</li><li>更简便的方法，在服务器端配置tomcat的server.xml文件，增加URIEncoding=“UTF-8”，然后重启tomcat即可。</li></ul></li><li><p>POST</p><ul><li><p>可以每次在request解析数据时设置编码格式：request.setCharacterEncoding(“utf-8”)；</p></li><li><p>可以使用编码过滤器解决，<strong>最常用的方法</strong>是使用Spring提供的编码过滤器，在web.xml里面添加如下配置：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>charsetFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br></pre></td></tr></table></figure><p>该过滤器做的其实就是强制为请求和响应设置编码格式：</p><p>request.setCharacterEncoding(“utf-8”);<br>response.setCharacterEncoding(“utf-8”);</p></li></ul></li></ul><h4 id="SpringMVC怎样设定重定向和转发的？"><a href="#SpringMVC怎样设定重定向和转发的？" class="headerlink" title="SpringMVC怎样设定重定向和转发的？"></a>SpringMVC怎样设定重定向和转发的？</h4><p>在返回值前面加上redirect:（重定向）或者forward:（请求转发）。</p><h4 id="SpringMVC如何做异常处理？"><a href="#SpringMVC如何做异常处理？" class="headerlink" title="SpringMVC如何做异常处理？"></a>SpringMVC如何做异常处理？</h4><p>可以将异常抛给Spring框架来处理，自定义实现Spring框架的全局异常解析器<strong>HandlerExceptionResolver</strong>。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="Java面试题汇总（四）Redis"><a href="#Java面试题汇总（四）Redis" class="headerlink" title="Java面试题汇总（四）Redis"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（四）Redis</h2><h4 id="Redis和Memecache有什么区别？"><a href="#Redis和Memecache有什么区别？" class="headerlink" title="Redis和Memecache有什么区别？"></a>Redis和Memecache有什么区别？</h4><p>Redis支持</p><h4 id="为什么Redis能这么快？"><a href="#为什么Redis能这么快？" class="headerlink" title="为什么Redis能这么快？"></a>为什么Redis能这么快？</h4><h4 id="Redis的使用场景都有哪些？"><a href="#Redis的使用场景都有哪些？" class="headerlink" title="Redis的使用场景都有哪些？"></a>Redis的使用场景都有哪些？</h4><ol><li>缓存</li><li>计数器</li><li>排行榜，去top n个数据</li><li>pub、sub发布订阅构建实时消息系统</li><li>构建消息队列</li><li>精确的设置过期时间</li><li>各数据类型的应用场景：<ul><li>String：缓存、限流、计数器、分布式锁、分布式Session</li><li>Hash：存储用户信息、用户主页访问量、组合查询</li><li>List：微博关注人时间轴列表、简单队列</li><li>Set：赞、踩、标签、好友关系</li><li>Zset：排行榜</li></ul></li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;Java面试题汇总（十一）SpringMVC&quot;&gt;&lt;a href=&quot;#Java面试题汇总（十一）SpringMVC&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（十一）SpringMVC&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13
+        &lt;h2 id=&quot;Java面试题汇总（四）Redis&quot;&gt;&lt;a href=&quot;#Java面试题汇总（四）Redis&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（四）Redis&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13/java面试/Java面试题
       
     
     </summary>
@@ -239,7 +239,7 @@
     
       <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
-      <category term="SpringMVC" scheme="http://yoursite.com/tags/SpringMVC/"/>
+      <category term="Redis" scheme="http://yoursite.com/tags/Redis/"/>
     
   </entry>
   
@@ -372,6 +372,36 @@
   </entry>
   
   <entry>
+    <title>字符串常量池</title>
+    <link href="http://yoursite.com/2018/06/14/java%E6%8A%80%E6%9C%AF%E6%A0%88/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/"/>
+    <id>http://yoursite.com/2018/06/14/java技术栈/字符串常量池/</id>
+    <published>2018-06-14T05:59:19.000Z</published>
+    <updated>2019-02-18T12:47:27.729Z</updated>
+    
+    <content type="html"><![CDATA[<p>字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。</p><p>JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。</p><p>java中字符串对象创建有两种形式：</p><p>一种为字面量形式，如String str=” wsp”；</p><p>另一种就是使用标准的构造对象的方法，如String str=new String（”wsp”）；</p><h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>当代码中出现字面量形式创建字符串对象时，JVM就会首先对这个字面量进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回，否则新的字符串对象就被创建，然后将这个引用放入字符串常量池中，并返回该引用。</p><p>String str1=”wan”;</p><p>JVM检测这个字面量，这里我们认为没有内容为“wan”的对象存在。JVM通过字符串常量池查找不到内容为”wan”的字符串对象存在，那么会创建这个字符串对象，然后将刚创建的对象的引用放入到字符串常量池中，并且将引用返回给变量str1。</p><p>String str2=”wan”;</p><p>同样JVM还是要检测这个字面量，JVM通过查找字符串常量池，发现内容为”wan”字符串对象存在，于是将已经存在的字符串对象的引用返回给变量str2。注意这里不会重新创建新的字符串对象。</p><p>验证是否为str1和str2是否指向同一对象，我们可以通过这段代码</p><p>System.out.println(str1 == str2);</p><p>结果为true。</p><p>String str3 = new String(“wan”)</p><p>当我们使用了new来构造字符串对象的时候，不管字符串常量池中有没有相同内容的对象的引用，新的字符串对象都会创建。因此我们使用下面代码测试一下，</p><p>String str3 = new String(“wan”);<br>System.out.println(str1 == str3);</p><p>结果如我们所想，为false，表明这两个变量指向的为不同的对象。</p><p><strong>intern</strong></p><p>对于上面使用new创建的字符串对象，如果想将这个对象的引用加入到字符串常量池，可以使用intern方法。</p><p>调用intern后，首先检查字符串常量池中是否有该对象的引用，如果存在，则将这个引用返回给变量，否则将引用加入并返回给变量。</p><p>String str4 = str3.intern();</p><p>System.out.println(str4 == str1);</p><p>输出的结果为true。</p><p><strong>前提条件？</strong></p><p>字符串常量池实现的前提条件就是Java中String对象是不可变的，这样可以安全保证多个变量共享同一个对象。如果Java中的String对象可变的话，一个引用操作改变了对象的值，那么其他的变量也会受到影响，显然这样是不合理的。</p><p><strong>引用 or 对象</strong></p><p>字符串常量池中存放的时引用还是对象，这个问题是最常见的。字符串常量池存放的是对象引用，不是对象。在Java中，对象都创建在堆内存中。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。&lt;/p&gt;
+&lt;p&gt;JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。&lt;/p&gt;
+&lt;p&gt;java中字符串对象创建有两种形式：&lt;/p&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="技术栈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+      <category term="字符串" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>springboot目录</title>
     <link href="http://yoursite.com/2018/06/14/springboot/springboot%E7%9B%AE%E5%BD%95/"/>
     <id>http://yoursite.com/2018/06/14/springboot/springboot目录/</id>
@@ -406,36 +436,6 @@
     
     
       <category term="work4j社区" scheme="http://yoursite.com/tags/work4j%E7%A4%BE%E5%8C%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>字符串常量池</title>
-    <link href="http://yoursite.com/2018/06/14/java%E6%8A%80%E6%9C%AF%E6%A0%88/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/"/>
-    <id>http://yoursite.com/2018/06/14/java技术栈/字符串常量池/</id>
-    <published>2018-06-14T05:59:19.000Z</published>
-    <updated>2019-02-18T12:47:27.729Z</updated>
-    
-    <content type="html"><![CDATA[<p>字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。</p><p>JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。</p><p>java中字符串对象创建有两种形式：</p><p>一种为字面量形式，如String str=” wsp”；</p><p>另一种就是使用标准的构造对象的方法，如String str=new String（”wsp”）；</p><h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>当代码中出现字面量形式创建字符串对象时，JVM就会首先对这个字面量进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回，否则新的字符串对象就被创建，然后将这个引用放入字符串常量池中，并返回该引用。</p><p>String str1=”wan”;</p><p>JVM检测这个字面量，这里我们认为没有内容为“wan”的对象存在。JVM通过字符串常量池查找不到内容为”wan”的字符串对象存在，那么会创建这个字符串对象，然后将刚创建的对象的引用放入到字符串常量池中，并且将引用返回给变量str1。</p><p>String str2=”wan”;</p><p>同样JVM还是要检测这个字面量，JVM通过查找字符串常量池，发现内容为”wan”字符串对象存在，于是将已经存在的字符串对象的引用返回给变量str2。注意这里不会重新创建新的字符串对象。</p><p>验证是否为str1和str2是否指向同一对象，我们可以通过这段代码</p><p>System.out.println(str1 == str2);</p><p>结果为true。</p><p>String str3 = new String(“wan”)</p><p>当我们使用了new来构造字符串对象的时候，不管字符串常量池中有没有相同内容的对象的引用，新的字符串对象都会创建。因此我们使用下面代码测试一下，</p><p>String str3 = new String(“wan”);<br>System.out.println(str1 == str3);</p><p>结果如我们所想，为false，表明这两个变量指向的为不同的对象。</p><p><strong>intern</strong></p><p>对于上面使用new创建的字符串对象，如果想将这个对象的引用加入到字符串常量池，可以使用intern方法。</p><p>调用intern后，首先检查字符串常量池中是否有该对象的引用，如果存在，则将这个引用返回给变量，否则将引用加入并返回给变量。</p><p>String str4 = str3.intern();</p><p>System.out.println(str4 == str1);</p><p>输出的结果为true。</p><p><strong>前提条件？</strong></p><p>字符串常量池实现的前提条件就是Java中String对象是不可变的，这样可以安全保证多个变量共享同一个对象。如果Java中的String对象可变的话，一个引用操作改变了对象的值，那么其他的变量也会受到影响，显然这样是不合理的。</p><p><strong>引用 or 对象</strong></p><p>字符串常量池中存放的时引用还是对象，这个问题是最常见的。字符串常量池存放的是对象引用，不是对象。在Java中，对象都创建在堆内存中。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。&lt;/p&gt;
-&lt;p&gt;JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。&lt;/p&gt;
-&lt;p&gt;java中字符串对象创建有两种形式：&lt;/p&gt;
-&lt;p&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="技术栈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
-    
-      <category term="字符串" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
   </entry>
   

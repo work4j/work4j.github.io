@@ -21,6 +21,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Java面试题汇总（三）网络]]></title>
+    <url>%2F2019%2F03%2F13%2Fjava%E9%9D%A2%E8%AF%95%2FJava%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89%E7%BD%91%E7%BB%9C%2F</url>
+    <content type="text"><![CDATA[Java面试题汇总（三）网络OSI 的七层模型都有哪些？ 物理层：主要定义了物理设备的标准，如网线的类型、光纤的接口类型、各种传输介质的传输速率等，主要作用是传输比特流，将0101二进制码转换为电流强弱，传输到目的地后再解析为0101的二级制机器码。网卡就是工作在这一层的。 数据链路层：将比特数据转换成了帧，交换机就工作在这一层，对帧解码，并把帧中包含的信息正确的发送到接收方。 网络层：将网络地址翻译成对应的物理地址，并决定数据如何从发送方路由到接收方。路由器、IP协议在这一层。 传输层：解决了主机间的数据传输，传输质量，流量控制，数据分割传输及排序等。TCP、UDP。 会话层：建立和管理应用程序之间的通信，自动收发包和寻址。 表示层：解决不同系统之间通信语法的问题。 应用层：规定了发送方和接收方使用一个固定的消息头等信息，方便接收方解析发送方的数据。HTTP 说说TCP的三次握手？在TCP/IP协议中，TCP协议提供了可靠的连接服务，采用三次握手建立一个连接。 第一次握手：建立连接时，客户端发送SYN包（seq=x）到服务器，并进入SYN_SEND状态，等待服务器确认； 第二次握手：服务端收到SYN包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（seq=y），即SYN+ACK包，此时服务器进入SYN_RECV状态； 第三次握手：客户端收到服务端的SYN+ACK包，向服务端发送确认包ACK（ack=y+1），此包发送完毕后，客户端和服务端都进入ESTABLISHED状态，完成三次握手。 之所以需要三次握手，一是为了保证双方都能确认自己和对方的发送和接收是正常的，二是为了初始化sequence number的初始值，因为TCP需要根据该值，保证序号不会乱序，能够正确的拼接数据。 首次握手的隐患——SYN超时，服务端收到客户端的SYN包，并发送了SYN+ACK包后没有收到回复，服务端会不断重试直至超时，Linux默认63秒后才断开连接。 同时会有SYN Flood防护机制（SYN Cookie），保活机制（发送保活探测报文）来应对各种情况。 说说TCP的四次挥手？挥手是为了终止连接。 第一次挥手：客户端发送一个FIN，用来关闭客户端到服务端的数据传输，客户端进入FIN_WAIT_1状态； 第二次挥手：服务端能收到FIN后，发送一个ACK给到客户端，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），服务端进入CLOSE_WAIT状态； 第三次挥手：服务端发送一个FIN，用来关闭服务端到客户端的数据传输，服务端进入LAST_ACK状态； 第四次挥手：客户端收到FIN后，客户端进入TIME_WAIT状态，接着发送一个ACK给服务端，确认序号为收到序号+1，服务端进入CLOSED状态，完成四次挥手。 之所以有TIME_WAIT状态，一是为了确保有足够的时间让对方收到ACK包，二是避免新旧连接混淆。 需要四次挥手是因为全双工（通信允许数据在两个方向上同时传输），发送方和接收方都需要FIN报文和ACK报文，所以一方的2次挥手乘以双方，就是四次挥手了。 举个例⼦：A 和 B 打电话，通话即将结束后，A 说“我没啥要说的了”，B回答“我知道了”，但是 B 可 能还会有要说的话，A 不能要求 B 跟着⾃⼰的节奏结束通话，于是 B 可能⼜巴拉巴拉说了⼀通，最后 B 说“我说完了”，A 回答“知道了”，这样通话才算结束。 TCP和UDP的区别？ TCP面向连接，UDP无连接 TCP可靠，UDP不可靠 TCP有序，UDP无序 TCP所需资源多，传输效率比UDP慢 TCP适合需要可靠传输的场景，比如：文件传输、发送和接收邮件等，UDP适合不需要确认回复的场景，比如即时通信、QQ语音、视频、直播等 TCP协议如何保证可靠传输？ 数据分割传输，每个包进行编号，接收方进行排序。 流量控制：TCP通过滑动窗口实现流量控制，流量控制是为了控制发送方发送速率，保证接收方来得及接收。 阻塞控制：当网络阻塞时，减少数据的发送。 ARQ协议：自动重传请求。基本原理是每发完一个分组就停止发送，等待对方确认，收到确认后再发送下一分组。 超时重传：当TCP发出一个段后，启动一个定时器，等待接收端确认收到这个报文段，如果不能及时的收到一个确认，将会重发这个报文段。 在浏览器中输入url地址 -&gt;&gt; 显示主页的过程？ DNS解析，浏览器查找域名的IP地址（DNS查找过程：浏览器缓存、路由器缓存、DNS缓存） TCP连接 发送HTTP请求 服务器处理请求并返回HTTP报文 浏览器解析渲染页面 连接结束 状态码有哪些？ 1xx：指示信息——表示请求已接收，正在处理 2xx：成功——表示请求正常处理完毕 3xx：重定向——表示需要完成请求必须进行进一步的操作 4xx：客户端错误——表示请求有语法错误或者请求无法实现 5xx：服务器端错误——表示服务器处理请求出错 GET请求和POST请求的区别？ GET请求的信息放在URL（有长度限制），POST放在请求体。 GET符合幂等性和安全性，POST不符合。GET一般是查询获取资源的，不会对数据造成改变，相对安全。而POST会对数据发生改变。 GET可以被缓存（浏览器历史记录）、被存储（浏览器书签），而POST不行。GET请求被缓存，CDN加速，可以缓解服务器压力。 幂等性：就是用户对于同一操作发起的一次请求或者多次请求的结果是一致的，不会因为多次点击而产生了副作用。 ？####]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>面试题</tag>
+        <tag>面试</tag>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java面试题汇总（二）容器]]></title>
     <url>%2F2019%2F03%2F13%2Fjava%E9%9D%A2%E8%AF%95%2FJava%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%B9%E5%99%A8%2F</url>
     <content type="text"><![CDATA[Java面试题汇总（二）容器java 容器都有哪些？12345678910111213graph TB;Conllection--&gt;ListConllection--&gt;QueueConllection--&gt;SetList--&gt;Vector--&gt;StackList--&gt;ArrayListList--&gt;LinkedListQueue--&gt;LinkedListQueue--&gt;PriorityQueueSet--&gt;HashSet--&gt;LinkedHashSetSet--&gt;TreeSetMap--&gt;HashMapMap--&gt;TreeMap Collection 和 Collections 有什么区别？ java.util.Collection是一个集合接口（集合类的顶级接口）。它提供了对集合对象进行基本操作的通用接口方法。Collection接口在Java类库中有很多具体的实现。Collection接口的意义是为各种具体的集合提供了最大化的统一操作方式，其直接继承接口有List和Set。 Collections则是集合类的一个工具类/帮助类，其中提供了一系列静态方法，用于对集合中元素进行排序、搜索以及线程安全等各种操作。 List、Set、Map 之间的区别是什么？ 比较 List Set Map 继承接口 Collection Collection – 常见实现类 ArrayList、LinkedList、Vector HashSet、LinkedHashSet、TreeSet HashMap、HashTable、TreeMap 常见方法 add()、remove()、clear()、get()、contains()、size() add()、remove()、clear()、contains()、size() put()、get()、remove()、clear()、containsKey()、containsValue()、keySet()、values()、size() 元素 可重复 不可重复（用equals()判断） key不可重复 顺序 有序 无序（实际上有HashCode决定） – 线程安全 Vector线程安全 – HashTable线程安全 HashMap 和 HashTable 有什么区别？ HashMap去掉了HashTable的contains方法，但是加上了containsValue()和containsKey()方法； HashMap是非线程安全的，HashTable是线程安全的，HashMap效率上比HashTable要高； HashMap允许空键值，而HashTable不允许。 说一下 HashMap 的实现原理？HashMap在JDK1.8之前底层是数组+链表的形式。HashMap通过key的hashCode经过扰动函数处理后得到的hash值，然后通过（n-1）&amp; hash 判断当前元素存放的位置，这里的n指的是数组的长度，如果当前位置存在元素的话，就判断该元素与要存入的元素的hash值以及key是否相同，如果相同的话，直接覆盖，不相同的话，通过拉链法解决冲突（拉链法就是遇到哈希冲突时，创建一个链表，将冲突的值加入到链表中）。 所谓的扰动函数就是HashMap的hash方法，使用扰动函数是为了防止一些实现比较差的hashCode()方法，其目的就是为了较少碰撞。不然遇到实现比较差的hashCode()方法的key，大量的落在同一个存放位置，会使得链表过长，查询效率低。 在JDK1.8之后，HashMap的底层使用数组+链表+红黑树的形式。当链表的长度大于阈值（默认是8）的时候，就会转化为红黑树，以减少搜索时间。TreeMap、TreeSet的底层也用到了红黑树，红黑树相较于二叉树，解决了在特殊情况下二叉树退化成一个线性结构的缺陷。 HashMap 的长度为什么是2的幂次方？如果直接通过hash值来决定元素的存放位置，hash值的范围大约在-21亿到21亿之间，虽然发生碰撞的几率很小，但是40亿长度的数组，内存是放不下的。所以做了对数组长度的取模运算，得到的余数来作为元素的存放位置。在取余操作时，如果除数是2的幂次，则等于其与其除数减一的&amp;操作，所以hash%n=（n-1）&amp;hash 的前提是n需要是2的n次方，采用&amp;运算要比%运算效率高，所以HashMap的长度是2的幂次方。 HashMap 线程安全么？HashMap的线程是不安全的。 可以使用Conllections.synchronizedMap(hashMap)的方式，来返回一个线程安全的Map。 也可以使用HashTable，它是线程安全的。 推荐的是直接使用ConcurrentHashMap来避免线程不安全的问题。 ConcurrentHashMap 和 Hashtable 的区别？ 底层结构上不同：ConcurrentHashMap跟HashMap一样，在1.8之前，是 分段的数组+链表 的形式，在1.8之后，是 分段的数组+链表+红黑树 的形式。而HashTable是 数组+链表 的形式。 实现线程安全的方式不同：ConcurrentHashMap在JDK1.7的时候，使用的分段锁SegMent，将整个桶的数据进行分段，每段数据都有各自的锁来控制并发访问。在JDK1.8之后，摒弃了分段锁，而是直接用Node数组+链表+红黑树的数据结构来实现，并发控制使用synchronized和CAS来操作。而HashTable使用的同一把锁，串行执行，当多线程操作同一个HashTable时，会出现阻塞轮休等待的情况，效率比较低。 说一下 HashSet 的实现原理？HashSet的底层是基于HashMap实现的，HashSet会将加入的对象作为key放到一个HashMap中，HashMap的value统一为PRESENT（一个final的Object对象）。 当对象加入HashSet时，HashSet会先计算对象的hashcode值来判断元素添加的位置，同时也会有其他加入的对象的hashcode值进行比较，如果hashcode值相同，会调用对象的equal()方法进行比较，如果还相同，则不会进行加入操作。 说一说HashMap和ArrayList的扩容机制？HashMap默认大小16，负载因子是0.75，也就是160.75=12，超过12大小时就会触发扩容，扩容的大小时之前的一倍即 2。 ArrayList默认初始大小为10，当添加第11个元素的时候，进行扩容，扩容的大小时之前的1.5倍。 https://www.cnblogs.com/cai170221/p/13371975.html?utm_source=tuicool ArrayList 和 LinkedList 的区别是什么？ 线程不安全：ArrayList和LinkedList都是不同步的，也就是不保证线程安全的。 底层数据结构：ArrayList底层数据结构是Object数组（查询快，增删慢），LinkedList底层数据结构是双向链表（查询慢，增删快）。 是否支持快速随机访问：ArrayList支持，LinkedList不支持。 ArrayList实现了RandomAccess接口，该接口没有方法，只是一个标识，标识实现这个接口的类具有随机访问的功能。具体应用可以查看Collections源码中的二分搜索方法。 对于实现了RandomAccess接口的list，优先使用for循环遍历，其次foreach。没有实现RandomAccess接口的list，优先选择iterator遍历。大size的数据，不要使用普通for循环。 如何实现数组和 List 之间的转换？ 数组转List：调用Arrays的asList方法。 List转数组：调用ArrayList的toArray方法。 ArrayList 和 Vector 的区别是什么？ArrayList是线程不安全的，Vector是线程安全的，Vector类里面所有的方法都是同步的，多线程的情况下能够保证数据安全，但是同步操作会消耗时间，效率低。所以不涉及多线程，不需要保证线程安全的时候，建议使用更高效的ArrayList。 Array 和 ArrayList 有何区别？ Array可以存放基本类型和对象，而ArrayList只能存放对象。 Array是指定大小的，而ArrayList大小可以动态扩容。 Array没有ArrayList那么多的功能，比如addAll，removeAll和iterator等。 迭代器 Iterator 是什么？首先说一下迭代器模式，它是 Java 中常用的设计模式之一。用于顺序访问集合对象的元素，无需知道集合对象的底层实现。 Iterator 是可以遍历集合的对象，为各种容器提供了公共的操作接口，隔离对容器的遍历操作和底层实现，从而解耦。 缺点是增加新的集合类需要对应增加新的迭代器类，迭代器类与集合类成对增加。 Iterator 怎么使用？有什么特点？通过调用iterator()方法，返回一个iterator对象。该对象常用的方法： next()：获取序列中下一个元素。 hasNext()：检查序列中是否还有元素。 remove()：将迭代器新返回的元素删除。 Iterator 和 ListIterator 有什么区别？ ListIterator实现了Iterator接口，并包含其他的功能。比如：增加元素，替换元素，获取前一个和后一个元素的索引等等。 Iterator 可以遍历Set和List集合，ListIterator只能遍历List集合。 Iterator 只能向前遍历，ListIterator可以向前也可以向后遍历。]]></content>
@@ -42,25 +53,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Java面试题汇总（四）Redis]]></title>
-    <url>%2F2019%2F03%2F13%2Fjava%E9%9D%A2%E8%AF%95%2FJava%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%9B%9B%EF%BC%89Redis%2F</url>
-    <content type="text"><![CDATA[Java面试题汇总（四）RedisRedis和Memecache有什么区别？Redis支持 为什么Redis能这么快？Redis的使用场景都有哪些？ 缓存 计数器 排行榜，去top n个数据 pub、sub发布订阅构建实时消息系统 构建消息队列 精确的设置过期时间 各数据类型的应用场景： String：缓存、限流、计数器、分布式锁、分布式Session Hash：存储用户信息、用户主页访问量、组合查询 List：微博关注人时间轴列表、简单队列 Set：赞、踩、标签、好友关系 Zset：排行榜]]></content>
+    <title><![CDATA[Java面试题汇总（十一）SpringMVC]]></title>
+    <url>%2F2019%2F03%2F13%2Fjava%E9%9D%A2%E8%AF%95%2FJava%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89SpringMVC%2F</url>
+    <content type="text"><![CDATA[Java面试题汇总（十一）SpringMVCSpringMVC的工作原理（执行流程）是什么？ 客户端（常见的如浏览器）发送请求，直接请求到前端控制器DispatcherServlet。 DispatcherServlet收到请求后，调用HandlerMapping处理器映射器，请求获取Handler。 处理器映射器根据请求url找到具体的处理器，生成处理器对象以及处理器拦截器（如果有则生成）一并返回给DispatcherServlet。 DispatcherServlet调用HandlerAdapter处理器适配器。 HandlerAdapter会根据Handler来调用真正的处理器开始处理请求，并处理相应的业务逻辑。 处理器处理完业务后，会返回一个ModelAndView对象给DispatcherServlet，Model是返回的数据对象，View是一个逻辑上的View。 DispatcherServlet将ModelAndView传给ViewResolver视图解析器进行解析。 ViewResolver会根据逻辑上的View，查找实际的View。 DispatcherServlet对View进行渲染视图（将模型数据填充至视图中）。 将View返回给请求者。 SpringMVC中如何解决GET|POST请求中文乱码问题？ GET 每次发送请求之前对URL进行编码：比如encodeURI()方法； 更简便的方法，在服务器端配置tomcat的server.xml文件，增加URIEncoding=“UTF-8”，然后重启tomcat即可。 POST 可以每次在request解析数据时设置编码格式：request.setCharacterEncoding(“utf-8”)； 可以使用编码过滤器解决，最常用的方法是使用Spring提供的编码过滤器，在web.xml里面添加如下配置： 123456789101112&lt;filter&gt; &lt;filter-name&gt;charsetFilter&lt;/filter-name&gt; &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt; &lt;init-param&gt; &lt;param-name&gt;encoding&lt;/param-name&gt; &lt;param-value&gt;UTF-8&lt;/param-value&gt; &lt;/init-param&gt; &lt;init-param&gt; &lt;param-name&gt;forceEncoding&lt;/param-name&gt; &lt;param-value&gt;true&lt;/param-value&gt; &lt;/init-param&gt;&lt;/filter&gt; 该过滤器做的其实就是强制为请求和响应设置编码格式： request.setCharacterEncoding(“utf-8”);response.setCharacterEncoding(“utf-8”); SpringMVC怎样设定重定向和转发的？在返回值前面加上redirect:（重定向）或者forward:（请求转发）。 SpringMVC如何做异常处理？可以将异常抛给Spring框架来处理，自定义实现Spring框架的全局异常解析器HandlerExceptionResolver。]]></content>
       <tags>
         <tag>java</tag>
         <tag>面试题</tag>
         <tag>面试</tag>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Java面试题汇总（三）网络]]></title>
-    <url>%2F2019%2F03%2F13%2Fjava%E9%9D%A2%E8%AF%95%2FJava%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89%E7%BD%91%E7%BB%9C%2F</url>
-    <content type="text"><![CDATA[Java面试题汇总（三）网络OSI 的七层模型都有哪些？ 物理层：主要定义了物理设备的标准，如网线的类型、光纤的接口类型、各种传输介质的传输速率等，主要作用是传输比特流，将0101二进制码转换为电流强弱，传输到目的地后再解析为0101的二级制机器码。网卡就是工作在这一层的。 数据链路层：将比特数据转换成了帧，交换机就工作在这一层，对帧解码，并把帧中包含的信息正确的发送到接收方。 网络层：将网络地址翻译成对应的物理地址，并决定数据如何从发送方路由到接收方。路由器、IP协议在这一层。 传输层：解决了主机间的数据传输，传输质量，流量控制，数据分割传输及排序等。TCP、UDP。 会话层：建立和管理应用程序之间的通信，自动收发包和寻址。 表示层：解决不同系统之间通信语法的问题。 应用层：规定了发送方和接收方使用一个固定的消息头等信息，方便接收方解析发送方的数据。HTTP 说说TCP的三次握手？在TCP/IP协议中，TCP协议提供了可靠的连接服务，采用三次握手建立一个连接。 第一次握手：建立连接时，客户端发送SYN包（seq=x）到服务器，并进入SYN_SEND状态，等待服务器确认； 第二次握手：服务端收到SYN包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（seq=y），即SYN+ACK包，此时服务器进入SYN_RECV状态； 第三次握手：客户端收到服务端的SYN+ACK包，向服务端发送确认包ACK（ack=y+1），此包发送完毕后，客户端和服务端都进入ESTABLISHED状态，完成三次握手。 之所以需要三次握手，一是为了保证双方都能确认自己和对方的发送和接收是正常的，二是为了初始化sequence number的初始值，因为TCP需要根据该值，保证序号不会乱序，能够正确的拼接数据。 首次握手的隐患——SYN超时，服务端收到客户端的SYN包，并发送了SYN+ACK包后没有收到回复，服务端会不断重试直至超时，Linux默认63秒后才断开连接。 同时会有SYN Flood防护机制（SYN Cookie），保活机制（发送保活探测报文）来应对各种情况。 说说TCP的四次挥手？挥手是为了终止连接。 第一次挥手：客户端发送一个FIN，用来关闭客户端到服务端的数据传输，客户端进入FIN_WAIT_1状态； 第二次挥手：服务端能收到FIN后，发送一个ACK给到客户端，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），服务端进入CLOSE_WAIT状态； 第三次挥手：服务端发送一个FIN，用来关闭服务端到客户端的数据传输，服务端进入LAST_ACK状态； 第四次挥手：客户端收到FIN后，客户端进入TIME_WAIT状态，接着发送一个ACK给服务端，确认序号为收到序号+1，服务端进入CLOSED状态，完成四次挥手。 之所以有TIME_WAIT状态，一是为了确保有足够的时间让对方收到ACK包，二是避免新旧连接混淆。 需要四次挥手是因为全双工（通信允许数据在两个方向上同时传输），发送方和接收方都需要FIN报文和ACK报文，所以一方的2次挥手乘以双方，就是四次挥手了。 举个例⼦：A 和 B 打电话，通话即将结束后，A 说“我没啥要说的了”，B回答“我知道了”，但是 B 可 能还会有要说的话，A 不能要求 B 跟着⾃⼰的节奏结束通话，于是 B 可能⼜巴拉巴拉说了⼀通，最后 B 说“我说完了”，A 回答“知道了”，这样通话才算结束。 TCP和UDP的区别？ TCP面向连接，UDP无连接 TCP可靠，UDP不可靠 TCP有序，UDP无序 TCP所需资源多，传输效率比UDP慢 TCP适合需要可靠传输的场景，比如：文件传输、发送和接收邮件等，UDP适合不需要确认回复的场景，比如即时通信、QQ语音、视频、直播等 TCP协议如何保证可靠传输？ 数据分割传输，每个包进行编号，接收方进行排序。 流量控制：TCP通过滑动窗口实现流量控制，流量控制是为了控制发送方发送速率，保证接收方来得及接收。 阻塞控制：当网络阻塞时，减少数据的发送。 ARQ协议：自动重传请求。基本原理是每发完一个分组就停止发送，等待对方确认，收到确认后再发送下一分组。 超时重传：当TCP发出一个段后，启动一个定时器，等待接收端确认收到这个报文段，如果不能及时的收到一个确认，将会重发这个报文段。 在浏览器中输入url地址 -&gt;&gt; 显示主页的过程？ DNS解析，浏览器查找域名的IP地址（DNS查找过程：浏览器缓存、路由器缓存、DNS缓存） TCP连接 发送HTTP请求 服务器处理请求并返回HTTP报文 浏览器解析渲染页面 连接结束 状态码有哪些？ 1xx：指示信息——表示请求已接收，正在处理 2xx：成功——表示请求正常处理完毕 3xx：重定向——表示需要完成请求必须进行进一步的操作 4xx：客户端错误——表示请求有语法错误或者请求无法实现 5xx：服务器端错误——表示服务器处理请求出错 GET请求和POST请求的区别？ GET请求的信息放在URL（有长度限制），POST放在请求体。 GET符合幂等性和安全性，POST不符合。GET一般是查询获取资源的，不会对数据造成改变，相对安全。而POST会对数据发生改变。 GET可以被缓存（浏览器历史记录）、被存储（浏览器书签），而POST不行。GET请求被缓存，CDN加速，可以缓解服务器压力。 幂等性：就是用户对于同一操作发起的一次请求或者多次请求的结果是一致的，不会因为多次点击而产生了副作用。 ？####]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>面试题</tag>
-        <tag>面试</tag>
-        <tag>网络</tag>
+        <tag>SpringMVC</tag>
       </tags>
   </entry>
   <entry>
@@ -75,14 +75,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Java面试题汇总（十一）SpringMVC]]></title>
-    <url>%2F2019%2F03%2F13%2Fjava%E9%9D%A2%E8%AF%95%2FJava%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89SpringMVC%2F</url>
-    <content type="text"><![CDATA[Java面试题汇总（十一）SpringMVCSpringMVC的工作原理（执行流程）是什么？ 客户端（常见的如浏览器）发送请求，直接请求到前端控制器DispatcherServlet。 DispatcherServlet收到请求后，调用HandlerMapping处理器映射器，请求获取Handler。 处理器映射器根据请求url找到具体的处理器，生成处理器对象以及处理器拦截器（如果有则生成）一并返回给DispatcherServlet。 DispatcherServlet调用HandlerAdapter处理器适配器。 HandlerAdapter会根据Handler来调用真正的处理器开始处理请求，并处理相应的业务逻辑。 处理器处理完业务后，会返回一个ModelAndView对象给DispatcherServlet，Model是返回的数据对象，View是一个逻辑上的View。 DispatcherServlet将ModelAndView传给ViewResolver视图解析器进行解析。 ViewResolver会根据逻辑上的View，查找实际的View。 DispatcherServlet对View进行渲染视图（将模型数据填充至视图中）。 将View返回给请求者。 SpringMVC中如何解决GET|POST请求中文乱码问题？ GET 每次发送请求之前对URL进行编码：比如encodeURI()方法； 更简便的方法，在服务器端配置tomcat的server.xml文件，增加URIEncoding=“UTF-8”，然后重启tomcat即可。 POST 可以每次在request解析数据时设置编码格式：request.setCharacterEncoding(“utf-8”)； 可以使用编码过滤器解决，最常用的方法是使用Spring提供的编码过滤器，在web.xml里面添加如下配置： 123456789101112&lt;filter&gt; &lt;filter-name&gt;charsetFilter&lt;/filter-name&gt; &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt; &lt;init-param&gt; &lt;param-name&gt;encoding&lt;/param-name&gt; &lt;param-value&gt;UTF-8&lt;/param-value&gt; &lt;/init-param&gt; &lt;init-param&gt; &lt;param-name&gt;forceEncoding&lt;/param-name&gt; &lt;param-value&gt;true&lt;/param-value&gt; &lt;/init-param&gt;&lt;/filter&gt; 该过滤器做的其实就是强制为请求和响应设置编码格式： request.setCharacterEncoding(“utf-8”);response.setCharacterEncoding(“utf-8”); SpringMVC怎样设定重定向和转发的？在返回值前面加上redirect:（重定向）或者forward:（请求转发）。 SpringMVC如何做异常处理？可以将异常抛给Spring框架来处理，自定义实现Spring框架的全局异常解析器HandlerExceptionResolver。]]></content>
+    <title><![CDATA[Java面试题汇总（四）Redis]]></title>
+    <url>%2F2019%2F03%2F13%2Fjava%E9%9D%A2%E8%AF%95%2FJava%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%9B%9B%EF%BC%89Redis%2F</url>
+    <content type="text"><![CDATA[Java面试题汇总（四）RedisRedis和Memecache有什么区别？Redis支持 为什么Redis能这么快？Redis的使用场景都有哪些？ 缓存 计数器 排行榜，去top n个数据 pub、sub发布订阅构建实时消息系统 构建消息队列 精确的设置过期时间 各数据类型的应用场景： String：缓存、限流、计数器、分布式锁、分布式Session Hash：存储用户信息、用户主页访问量、组合查询 List：微博关注人时间轴列表、简单队列 Set：赞、踩、标签、好友关系 Zset：排行榜]]></content>
       <tags>
         <tag>java</tag>
         <tag>面试题</tag>
         <tag>面试</tag>
-        <tag>SpringMVC</tag>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
@@ -128,6 +128,16 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[字符串常量池]]></title>
+    <url>%2F2018%2F06%2F14%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%2F</url>
+    <content type="text"><![CDATA[字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。 JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。 java中字符串对象创建有两种形式： 一种为字面量形式，如String str=” wsp”； 另一种就是使用标准的构造对象的方法，如String str=new String（”wsp”）； 工作原理当代码中出现字面量形式创建字符串对象时，JVM就会首先对这个字面量进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回，否则新的字符串对象就被创建，然后将这个引用放入字符串常量池中，并返回该引用。 String str1=”wan”; JVM检测这个字面量，这里我们认为没有内容为“wan”的对象存在。JVM通过字符串常量池查找不到内容为”wan”的字符串对象存在，那么会创建这个字符串对象，然后将刚创建的对象的引用放入到字符串常量池中，并且将引用返回给变量str1。 String str2=”wan”; 同样JVM还是要检测这个字面量，JVM通过查找字符串常量池，发现内容为”wan”字符串对象存在，于是将已经存在的字符串对象的引用返回给变量str2。注意这里不会重新创建新的字符串对象。 验证是否为str1和str2是否指向同一对象，我们可以通过这段代码 System.out.println(str1 == str2); 结果为true。 String str3 = new String(“wan”) 当我们使用了new来构造字符串对象的时候，不管字符串常量池中有没有相同内容的对象的引用，新的字符串对象都会创建。因此我们使用下面代码测试一下， String str3 = new String(“wan”);System.out.println(str1 == str3); 结果如我们所想，为false，表明这两个变量指向的为不同的对象。 intern 对于上面使用new创建的字符串对象，如果想将这个对象的引用加入到字符串常量池，可以使用intern方法。 调用intern后，首先检查字符串常量池中是否有该对象的引用，如果存在，则将这个引用返回给变量，否则将引用加入并返回给变量。 String str4 = str3.intern(); System.out.println(str4 == str1); 输出的结果为true。 前提条件？ 字符串常量池实现的前提条件就是Java中String对象是不可变的，这样可以安全保证多个变量共享同一个对象。如果Java中的String对象可变的话，一个引用操作改变了对象的值，那么其他的变量也会受到影响，显然这样是不合理的。 引用 or 对象 字符串常量池中存放的时引用还是对象，这个问题是最常见的。字符串常量池存放的是对象引用，不是对象。在Java中，对象都创建在堆内存中。]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>技术栈</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[springboot目录]]></title>
     <url>%2F2018%2F06%2F14%2Fspringboot%2Fspringboot%E7%9B%AE%E5%BD%95%2F</url>
     <content type="text"></content>
@@ -138,16 +148,6 @@
     <content type="text"><![CDATA[下面介绍下，work4j社区项目如何快速的破蛋而出。 功能设计如何快速呢，嗯……一切从简就能快速啦，所以功能咱就设计的简单点，但是该有的还是要有的。 用户 用户的介绍就省略了吧，略略略~~ 帖子 帖子的介绍也省略了吧，略略略~~ 栏目 帖子属于哪个栏目（java，springBoot，技术交流、资源分享、吐槽灌水等等），略略略~~ 回复 没有回复就没有互动，没有互动就没有emm…，略略略~~ 收藏 好帖子当然要收藏啦，不小心点错了必须要取消收藏=。= 关注 喜欢他她它，就要关注他她它。 附件 上传的图片、附件统一管理。 数据库设计 用户 | 字段 | 类型 | 名称 | 备注 || :–: | :–: | :–: | :–: || 1 | 2 | 3 | 4 || 5 | 6 | 7 | 8 || 9 | | -3 | =11 | 帖子 栏目 回复 收藏 关注 附件 框架选择可以看出，初期社区的功能相当简单了。让思路比较清晰些，采用前后端分离的方案。 后端框架：springboot（快速开发） 前端框架：vue、angularjs、react等这些前端框架，我通通不会=。=，那就老老实实的写原生的吧。mvvm框架不懂，但是UI框架还是需要的，毕竟 I just java开发，UI框架的话，推荐 Layui 传送门，Layui也有相应的社区模板 传送门，真是棒棒哒。 数据库：mysql 代码生成器你还在为写大量的重复增删改查代码而烦恼吗，使用代码生成器吧，像mybatis有自己的Generator自动生成Dao、Model、Mapping相关文件，咱们这里更高级一些，除了这些，把其他代码也一并生成。这里介绍使用rapid-generator。 基础代码 登录 用户的介绍就省略了吧，略略略~~ 文件上传/下载 帖子的介绍也省略了吧，略略略~~ 工具类 帖子属于哪个栏目（java，springBoot，技术交流、资源分享、吐槽灌水等等），略略略~~ 后台代码前端代码work4j社区项目进化~work4j社区项目超进化~work4j社区项目究极进化~]]></content>
       <tags>
         <tag>work4j社区</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[字符串常量池]]></title>
-    <url>%2F2018%2F06%2F14%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%2F</url>
-    <content type="text"><![CDATA[字符串问题在面试过程中经常被问到，当然也算是日常coding中非常常用的了，下面分析一波字符串常量池。 JVM为了减少字符串对象的重复创建，其维护了一个特殊的内存，这段内存被称为字符串常量池。 java中字符串对象创建有两种形式： 一种为字面量形式，如String str=” wsp”； 另一种就是使用标准的构造对象的方法，如String str=new String（”wsp”）； 工作原理当代码中出现字面量形式创建字符串对象时，JVM就会首先对这个字面量进行检查，如果字符串常量池中存在相同内容的字符串对象的引用，则将这个引用返回，否则新的字符串对象就被创建，然后将这个引用放入字符串常量池中，并返回该引用。 String str1=”wan”; JVM检测这个字面量，这里我们认为没有内容为“wan”的对象存在。JVM通过字符串常量池查找不到内容为”wan”的字符串对象存在，那么会创建这个字符串对象，然后将刚创建的对象的引用放入到字符串常量池中，并且将引用返回给变量str1。 String str2=”wan”; 同样JVM还是要检测这个字面量，JVM通过查找字符串常量池，发现内容为”wan”字符串对象存在，于是将已经存在的字符串对象的引用返回给变量str2。注意这里不会重新创建新的字符串对象。 验证是否为str1和str2是否指向同一对象，我们可以通过这段代码 System.out.println(str1 == str2); 结果为true。 String str3 = new String(“wan”) 当我们使用了new来构造字符串对象的时候，不管字符串常量池中有没有相同内容的对象的引用，新的字符串对象都会创建。因此我们使用下面代码测试一下， String str3 = new String(“wan”);System.out.println(str1 == str3); 结果如我们所想，为false，表明这两个变量指向的为不同的对象。 intern 对于上面使用new创建的字符串对象，如果想将这个对象的引用加入到字符串常量池，可以使用intern方法。 调用intern后，首先检查字符串常量池中是否有该对象的引用，如果存在，则将这个引用返回给变量，否则将引用加入并返回给变量。 String str4 = str3.intern(); System.out.println(str4 == str1); 输出的结果为true。 前提条件？ 字符串常量池实现的前提条件就是Java中String对象是不可变的，这样可以安全保证多个变量共享同一个对象。如果Java中的String对象可变的话，一个引用操作改变了对象的值，那么其他的变量也会受到影响，显然这样是不合理的。 引用 or 对象 字符串常量池中存放的时引用还是对象，这个问题是最常见的。字符串常量池存放的是对象引用，不是对象。在Java中，对象都创建在堆内存中。]]></content>
-      <tags>
-        <tag>java</tag>
-        <tag>技术栈</tag>
-        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>

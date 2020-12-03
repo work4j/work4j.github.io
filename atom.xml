@@ -290,19 +290,19 @@
   </entry>
   
   <entry>
-    <title>equals()和hashCode()的区别</title>
-    <link href="http://yoursite.com/2018/06/20/java%E6%8A%80%E6%9C%AF%E6%A0%88/equals%E5%92%8ChashCode/"/>
-    <id>http://yoursite.com/2018/06/20/java技术栈/equals和hashCode/</id>
+    <title>equals()和==的区别</title>
+    <link href="http://yoursite.com/2018/06/20/java%E6%8A%80%E6%9C%AF%E6%A0%88/equals%E5%92%8C%E7%AD%89%E7%AD%89/"/>
+    <id>http://yoursite.com/2018/06/20/java技术栈/equals和等等/</id>
     <published>2018-06-20T05:59:19.000Z</published>
-    <updated>2019-02-18T12:47:27.720Z</updated>
+    <updated>2019-02-18T12:47:27.724Z</updated>
     
-    <content type="html"><![CDATA[<p>equals()和hashCode()的区别</p>]]></content>
+    <content type="html"><![CDATA[<p>equals()和==的区别</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;equals()和hashCode()的区别&lt;/p&gt;
+        &lt;p&gt;equals()和==的区别&lt;/p&gt;
 
       
     
@@ -318,19 +318,19 @@
   </entry>
   
   <entry>
-    <title>equals()和==的区别</title>
-    <link href="http://yoursite.com/2018/06/20/java%E6%8A%80%E6%9C%AF%E6%A0%88/equals%E5%92%8C%E7%AD%89%E7%AD%89/"/>
-    <id>http://yoursite.com/2018/06/20/java技术栈/equals和等等/</id>
+    <title>equals()和hashCode()的区别</title>
+    <link href="http://yoursite.com/2018/06/20/java%E6%8A%80%E6%9C%AF%E6%A0%88/equals%E5%92%8ChashCode/"/>
+    <id>http://yoursite.com/2018/06/20/java技术栈/equals和hashCode/</id>
     <published>2018-06-20T05:59:19.000Z</published>
-    <updated>2019-02-18T12:47:27.724Z</updated>
+    <updated>2019-02-18T12:47:27.720Z</updated>
     
-    <content type="html"><![CDATA[<p>equals()和==的区别</p>]]></content>
+    <content type="html"><![CDATA[<p>equals()和hashCode()的区别</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;equals()和==的区别&lt;/p&gt;
+        &lt;p&gt;equals()和hashCode()的区别&lt;/p&gt;
 
       
     

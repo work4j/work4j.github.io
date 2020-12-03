@@ -99,9 +99,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[equals()和hashCode()的区别]]></title>
-    <url>%2F2018%2F06%2F20%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2Fequals%E5%92%8ChashCode%2F</url>
-    <content type="text"><![CDATA[equals()和hashCode()的区别]]></content>
+    <title><![CDATA[equals()和==的区别]]></title>
+    <url>%2F2018%2F06%2F20%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2Fequals%E5%92%8C%E7%AD%89%E7%AD%89%2F</url>
+    <content type="text"><![CDATA[equals()和==的区别]]></content>
       <tags>
         <tag>java</tag>
         <tag>技术栈</tag>
@@ -109,9 +109,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[equals()和==的区别]]></title>
-    <url>%2F2018%2F06%2F20%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2Fequals%E5%92%8C%E7%AD%89%E7%AD%89%2F</url>
-    <content type="text"><![CDATA[equals()和==的区别]]></content>
+    <title><![CDATA[equals()和hashCode()的区别]]></title>
+    <url>%2F2018%2F06%2F20%2Fjava%E6%8A%80%E6%9C%AF%E6%A0%88%2Fequals%E5%92%8ChashCode%2F</url>
+    <content type="text"><![CDATA[equals()和hashCode()的区别]]></content>
       <tags>
         <tag>java</tag>
         <tag>技术栈</tag>

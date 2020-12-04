@@ -45,62 +45,6 @@
   </entry>
   
   <entry>
-    <title>Java面试题汇总（一）Java基础</title>
-    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89Java%E5%9F%BA%E7%A1%80/"/>
-    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（一）Java基础/</id>
-    <published>2019-03-13T03:43:51.000Z</published>
-    <updated>2020-12-03T03:12:45.758Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Java面试题汇总（一）Java基础"><a href="#Java面试题汇总（一）Java基础" class="headerlink" title="Java面试题汇总（一）Java基础"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（一）Java基础</h2><h4 id="JDK和JRE有什么区别？"><a href="#JDK和JRE有什么区别？" class="headerlink" title="JDK和JRE有什么区别？"></a>JDK和JRE有什么区别？</h4><ul><li>JDK：Java Development Kit 的简称，java 开发工具包，提供了 java 的开发环境和运行环境。</li><li>JRE：Java Runtime Environment 的简称，java 运行环境，为 java 的运行提供了所需环境。</li></ul><p>其实JDK包含了JRE，同时还包含了编辑java源码的编译器javac，还包含了很多java程序调试和分析的工具，简单来说：如果你需要运行java程序，只需要安装JRE就可以了，如果你还需要编写java程序，需要安装JDK。</p><h4 id="和-equals-的区别是什么？"><a href="#和-equals-的区别是什么？" class="headerlink" title="== 和 equals 的区别是什么？"></a>== 和 equals 的区别是什么？</h4><p>==对于基本类型比较的是值，对于引用类型比较的是引用（内存地址）。</p><p>equals是Object类的一个方法，它里面返回的就是==的判断，由于所有的类都是继承自java.lang.Object类的，所以适用于所有对象，如果没有对该方法进行覆盖的话，那它就是比较的内存地址。但是实际应用中，我们往往重写equals方法，来比较两个对象的内容是否相等，比如我们常用的String，Integer等类，它们就重写了equals方法，比较的是对象里的内容。</p><p><strong>java.lang.Object类里的equals方法：</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>java.lang.String类里的equals方法：</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">        String anotherString = (String)anObject;</span><br><span class="line">        <span class="keyword">int</span> n = value.length;</span><br><span class="line">        <span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">            <span class="keyword">char</span> v1[] = value;</span><br><span class="line">            <span class="keyword">char</span> v2[] = anotherString.value;</span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v1[i] != v2[i])</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>总结</strong> ：== 对于基本类型来说是值比较，对于引用类型来说是比较的是引用；而 equals 默认情况下是引用比较，只是很多类重写了 equals 方法，比如 String、Integer 等把它变成了值比较，所以一般情况下 equals 比较的是值是否相等。</p><h4 id="两个对象的-hashCode-相同，则-equals-也一定为-true，对吗？"><a href="#两个对象的-hashCode-相同，则-equals-也一定为-true，对吗？" class="headerlink" title="两个对象的 hashCode()相同，则 equals()也一定为 true，对吗？"></a>两个对象的 hashCode()相同，则 equals()也一定为 true，对吗？</h4><p>错，两个对象的 hashCode()相同， equals()不一定为 true。</p><p>——》单独文章说明。</p><h4 id="final-在-java-中有什么作用？"><a href="#final-在-java-中有什么作用？" class="headerlink" title="final 在 java 中有什么作用？"></a>final 在 java 中有什么作用？</h4><ul><li>final 修饰的类叫最终类，该类不能被继承；</li><li>final 修饰的方法不能被重写，但是可以被重载；</li><li>final 修饰的变量叫常量，常量使用时必须被初始化， 初始化之后就不能被修改。final修饰的变量一些情况下可以先声明后赋值：1.类里面的成员变量可以先声明，在代码块或者构造函数里面赋值，有多个构造函数时，每个构造函数里都需要赋值。2.方法里的变量可以先声明，使用时必须先赋值。</li></ul><h4 id="java-中的-Math-round-1-5-等于多少？"><a href="#java-中的-Math-round-1-5-等于多少？" class="headerlink" title="java 中的 Math.round(-1.5) 等于多少？"></a>java 中的 Math.round(-1.5) 等于多少？</h4><p>等于 -1，因为在数轴上取值时，中间值（0.5）向右取整，所以正 0.5 是往上取整，负 0.5 是直接舍弃。</p><p>round() 方法返回一个最接近的 int、long 型值，四舍五入。算法为<strong>Math.floor(x+0.5)</strong> ，即将原来的数字加上 0.5 后再向下取整，所以 Math.round(11.5) 的结果为 12，Math.round(-11.5) 的结果为 -11，语法格式：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">round</span><span class="params">(<span class="keyword">double</span> d)</span></span></span><br><span class="line"><span class="function">    </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">round</span><span class="params">(<span class="keyword">float</span> f)</span></span></span><br></pre></td></tr></table></figure><h4 id="String-属于基础的数据类型吗？"><a href="#String-属于基础的数据类型吗？" class="headerlink" title="String 属于基础的数据类型吗？"></a>String 属于基础的数据类型吗？</h4><p>String是引用类型，不属于基础的数据类型。基础数据类型有8种：byte，short，int，long，float，double，char，boolean。</p><h4 id="java-中操作字符串都有哪些类？它们之间有什么区别？"><a href="#java-中操作字符串都有哪些类？它们之间有什么区别？" class="headerlink" title="java 中操作字符串都有哪些类？它们之间有什么区别？"></a>java 中操作字符串都有哪些类？它们之间有什么区别？</h4><p>操作字符串的类有：String、StringBuffer、StringBuilder。</p><p>String 和 StringBuffer、StringBuilder 的区别在于 String 声明的是不可变的对象，每次操作都会生成新的 String 对象，然后将指针指向新的 String 对象，而 StringBuffer、StringBuilder 可以在原有对象的基础上进行操作，所以在经常改变字符串内容的情况下最好不要使用 String。</p><p>StringBuffer 和 StringBuilder 最大的区别在于，StringBuffer 是线程安全的，而 StringBuilder 是非线程安全的，但 StringBuilder 的性能却高于 StringBuffer，所以在单线程环境下推荐使用 StringBuilder，多线程环境下推荐使用 StringBuffer。</p><h4 id="String-str-”i”与-String-str-new-String-“i”-一样吗？"><a href="#String-str-”i”与-String-str-new-String-“i”-一样吗？" class="headerlink" title="String str=”i”与 String str=new String(“i”)一样吗？"></a>String str=”i”与 String str=new String(“i”)一样吗？</h4><p>不一样，因为内存的分配方式不一样。String str=”i”的方式，java虚拟机会将其分配到常量池中；而String str=new String(“i”)则会被分配到堆内存中。</p><h4 id="如何将字符串反转？"><a href="#如何将字符串反转？" class="headerlink" title="如何将字符串反转？"></a>如何将字符串反转？</h4><p>使用 StringBuilder 或者 StringBuffer 类的 reverse() 方法。</p><h4 id="String-类的常用方法都有那些？"><a href="#String-类的常用方法都有那些？" class="headerlink" title="String 类的常用方法都有那些？"></a>String 类的常用方法都有那些？</h4><ul><li>indexOf()：返回指定字符的索引；</li><li>charAt()：返回指定索引处的字符；</li><li>split()：根据指定字符串进行分割字符串，返回一个String数组；</li><li>substring()：截取字符串；</li><li>replace()：字符串替换；</li><li>equals()：字符串比较；</li><li>trim()：去除字符串两端空白；</li><li>getBytes()：返回字符串的byte类型数据；</li><li>length()：返回字符串的长度；</li><li>toLowerCase()：将字符串转为小写字母；</li><li>toUpperCase()：将字符串转为大写字母；</li></ul><h4 id="抽象类必须要有抽象方法吗？"><a href="#抽象类必须要有抽象方法吗？" class="headerlink" title="抽象类必须要有抽象方法吗？"></a>抽象类必须要有抽象方法吗？</h4><p>不需要，抽象类不一定非要有抽象方法。</p><h4 id="普通类和抽象类有哪些区别？"><a href="#普通类和抽象类有哪些区别？" class="headerlink" title="普通类和抽象类有哪些区别？"></a>普通类和抽象类有哪些区别？</h4><ul><li>普通类不能包含抽象方法，抽象类可以包含抽象方法；</li><li>普通类可以直接实例化，抽象类不能直接实例化。</li></ul><h4 id="抽象类能使用-final-修饰吗？"><a href="#抽象类能使用-final-修饰吗？" class="headerlink" title="抽象类能使用 final 修饰吗？"></a>抽象类能使用 final 修饰吗？</h4><p>不能，抽象类就是让其他类继承的，被final修饰的类不能被继承，这样就矛盾了，所以抽象类不能使用final修饰。</p><h4 id="接口和抽象类有什么区别？"><a href="#接口和抽象类有什么区别？" class="headerlink" title="接口和抽象类有什么区别？"></a>接口和抽象类有什么区别？</h4><ul><li>实现：接口是被实现的，使用implements来实现接口，而抽象类是被继承的，用extends来继承；</li><li>构造函数：接口没有构造函数，抽象类有；</li><li>实现数量：类可以实现多个接口，但是只能继承一个抽象类；</li><li>访问修饰符：接口中的方法默认使用public修饰；抽象类中的方法可以是任意访问修饰符。</li></ul><h4 id="java-中-IO-流分为几种？"><a href="#java-中-IO-流分为几种？" class="headerlink" title="java 中 IO 流分为几种？"></a>java 中 IO 流分为几种？</h4><p>按功能来分有两种：输入流（input）、输出流（output）。</p><p>按类型来分：字节流和字符流。</p><p>字节流和字符流的区别是：字节流按8位传输以字节为单位输入输出数据，字符流按16位传输以字符流为单位输入输出数据。</p><h4 id="BIO、NIO、AIO-有什么区别？"><a href="#BIO、NIO、AIO-有什么区别？" class="headerlink" title="BIO、NIO、AIO 有什么区别？"></a>BIO、NIO、AIO 有什么区别？</h4><ul><li>BIO：Block IO 同步阻塞式IO，平时使用的传统IO，模式简单使用方便，但是并发处理能力低；</li><li>NIO：New IO 同步非阻塞IO，传统IO的升级，客户端和服务端通过Channel（通道）通讯，实现了多路复用；</li><li>AIO：Asynchronous IO 是 NIO 的升级，又称为 NIO2，实现了异步非阻塞IO，异步IO的操作基于事件和回调机制。</li></ul><h4 id="Files的常用方法都有哪些？"><a href="#Files的常用方法都有哪些？" class="headerlink" title="Files的常用方法都有哪些？"></a>Files的常用方法都有哪些？</h4><p>java.nio.file.Files：</p><ul><li>Files.exists()：检测文件是否存在；</li><li>Files.createFile()：创建文件；</li><li>FIles.createDirectory()：创建文件夹；</li><li>Files.delete()：删除文件；</li><li>Files.copy()：复制文件；</li><li>Files.move()：移动文件；</li><li>FIles.size()：查看文件个数；</li><li>Files.read()：读取文件；</li><li>FIles.write()：写入文件。</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;Java面试题汇总（一）Java基础&quot;&gt;&lt;a href=&quot;#Java面试题汇总（一）Java基础&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（一）Java基础&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13/java面试/Java
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="面试题" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    
-      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java面试题汇总（三）网络</title>
-    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89%E7%BD%91%E7%BB%9C/"/>
-    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（三）网络/</id>
-    <published>2019-03-13T03:43:51.000Z</published>
-    <updated>2020-12-03T14:17:34.904Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Java面试题汇总（三）网络"><a href="#Java面试题汇总（三）网络" class="headerlink" title="Java面试题汇总（三）网络"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（三）网络</h2><h4 id="OSI-的七层模型都有哪些？"><a href="#OSI-的七层模型都有哪些？" class="headerlink" title="OSI 的七层模型都有哪些？"></a>OSI 的七层模型都有哪些？</h4><ol><li>物理层：主要定义了物理设备的标准，如网线的类型、光纤的接口类型、各种传输介质的传输速率等，主要作用是传输比特流，将0101二进制码转换为电流强弱，传输到目的地后再解析为0101的二级制机器码。<strong>网卡</strong>就是工作在这一层的。</li><li>数据链路层：将比特数据转换成了帧，<strong>交换机</strong>就工作在这一层，对帧解码，并把帧中包含的信息正确的发送到接收方。</li><li>网络层：将网络地址翻译成对应的物理地址，并决定数据如何从发送方路由到接收方。<strong>路由器</strong>、IP协议在这一层。</li><li>传输层：解决了主机间的数据传输，传输质量，流量控制，数据分割传输及排序等。TCP、UDP。</li><li>会话层：建立和管理应用程序之间的通信，自动收发包和寻址。</li><li>表示层：解决不同系统之间通信语法的问题。</li><li>应用层：规定了发送方和接收方使用一个固定的消息头等信息，方便接收方解析发送方的数据。HTTP</li></ol><h4 id="说说TCP的三次握手？"><a href="#说说TCP的三次握手？" class="headerlink" title="说说TCP的三次握手？"></a>说说TCP的三次握手？</h4><p>在TCP/IP协议中，TCP协议提供了可靠的连接服务，采用三次握手建立一个连接。</p><p>第一次握手：建立连接时，客户端发送SYN包（seq=x）到服务器，并进入SYN_SEND状态，等待服务器确认；</p><p>第二次握手：服务端收到SYN包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（seq=y），即SYN+ACK包，此时服务器进入SYN_RECV状态；</p><p>第三次握手：客户端收到服务端的SYN+ACK包，向服务端发送确认包ACK（ack=y+1），此包发送完毕后，客户端和服务端都进入ESTABLISHED状态，完成三次握手。</p><p>之所以需要三次握手，一是为了保证双方都能确认自己和对方的发送和接收是正常的，二是为了初始化sequence number的初始值，因为TCP需要根据该值，保证序号不会乱序，能够正确的拼接数据。</p><p>首次握手的隐患——SYN超时，服务端收到客户端的SYN包，并发送了SYN+ACK包后没有收到回复，服务端会不断重试直至超时，Linux默认63秒后才断开连接。</p><p>同时会有SYN Flood防护机制（SYN Cookie），保活机制（发送保活探测报文）来应对各种情况。</p><h4 id="说说TCP的四次挥手？"><a href="#说说TCP的四次挥手？" class="headerlink" title="说说TCP的四次挥手？"></a>说说TCP的四次挥手？</h4><p>挥手是为了终止连接。</p><p>第一次挥手：客户端发送一个FIN，用来关闭客户端到服务端的数据传输，客户端进入FIN_WAIT_1状态；</p><p>第二次挥手：服务端能收到FIN后，发送一个ACK给到客户端，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），服务端进入CLOSE_WAIT状态；</p><p>第三次挥手：服务端发送一个FIN，用来关闭服务端到客户端的数据传输，服务端进入LAST_ACK状态；</p><p>第四次挥手：客户端收到FIN后，客户端进入TIME_WAIT状态，接着发送一个ACK给服务端，确认序号为收到序号+1，服务端进入CLOSED状态，完成四次挥手。</p><p>之所以有TIME_WAIT状态，一是为了确保有足够的时间让对方收到ACK包，二是避免新旧连接混淆。</p><p>需要四次挥手是因为全双工（通信允许数据在两个方向上同时传输），发送方和接收方都需要FIN报文和ACK报文，所以一方的2次挥手乘以双方，就是四次挥手了。</p><p>举个例⼦：A 和 B 打电话，通话即将结束后，A 说“我没啥要说的了”，B回答“我知道了”，但是 B 可 能还会有要说的话，A 不能要求 B 跟着⾃⼰的节奏结束通话，于是 B 可能⼜巴拉巴拉说了⼀通，最后 B 说“我说完了”，A 回答“知道了”，这样通话才算结束。</p><h4 id="TCP和UDP的区别？"><a href="#TCP和UDP的区别？" class="headerlink" title="TCP和UDP的区别？"></a>TCP和UDP的区别？</h4><ul><li>TCP面向连接，UDP无连接</li><li>TCP可靠，UDP不可靠</li><li>TCP有序，UDP无序</li><li>TCP所需资源多，传输效率比UDP慢</li><li>TCP适合需要可靠传输的场景，比如：文件传输、发送和接收邮件等，UDP适合不需要确认回复的场景，比如即时通信、QQ语音、视频、直播等</li></ul><h4 id="TCP协议如何保证可靠传输？"><a href="#TCP协议如何保证可靠传输？" class="headerlink" title="TCP协议如何保证可靠传输？"></a>TCP协议如何保证可靠传输？</h4><ul><li>数据分割传输，每个包进行编号，接收方进行排序。</li><li><strong>流量控制</strong>：TCP通过<strong>滑动窗口</strong>实现流量控制，流量控制是为了控制发送方发送速率，保证接收方来得及接收。</li><li><strong>阻塞控制</strong>：当网络阻塞时，减少数据的发送。</li><li><strong>ARQ协议</strong>：自动重传请求。基本原理是每发完一个分组就停止发送，等待对方确认，收到确认后再发送下一分组。</li><li><strong>超时重传</strong>：当TCP发出一个段后，启动一个定时器，等待接收端确认收到这个报文段，如果不能及时的收到一个确认，将会重发这个报文段。</li></ul><h4 id="在浏览器中输入url地址-gt-gt-显示主页的过程？"><a href="#在浏览器中输入url地址-gt-gt-显示主页的过程？" class="headerlink" title="在浏览器中输入url地址 -&gt;&gt; 显示主页的过程？"></a>在浏览器中输入url地址 -&gt;&gt; 显示主页的过程？</h4><ol><li><strong>DNS解析</strong>，浏览器查找域名的IP地址（DNS查找过程：浏览器缓存、路由器缓存、DNS缓存）</li><li>TCP连接</li><li>发送HTTP请求</li><li>服务器处理请求并返回HTTP报文</li><li>浏览器解析渲染页面</li><li>连接结束</li></ol><h4 id="状态码有哪些？"><a href="#状态码有哪些？" class="headerlink" title="状态码有哪些？"></a>状态码有哪些？</h4><ul><li>1xx：指示信息——表示请求已接收，正在处理</li><li>2xx：成功——表示请求正常处理完毕</li><li>3xx：重定向——表示需要完成请求必须进行进一步的操作</li><li>4xx：客户端错误——表示请求有语法错误或者请求无法实现</li><li>5xx：服务器端错误——表示服务器处理请求出错</li></ul><h4 id="GET请求和POST请求的区别？"><a href="#GET请求和POST请求的区别？" class="headerlink" title="GET请求和POST请求的区别？"></a>GET请求和POST请求的区别？</h4><ul><li>GET请求的信息放在URL（有长度限制），POST放在请求体。</li><li>GET符合幂等性和安全性，POST不符合。GET一般是查询获取资源的，不会对数据造成改变，相对安全。而POST会对数据发生改变。</li><li>GET可以被缓存（浏览器历史记录）、被存储（浏览器书签），而POST不行。GET请求被缓存，CDN加速，可以缓解服务器压力。</li></ul><p>幂等性：就是用户对于同一操作发起的一次请求或者多次请求的结果是一致的，不会因为多次点击而产生了副作用。</p><h4 id="？"><a href="#？" class="headerlink" title="？"></a>？</h4><p>#### </p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;Java面试题汇总（三）网络&quot;&gt;&lt;a href=&quot;#Java面试题汇总（三）网络&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（三）网络&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13/java面试/Java面试题汇总/&quot;&gt;Java
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="面试题" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    
-      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Java面试题汇总（二）容器</title>
     <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%B9%E5%99%A8/"/>
     <id>http://yoursite.com/2019/03/13/java面试/Java面试题（二）容器/</id>
@@ -128,19 +72,19 @@
   </entry>
   
   <entry>
-    <title>Java面试题汇总（五）Linux</title>
-    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%BA%94%EF%BC%89Linux/"/>
-    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（五）Linux/</id>
+    <title>Java面试题汇总（把）MySQL</title>
+    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%85%AB%EF%BC%89MySql/"/>
+    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（八）MySql/</id>
     <published>2019-03-13T03:43:51.000Z</published>
-    <updated>2020-12-02T08:33:05.237Z</updated>
+    <updated>2020-12-04T13:55:30.782Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Java面试题汇总（五）Linux"><a href="#Java面试题汇总（五）Linux" class="headerlink" title="Java面试题汇总（五）Linux"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（五）Linux</h2><h4 id="常用的查看文件内容命令有哪些？"><a href="#常用的查看文件内容命令有哪些？" class="headerlink" title="常用的查看文件内容命令有哪些？"></a>常用的查看文件内容命令有哪些？</h4><p>tail  cat  more  vi  vim</p><h4 id="怎么查找特定的文件？"><a href="#怎么查找特定的文件？" class="headerlink" title="怎么查找特定的文件？"></a>怎么查找特定的文件？</h4><p>find命令</p><p>语法：find path [options] params</p><p>作用：在指定目录下查找文件</p><p>举例：</p><ul><li>find ~ -name “target.java”    //精确查找文件</li><li>find ~ -name “target*”   //模糊查找文件</li><li>find ~ -iname “target*”   //不区分文件名大小写去查找文件</li></ul><h4 id="检索文件内容？"><a href="#检索文件内容？" class="headerlink" title="检索文件内容？"></a>检索文件内容？</h4><p>grep命令（Global Regular Expression Print）</p><p>语法：grep [options] pattern file</p><p>作用：查找文件里符合条件的字符串</p><p>举例：</p><ul><li>grep ‘test’ target.log   //查找target.log文件里有“test”字符串的行</li><li>grep -o ‘[a-zA-Z0-9-]’   //根据正则表达式进行匹配查找</li><li>grep -v ‘test’  //找到不匹配“test”的行</li></ul><p>grep经常搭配 <strong>管道操作符 |</strong></p><p>作用：可将指令连接起来，前一个指令的输出作为后一个指令的输入</p><p>举例：</p><ul><li>ps -ef | grep tomcat   //查找tomcat进程</li></ul><h4 id="对文件内容做统计？"><a href="#对文件内容做统计？" class="headerlink" title="对文件内容做统计？"></a>对文件内容做统计？</h4><p>awk命令</p><p>语法：awk [options] ‘cmd’ file</p><p>作用：</p><ul><li>一次读取一行文本，对输入分隔符进行切片，切成多个组成部分；</li><li>将切片直接保存在内建的变量中，$1,$2…($0表示行的全部)；</li><li>支持对单个切片的判断，支持循环判断，默认分隔符为空格；</li></ul><p>举例：</p><ul><li>awk ‘{print $1,$4}’ netstat.txt   //默认以空格为分隔符对每行数据切片后，输出第1和第4列数据</li><li>awk -F “,” ‘{print $1,$4}’ netstat.txt   //以”,为分隔符对每行数据切片后，输出第1和第4列数据</li><li>awk ‘$1==”tcp” &amp;&amp; $2==1 {print $0}’ netstat.txt   //输出第1列数据为”tcp“，第2列数据为1的所有行数据</li><li>awk ‘{arr[$1]++}END{for(i in arr)print i “\t” arr[i]}’   //定义了一个名字叫arr的数组，$1中遇到相同项就加一，然后循环输出个数</li></ul><h4 id="批量替换文本内容？"><a href="#批量替换文本内容？" class="headerlink" title="批量替换文本内容？"></a>批量替换文本内容？</h4><p>sed命令（stream editor 流编辑器）</p><p>语法：sed [options] ‘sed command’ filename</p><p>作用：适合用于对文本的行内容进行处理</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="Java面试题汇总（八）MySQL"><a href="#Java面试题汇总（八）MySQL" class="headerlink" title="Java面试题汇总（八）MySQL"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（八）MySQL</h2><h4 id="MyISAM和InnoDB区别？"><a href="#MyISAM和InnoDB区别？" class="headerlink" title="MyISAM和InnoDB区别？"></a>MyISAM和InnoDB区别？</h4><p>MyISAM和InnoDB都是MySQL的存储引擎。</p><p>MyISAM是MySQL5.5之前默认的存储引擎，之后的版本InnoDB是默认存储引擎。</p><p>两者的对比：</p><ul><li><strong>是否支持行级锁</strong>：InnoDB支持行级锁（默认）和表级锁，而MyISAM只支持表级锁。</li><li><strong>是否支持事务和崩溃后的安全恢复</strong>：InnoDB支持事务，具有事务、回滚、崩溃修复能力。而MyISAM强调的是性能，不支持事务，并且崩溃后无法安全恢复。</li><li><strong>是否支持外键</strong>：InnoDB支持，MyISAM不支持。</li><li><strong>是否支持MVCC（多版本并发控制）</strong>：InnoDB在RC和RR两个隔离级别下支持MVCC，MVCC可以用乐观锁和悲观锁实现，而MyISAM不支持。</li></ul><h4 id="说一说MySQL的索引？"><a href="#说一说MySQL的索引？" class="headerlink" title="说一说MySQL的索引？"></a>说一说MySQL的索引？</h4><p>MySQL的索引的数据结构主要有BTree索引和哈希索引。哈希索引的底层是哈希表，如果绝大多数需求是查询单条记录的时候，可以用哈希索引，查询性能更快，其他大部分场景使用BTree索引。</p><p>MySQL的BTree索引使用的是B+Tree，但对于两种存储引擎的实现是不同的：</p><ul><li><p>MyISAM：B+Tree的叶子节点data域存放的是数据记录的地址，在索引检索的时候，先通过B+Tree的搜索算法搜索索引，找到key值后，取出data域里的值，并作为地址读取相应的数据记录，这也叫“非聚簇索引”、“非聚集索引”。MyISAM的索引文件和数据文件是分开的两个文件。</p></li><li><p>InnoDB：其数据文件本身就是索引文件，叶子节点data域保存了完整的数据记录，这个索引的key是数据表的主键，因此InnoDB的主键索引，也叫“聚簇索引”、“聚集索引”。其他键为辅助索引，辅助索引的叶子节点data域存储的是主键值，而不是地址。在通过主键索引搜索时，可以直接根据key所在的节点取出数据，用辅助索引时取出的是主键值，需要再走一遍主索引，才能取出数据，因此设计表时，不建议用过长的字段作为主键，也不建议用非单调的字段做主键，这样会造成主索引频繁分裂。</p></li></ul><p>额外知识：InnoDB必有一个聚集索引：</p><ul><li>当一个主键被定义，该主键会被建立一个聚集索引。</li><li>若主键没有定义，那么该表的第一个唯一非空索引会被座位聚集索引。</li><li>若不满足以上条件，InnoDB内部会生成一个隐藏主键，建立聚集索引。</li><li>之所以建立聚集索引，是因为辅助索引的存储的值是主键值，会再聚集索引上再次查找。</li></ul><h4 id="说一说MySQL的事务？"><a href="#说一说MySQL的事务？" class="headerlink" title="说一说MySQL的事务？"></a>说一说MySQL的事务？</h4><p>事务是逻辑上的一组操作，要么都执行，要不都不执行。</p><p>事务有四大特性：ACID</p><ul><li>原子性（Atomicity）： 事务是最小的执行单位，不允许分割。事务的原⼦性确保动作要么全部完成，要么完全不起作用。</li><li>⼀致性（Consistency）： 执行事务前后，数据保持⼀致，多个事务对同⼀个数据读取的结果是相同的。</li><li>隔离性（Isolation）： 并发访问数据库时，⼀个用户的事务不被其他事务所干扰，各并发事务之间数据库是独⽴的。</li><li>持久性（Durability）： ⼀个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。</li></ul><h4 id="并发事务带来哪些问题？"><a href="#并发事务带来哪些问题？" class="headerlink" title="并发事务带来哪些问题？"></a>并发事务带来哪些问题？</h4><p>在应用程序中，会出现多个事务并发运行，彼此操作相同的数据完成各自的任务。在并发执行事务的情况下，会导致以下问题：</p><ul><li>脏读：一个事务A执行过程中，修改了一条数据，但是未提交，这是另一个事务B也读取了这条数据，这时读取的数据就是“脏数据”，产生脏读。</li><li>丢失修改：一个事务A修改了一条数据，未提交前，另一个事务B也修改了该数据，事务A提交后，B事务也提交，此时事务A的修改被丢失。</li><li>不可重复读：一个事务A多次读同一数据，读的过程中，另一个事务B对数据进行了修改，导致事务A多次读出来的数据不一致，称为不可重复读。</li><li>幻读：一个事务A读取了几行数据，另一个事务B进行了插入或删除操作，导致事务A再次读取时发现多出几行或者少了几行数据，跟产生了幻觉一样，因此称为幻读。</li></ul><h4 id="事务的隔离级别有哪些，MySQL的默认隔离级别是什么"><a href="#事务的隔离级别有哪些，MySQL的默认隔离级别是什么" class="headerlink" title="事务的隔离级别有哪些，MySQL的默认隔离级别是什么?"></a>事务的隔离级别有哪些，MySQL的默认隔离级别是什么?</h4><p>SQL标准定义了4中隔离级别：</p><ol><li>READ-UNCOMMITTED（读取未提交）：最低的隔离级别，允许读取未提交的数据，可能会导致脏读、不可重复读、幻读。</li><li>READ-COMMITTED（读取已提交）：允许读取并发事务已经提交的数据，可能导致不可重复读、幻读。</li><li>REPEATABLE-READ（可重复读）：对同一字段的多次读取结果是一致的，除非数据被本身事务进行了修改。可以避免脏读、不可重复读，但幻读仍有可能发生。</li><li>SERIALIZABLE（可串行化）：最高的隔离级别，完全符合ACID特性的隔离级别。所有事务依次逐个执行，这样事务之间就不会产生干扰，避免了脏读、不可重复读、幻读。</li></ol><p>MySQL的InnoDB存储引擎默认的隔离级别是RR可重复读，但是MySQL在RR可重复读隔离级别下，使用了Next-Key Lock 锁算法，因此可以避免幻读的产⽣。</p><h4 id="谈谈锁机制和InnoDB的锁算法"><a href="#谈谈锁机制和InnoDB的锁算法" class="headerlink" title="谈谈锁机制和InnoDB的锁算法?"></a>谈谈锁机制和InnoDB的锁算法?</h4><ul><li>表级锁：会对当前操作的整个表进行加锁，实现简单，资源消耗少，加锁快，不会出现死锁。但是粒度大，触发锁冲突的几率高，并发度低。MyISAM和InnoDB都支持表级锁。</li><li>行级锁：只针对当前操作的行加锁。行级锁能大大减少数据库操作的冲突，加锁粒度小，并发度高。但是加锁的消耗大，加锁慢，会出现死锁。只有InnoDB支持行级锁。</li></ul><p>InnoDB的锁算法有三种：</p><ul><li>Record Lock：单个行记录上的锁</li><li>Gap Lock：间隙锁，锁定一个范围，不包括记录本身</li><li>Next-key Lock：锁定一个范围，包括记录本身。Record +Gap</li></ul><h4 id="大表优化"><a href="#大表优化" class="headerlink" title="大表优化?"></a>大表优化?</h4><p>当数据库中某张表的数据量过大是，会影响CRUD操作，常见的优化措施：</p><ul><li><p><strong>限定数据的范围</strong>：避免不带任何条件的去查询数据，比如查询订单历史的时候，控制在一个月的范围内。</p></li><li><p><strong>读写分离</strong>：主数据库负责写，从数据库负责读。</p></li><li><p>垂直分区：大表拆小表，列的拆分。比如用户表既包括登录信息，又包括基本信息。就可以拆分成2张表，一张登录信息表，一张用户基本信息表。</p><p>优点：表的列数据变小，简化结构，易于维护。查询时能够减少I/O次数。</p><p>缺点：会产生主键的冗余列，而且还会引起join操作，也会让事务的管理变得复杂。</p></li><li><p>水平分区：表结构不变，将数据进行分片。由于分片事务难解决，多节点的join性能差，逻辑复杂，所以尽量不要自己分片，因为拆分起来对逻辑、部署、运维都会带来复杂的工作。可以用中间件来做，如：MyCat。</p></li></ul><h4 id="解释⼀下什么是池化设计思想。什么是数据库连接池-为什么需要数据库连接池"><a href="#解释⼀下什么是池化设计思想。什么是数据库连接池-为什么需要数据库连接池" class="headerlink" title="解释⼀下什么是池化设计思想。什么是数据库连接池?为什么需要数据库连接池?"></a>解释⼀下什么是池化设计思想。什么是数据库连接池?为什么需要数据库连接池?</h4><p>池化设计的实现案例有很多，比如java线程池，jdbc连接池，redis连接池等，池化设计是初始预设资源，减少频繁创建、销毁资源的开销。</p><p>数据库连接本质就是一个socket连接，数据库连接池就是初始预设一些数据库连接，并把这些连接缓存起来，当再次需要连接数据库时，就拿出来使用。在数据库连接池中，创建了连接后，就会放入到池中，并再次利用它，如果所有连接使用完了，会建立一个新的连接并添加到池中。连接池还能减少用户等待建立与数据库连接的时间。</p><h4 id="sql执行顺序"><a href="#sql执行顺序" class="headerlink" title="sql执行顺序?"></a>sql执行顺序?</h4><p>from &gt; join &gt; on &gt; where &gt; group by &gt; 聚合函数 &gt; having &gt; select &gt; distinct &gt; order by &gt; limit</p><h4 id="如何定位并优化慢sql"><a href="#如何定位并优化慢sql" class="headerlink" title="如何定位并优化慢sql?"></a>如何定位并优化慢sql?</h4><ol><li>开启慢查询日志，定位到慢sql</li><li>通过explain，查看执行计划</li><li>分析执行计划，修改sql或者尽量让sql走索引</li></ol><h4 id="⼀条SQL语句在MySQL中如何执行的"><a href="#⼀条SQL语句在MySQL中如何执行的" class="headerlink" title="⼀条SQL语句在MySQL中如何执行的?"></a>⼀条SQL语句在MySQL中如何执行的?</h4><p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247485097&amp;idx=1&amp;sn=84c89da477b1338bdf3e9fcd65514ac1&amp;chksm=cea24962f9d5c074d8d3ff1ab04ee8f0d6486e3d015cfd783503685986485c11738ccb542ba7&amp;token=79317275&amp;lang=zh_CN%23rd" target="_blank" rel="noopener">⼀条SQL语句在MySQL中如何执行的</a></p><h4 id="MySQL高性能优化规范建议"><a href="#MySQL高性能优化规范建议" class="headerlink" title="MySQL高性能优化规范建议"></a>MySQL高性能优化规范建议</h4><p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247485117&amp;idx=1&amp;sn=92361755b7c3de488b415ec4c5f46d73&amp;chksm=cea24976f9d5c060babe50c3747616cce63df5d50947903a262704988143c2eeb4069ae45420&amp;token=79317275&amp;lang=zh_CN%23rd" target="_blank" rel="noopener">MySQL⾼性能优化规范建议</a></p><h4 id="⼀条SQL语句执⾏得很慢的原因有哪些？"><a href="#⼀条SQL语句执⾏得很慢的原因有哪些？" class="headerlink" title="⼀条SQL语句执⾏得很慢的原因有哪些？"></a>⼀条SQL语句执⾏得很慢的原因有哪些？</h4><p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247485185&amp;idx=1&amp;sn=66ef08b4ab6af5757792223a83fc0d45&amp;chksm=cea248caf9d5c1dc72ec8a281ec16aa3ec3e8066dbb252e27362438a26c33fbe842b0e0adf47&amp;token=79317275&amp;lang=zh_CN%23rd" target="_blank" rel="noopener">腾讯⾯试：⼀条SQL语句执⾏得很慢的原因有哪些？—不看后悔系列</a></p><h4 id="后端程序员必备：书写高质量SQL的30条建议"><a href="#后端程序员必备：书写高质量SQL的30条建议" class="headerlink" title="后端程序员必备：书写高质量SQL的30条建议"></a>后端程序员必备：书写高质量SQL的30条建议</h4><p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247486461&amp;idx=1&amp;sn=60a22279196d084cc398936fe3b37772&amp;chksm=cea24436f9d5cd20a4fa0e907590f3e700d7378b3f608d7b33bb52cfb96f503b7ccb65a1deed&amp;token=1987003517&amp;lang=zh_CN%23rd" target="_blank" rel="noopener">后端程序员必备：书写高质量SQL的30条建议</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;Java面试题汇总（五）Linux&quot;&gt;&lt;a href=&quot;#Java面试题汇总（五）Linux&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（五）Linux&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13/java面试/Java面试题
+        &lt;h2 id=&quot;Java面试题汇总（八）MySQL&quot;&gt;&lt;a href=&quot;#Java面试题汇总（八）MySQL&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（八）MySQL&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13/java面试/Java面试题
       
     
     </summary>
@@ -152,7 +96,34 @@
     
       <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+      <category term="MySQL" scheme="http://yoursite.com/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java面试题汇总（一）Java基础</title>
+    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89Java%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（一）Java基础/</id>
+    <published>2019-03-13T03:43:51.000Z</published>
+    <updated>2020-12-03T03:12:45.758Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Java面试题汇总（一）Java基础"><a href="#Java面试题汇总（一）Java基础" class="headerlink" title="Java面试题汇总（一）Java基础"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（一）Java基础</h2><h4 id="JDK和JRE有什么区别？"><a href="#JDK和JRE有什么区别？" class="headerlink" title="JDK和JRE有什么区别？"></a>JDK和JRE有什么区别？</h4><ul><li>JDK：Java Development Kit 的简称，java 开发工具包，提供了 java 的开发环境和运行环境。</li><li>JRE：Java Runtime Environment 的简称，java 运行环境，为 java 的运行提供了所需环境。</li></ul><p>其实JDK包含了JRE，同时还包含了编辑java源码的编译器javac，还包含了很多java程序调试和分析的工具，简单来说：如果你需要运行java程序，只需要安装JRE就可以了，如果你还需要编写java程序，需要安装JDK。</p><h4 id="和-equals-的区别是什么？"><a href="#和-equals-的区别是什么？" class="headerlink" title="== 和 equals 的区别是什么？"></a>== 和 equals 的区别是什么？</h4><p>==对于基本类型比较的是值，对于引用类型比较的是引用（内存地址）。</p><p>equals是Object类的一个方法，它里面返回的就是==的判断，由于所有的类都是继承自java.lang.Object类的，所以适用于所有对象，如果没有对该方法进行覆盖的话，那它就是比较的内存地址。但是实际应用中，我们往往重写equals方法，来比较两个对象的内容是否相等，比如我们常用的String，Integer等类，它们就重写了equals方法，比较的是对象里的内容。</p><p><strong>java.lang.Object类里的equals方法：</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>java.lang.String类里的equals方法：</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">        String anotherString = (String)anObject;</span><br><span class="line">        <span class="keyword">int</span> n = value.length;</span><br><span class="line">        <span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">            <span class="keyword">char</span> v1[] = value;</span><br><span class="line">            <span class="keyword">char</span> v2[] = anotherString.value;</span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v1[i] != v2[i])</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>总结</strong> ：== 对于基本类型来说是值比较，对于引用类型来说是比较的是引用；而 equals 默认情况下是引用比较，只是很多类重写了 equals 方法，比如 String、Integer 等把它变成了值比较，所以一般情况下 equals 比较的是值是否相等。</p><h4 id="两个对象的-hashCode-相同，则-equals-也一定为-true，对吗？"><a href="#两个对象的-hashCode-相同，则-equals-也一定为-true，对吗？" class="headerlink" title="两个对象的 hashCode()相同，则 equals()也一定为 true，对吗？"></a>两个对象的 hashCode()相同，则 equals()也一定为 true，对吗？</h4><p>错，两个对象的 hashCode()相同， equals()不一定为 true。</p><p>——》单独文章说明。</p><h4 id="final-在-java-中有什么作用？"><a href="#final-在-java-中有什么作用？" class="headerlink" title="final 在 java 中有什么作用？"></a>final 在 java 中有什么作用？</h4><ul><li>final 修饰的类叫最终类，该类不能被继承；</li><li>final 修饰的方法不能被重写，但是可以被重载；</li><li>final 修饰的变量叫常量，常量使用时必须被初始化， 初始化之后就不能被修改。final修饰的变量一些情况下可以先声明后赋值：1.类里面的成员变量可以先声明，在代码块或者构造函数里面赋值，有多个构造函数时，每个构造函数里都需要赋值。2.方法里的变量可以先声明，使用时必须先赋值。</li></ul><h4 id="java-中的-Math-round-1-5-等于多少？"><a href="#java-中的-Math-round-1-5-等于多少？" class="headerlink" title="java 中的 Math.round(-1.5) 等于多少？"></a>java 中的 Math.round(-1.5) 等于多少？</h4><p>等于 -1，因为在数轴上取值时，中间值（0.5）向右取整，所以正 0.5 是往上取整，负 0.5 是直接舍弃。</p><p>round() 方法返回一个最接近的 int、long 型值，四舍五入。算法为<strong>Math.floor(x+0.5)</strong> ，即将原来的数字加上 0.5 后再向下取整，所以 Math.round(11.5) 的结果为 12，Math.round(-11.5) 的结果为 -11，语法格式：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">round</span><span class="params">(<span class="keyword">double</span> d)</span></span></span><br><span class="line"><span class="function">    </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">round</span><span class="params">(<span class="keyword">float</span> f)</span></span></span><br></pre></td></tr></table></figure><h4 id="String-属于基础的数据类型吗？"><a href="#String-属于基础的数据类型吗？" class="headerlink" title="String 属于基础的数据类型吗？"></a>String 属于基础的数据类型吗？</h4><p>String是引用类型，不属于基础的数据类型。基础数据类型有8种：byte，short，int，long，float，double，char，boolean。</p><h4 id="java-中操作字符串都有哪些类？它们之间有什么区别？"><a href="#java-中操作字符串都有哪些类？它们之间有什么区别？" class="headerlink" title="java 中操作字符串都有哪些类？它们之间有什么区别？"></a>java 中操作字符串都有哪些类？它们之间有什么区别？</h4><p>操作字符串的类有：String、StringBuffer、StringBuilder。</p><p>String 和 StringBuffer、StringBuilder 的区别在于 String 声明的是不可变的对象，每次操作都会生成新的 String 对象，然后将指针指向新的 String 对象，而 StringBuffer、StringBuilder 可以在原有对象的基础上进行操作，所以在经常改变字符串内容的情况下最好不要使用 String。</p><p>StringBuffer 和 StringBuilder 最大的区别在于，StringBuffer 是线程安全的，而 StringBuilder 是非线程安全的，但 StringBuilder 的性能却高于 StringBuffer，所以在单线程环境下推荐使用 StringBuilder，多线程环境下推荐使用 StringBuffer。</p><h4 id="String-str-”i”与-String-str-new-String-“i”-一样吗？"><a href="#String-str-”i”与-String-str-new-String-“i”-一样吗？" class="headerlink" title="String str=”i”与 String str=new String(“i”)一样吗？"></a>String str=”i”与 String str=new String(“i”)一样吗？</h4><p>不一样，因为内存的分配方式不一样。String str=”i”的方式，java虚拟机会将其分配到常量池中；而String str=new String(“i”)则会被分配到堆内存中。</p><h4 id="如何将字符串反转？"><a href="#如何将字符串反转？" class="headerlink" title="如何将字符串反转？"></a>如何将字符串反转？</h4><p>使用 StringBuilder 或者 StringBuffer 类的 reverse() 方法。</p><h4 id="String-类的常用方法都有那些？"><a href="#String-类的常用方法都有那些？" class="headerlink" title="String 类的常用方法都有那些？"></a>String 类的常用方法都有那些？</h4><ul><li>indexOf()：返回指定字符的索引；</li><li>charAt()：返回指定索引处的字符；</li><li>split()：根据指定字符串进行分割字符串，返回一个String数组；</li><li>substring()：截取字符串；</li><li>replace()：字符串替换；</li><li>equals()：字符串比较；</li><li>trim()：去除字符串两端空白；</li><li>getBytes()：返回字符串的byte类型数据；</li><li>length()：返回字符串的长度；</li><li>toLowerCase()：将字符串转为小写字母；</li><li>toUpperCase()：将字符串转为大写字母；</li></ul><h4 id="抽象类必须要有抽象方法吗？"><a href="#抽象类必须要有抽象方法吗？" class="headerlink" title="抽象类必须要有抽象方法吗？"></a>抽象类必须要有抽象方法吗？</h4><p>不需要，抽象类不一定非要有抽象方法。</p><h4 id="普通类和抽象类有哪些区别？"><a href="#普通类和抽象类有哪些区别？" class="headerlink" title="普通类和抽象类有哪些区别？"></a>普通类和抽象类有哪些区别？</h4><ul><li>普通类不能包含抽象方法，抽象类可以包含抽象方法；</li><li>普通类可以直接实例化，抽象类不能直接实例化。</li></ul><h4 id="抽象类能使用-final-修饰吗？"><a href="#抽象类能使用-final-修饰吗？" class="headerlink" title="抽象类能使用 final 修饰吗？"></a>抽象类能使用 final 修饰吗？</h4><p>不能，抽象类就是让其他类继承的，被final修饰的类不能被继承，这样就矛盾了，所以抽象类不能使用final修饰。</p><h4 id="接口和抽象类有什么区别？"><a href="#接口和抽象类有什么区别？" class="headerlink" title="接口和抽象类有什么区别？"></a>接口和抽象类有什么区别？</h4><ul><li>实现：接口是被实现的，使用implements来实现接口，而抽象类是被继承的，用extends来继承；</li><li>构造函数：接口没有构造函数，抽象类有；</li><li>实现数量：类可以实现多个接口，但是只能继承一个抽象类；</li><li>访问修饰符：接口中的方法默认使用public修饰；抽象类中的方法可以是任意访问修饰符。</li></ul><h4 id="java-中-IO-流分为几种？"><a href="#java-中-IO-流分为几种？" class="headerlink" title="java 中 IO 流分为几种？"></a>java 中 IO 流分为几种？</h4><p>按功能来分有两种：输入流（input）、输出流（output）。</p><p>按类型来分：字节流和字符流。</p><p>字节流和字符流的区别是：字节流按8位传输以字节为单位输入输出数据，字符流按16位传输以字符流为单位输入输出数据。</p><h4 id="BIO、NIO、AIO-有什么区别？"><a href="#BIO、NIO、AIO-有什么区别？" class="headerlink" title="BIO、NIO、AIO 有什么区别？"></a>BIO、NIO、AIO 有什么区别？</h4><ul><li>BIO：Block IO 同步阻塞式IO，平时使用的传统IO，模式简单使用方便，但是并发处理能力低；</li><li>NIO：New IO 同步非阻塞IO，传统IO的升级，客户端和服务端通过Channel（通道）通讯，实现了多路复用；</li><li>AIO：Asynchronous IO 是 NIO 的升级，又称为 NIO2，实现了异步非阻塞IO，异步IO的操作基于事件和回调机制。</li></ul><h4 id="Files的常用方法都有哪些？"><a href="#Files的常用方法都有哪些？" class="headerlink" title="Files的常用方法都有哪些？"></a>Files的常用方法都有哪些？</h4><p>java.nio.file.Files：</p><ul><li>Files.exists()：检测文件是否存在；</li><li>Files.createFile()：创建文件；</li><li>FIles.createDirectory()：创建文件夹；</li><li>Files.delete()：删除文件；</li><li>Files.copy()：复制文件；</li><li>Files.move()：移动文件；</li><li>FIles.size()：查看文件个数；</li><li>Files.read()：读取文件；</li><li>FIles.write()：写入文件。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Java面试题汇总（一）Java基础&quot;&gt;&lt;a href=&quot;#Java面试题汇总（一）Java基础&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（一）Java基础&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13/java面试/Java
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="面试题" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
@@ -219,9 +190,9 @@
     <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%9B%9B%EF%BC%89Redis/"/>
     <id>http://yoursite.com/2019/03/13/java面试/Java面试题（四）Redis/</id>
     <published>2019-03-13T03:43:51.000Z</published>
-    <updated>2020-12-02T08:33:05.252Z</updated>
+    <updated>2020-12-04T04:43:46.113Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Java面试题汇总（四）Redis"><a href="#Java面试题汇总（四）Redis" class="headerlink" title="Java面试题汇总（四）Redis"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（四）Redis</h2><h4 id="Redis和Memecache有什么区别？"><a href="#Redis和Memecache有什么区别？" class="headerlink" title="Redis和Memecache有什么区别？"></a>Redis和Memecache有什么区别？</h4><p>Redis支持</p><h4 id="为什么Redis能这么快？"><a href="#为什么Redis能这么快？" class="headerlink" title="为什么Redis能这么快？"></a>为什么Redis能这么快？</h4><h4 id="Redis的使用场景都有哪些？"><a href="#Redis的使用场景都有哪些？" class="headerlink" title="Redis的使用场景都有哪些？"></a>Redis的使用场景都有哪些？</h4><ol><li>缓存</li><li>计数器</li><li>排行榜，去top n个数据</li><li>pub、sub发布订阅构建实时消息系统</li><li>构建消息队列</li><li>精确的设置过期时间</li><li>各数据类型的应用场景：<ul><li>String：缓存、限流、计数器、分布式锁、分布式Session</li><li>Hash：存储用户信息、用户主页访问量、组合查询</li><li>List：微博关注人时间轴列表、简单队列</li><li>Set：赞、踩、标签、好友关系</li><li>Zset：排行榜</li></ul></li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="Java面试题汇总（四）Redis"><a href="#Java面试题汇总（四）Redis" class="headerlink" title="Java面试题汇总（四）Redis"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（四）Redis</h2><h4 id="Redis和Memecache有什么区别？"><a href="#Redis和Memecache有什么区别？" class="headerlink" title="Redis和Memecache有什么区别？"></a>Redis和Memecache有什么区别？</h4><ul><li>Redis支持的数据类型要比Memecache丰富</li><li>Redis支持数据磁盘持久化存储，Memecache不支持持久化</li><li>Redis支持主从，Memecache不支持</li><li>Redis支持分片，集群。Memecache不支持</li></ul><h4 id="为什么Redis能这么快？"><a href="#为什么Redis能这么快？" class="headerlink" title="为什么Redis能这么快？"></a>为什么Redis能这么快？</h4><p>Redis支持10万+的QPS，能这么快，因为以下几点：</p><ul><li>基于内存操作，执行效率高</li><li>数据结构简单，对数据操作也简单</li><li>采用的单线程，单线程也能处理高并发</li><li>使用的多路I/O复用模型，非阻塞IO</li></ul><h4 id="Redis的使用场景都有哪些？"><a href="#Redis的使用场景都有哪些？" class="headerlink" title="Redis的使用场景都有哪些？"></a>Redis的使用场景都有哪些？</h4><ol><li>缓存</li><li>计数器</li><li>排行榜，去top n个数据</li><li>pub、sub发布订阅构建实时消息系统</li><li>构建消息队列</li><li>精确的设置过期时间</li><li>各数据类型的应用场景：<ul><li>String：缓存、限流、计数器、分布式锁、分布式Session</li><li>Hash：存储用户信息、用户主页访问量、组合查询</li><li>List：微博关注人时间轴列表、简单队列</li><li>Set：赞、踩、标签、好友关系</li><li>Zset：排行榜</li></ul></li></ol><h4 id="如何从海量的key中查询出某一固定前缀的key？"><a href="#如何从海量的key中查询出某一固定前缀的key？" class="headerlink" title="如何从海量的key中查询出某一固定前缀的key？"></a>如何从海量的key中查询出某一固定前缀的key？</h4><ul><li>keys xx*，但是数据量过多时，会造成卡顿，如果是线上环境，最好不要这样操作。</li><li>scan 游标位置 match xx* count 10，通过scan命令来查询。</li></ul><h4 id="如何通过redis来实现分布式锁？"><a href="#如何通过redis来实现分布式锁？" class="headerlink" title="如何通过redis来实现分布式锁？"></a>如何通过redis来实现分布式锁？</h4><ol><li>setnx key value：如果key不存在，则创建并赋值。成功返回1，否则返回0。配合expire key 秒数来解决key长期有效的问题。但是这样两个命令配合使用后，就不是原子操作了，推荐用第二种方式</li><li>set key value EX 秒数 PX 毫秒数 NX|XX：NX是只有键不存在时，才对键进行操作。XX是只有键存在时，才对键进行操作。操作成功后返回ok，否则返回nil。</li></ol><h4 id="大量的key同时过期的注意事项？"><a href="#大量的key同时过期的注意事项？" class="headerlink" title="大量的key同时过期的注意事项？"></a>大量的key同时过期的注意事项？</h4><p>大量的key同时过期的时候，集中清理时，可能会出现卡顿的情况。可以在批量设置key的时间时，加上随机数来解决。</p><h4 id="如何使用Redis做异步队列？"><a href="#如何使用Redis做异步队列？" class="headerlink" title="如何使用Redis做异步队列？"></a>如何使用Redis做异步队列？</h4><ol><li>使用List作为队列，rpush生产消息，lpop消费消息：缺点很明显，没有等待队列里有值就去消费了，可以sleep机制去调用lpop进行重试。</li><li>还是使用List作为队列，rpush生产消息，但是用blpop来消费消息，blpop key timeout秒数：阻塞直到队列里有消息或者超时。缺点是只能供一个消费者进行消费。</li><li>pub/sub：主题订阅者模式。subscribe 主题，publist 主题 内容，缺点是消息的发布是无状态的，无法保证到达。</li></ol><h4 id="谈谈Redis的持久化？"><a href="#谈谈Redis的持久化？" class="headerlink" title="谈谈Redis的持久化？"></a>谈谈Redis的持久化？</h4><ul><li><p>RDB（快照）持久化：保存某个时间点的全量数据快照，redis默认开启的</p><ul><li>手动触发可以使用两种命令，save和gbsave，save命令会阻塞进程，gbsave会fork一个子进程进行创建rdb，不会阻塞redis服务器进程。</li><li>自动触发的方式：<ol><li>根据redis.conf配置里的save m n定时触发</li><li>主从复制时，主节点自动触发</li><li>执行debug reload</li><li>执行shutdown时且没有开启aof持久化</li></ol></li></ul></li><li><p>AOF持久化：记录下除了查询以外的操作指令，append到aof文件中。</p><ol><li>开启：修改redis.conf文件中appendonly yes。</li><li>三种aof持久化方式：appendfsync always、everysec、no</li></ol></li><li><p>RDB-AOF混合持久化：BGSAVE做镜像全量持久化，AOF做增量持久化。通过配置aof-use-rdb-preamble来开启。</p><p>preamble</p></li></ul><h4 id="Redis高可用？"><a href="#Redis高可用？" class="headerlink" title="Redis高可用？"></a>Redis高可用？</h4><p>redis主从复制，在redis.conf里配置主节点。</p><p>解决主从同步主节点宕机问题，通过redis哨兵（sentinel），配置sentinel.conf文件，设置多个哨兵，监控各redis节点的状态，如果主节点宕机，自动进行主从切换。</p><h4 id="Redis设置过期时间问题？"><a href="#Redis设置过期时间问题？" class="headerlink" title="Redis设置过期时间问题？"></a>Redis设置过期时间问题？</h4><p>Redis可以通过set key value ex seconds或者expire key seconds设置时间，到期后会自动删除。比如手机验证码、session信息等，可以设置过期时间存在redis里面。</p><p>Redis清除过期key时，有两种方式：</p><ul><li>定期删除：redis默认每隔100ms就随机抽取一部分设置了过期时间的key，判断是否过期，过期则进行删除。之所以是随机抽取，是考虑到当redis里面有大量的key设置的有过期时间时，每100ms就对所有设置了过期时间的key进行遍历的话，会给cpu带来很大的负载。</li><li>惰性删除：对于没有被定期删除的过期key，当查询到这些key的时候，会进行删除。</li></ul><p>通过<strong>定期删除+惰性删除</strong>来清除过期的key，但是当定期删除漏掉了很多过期的key，但是有没有及时的去查，内存中就会有大量的无效key，导致redis的内存耗尽。针对这种情况，redis通过<strong>内存淘汰机制</strong>来应对。</p><h4 id="什么是缓存穿透、缓存雪崩、缓存击穿？"><a href="#什么是缓存穿透、缓存雪崩、缓存击穿？" class="headerlink" title="什么是缓存穿透、缓存雪崩、缓存击穿？"></a>什么是缓存穿透、缓存雪崩、缓存击穿？</h4><ul><li><p>缓存穿透：查询大量不存在的key，缓存中没有，会查询数据库，而数据库里也没有，就不会写入缓存。这样大量的不存在的key查询，就会一直查询数据库，相当于没有了缓存一样。解决方式：</p><ol><li>前端、后台做好<strong>数据格式校验</strong>，比如id不能小于0，邮箱格式错误等，直接将错误信息返回给客户端。</li><li>简单粗暴一些，<strong>缓存无效key</strong>，当数据库没有查询到数据时，也将这个空结果存放在缓存里，设置个比较短的过期时间。SET key value EX 60。</li><li><strong>布隆过滤器</strong>：将所有可能存在的key放在布隆过滤器中，当查询key时，先经过布隆过滤器，判断是否存在，不存在的话直接返回请求参数错误信息给客户端。如果存在再进行下一步。</li></ol></li><li><p>缓存雪崩：当某个时间点大量的key过期时，大量的请求就会直接落在数据库上，导致数据库崩掉。解决方式：</p><ol><li><strong>将失效时间分散开</strong>：设置过期时间时，在原有及过期时间基础上增加一个随机值，这样大量key同时失效的几率就降低了。</li><li>加锁或者队列的方式保证缓存单线程写。</li></ol></li><li><p>缓存击穿：当一个key过期时，大量的请求访问这个key，导致大量的请求落在数据库上，导致数据库崩掉。</p><p>​    常见的做法就是设置互斥锁。当一个key结果为空的时候，不是立即去数据库查询，而是先设置一个互斥锁，再去数据库查询key，查询到写入缓存后再删除锁。常用的命令：set key value EX 秒数 PX 毫秒数 NX|XX。</p></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">(key)</span> </span>&#123;</span><br><span class="line">      String value = redis.get(key);</span><br><span class="line">      <span class="keyword">if</span> (value == <span class="keyword">null</span>) &#123; <span class="comment">//代表缓存值过期</span></span><br><span class="line">          <span class="comment">//设置3min的超时，防止del操作失败的时候，下次缓存过期一直不能load db</span></span><br><span class="line">  <span class="keyword">if</span> (redis.setnx(key_mutex, <span class="number">1</span>, <span class="number">3</span> * <span class="number">60</span>) == <span class="number">1</span>) &#123;  <span class="comment">//代表设置成功</span></span><br><span class="line">               value = db.get(key);</span><br><span class="line">                      redis.set(key, value, expire_secs);</span><br><span class="line">                      redis.del(key_mutex);</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;  <span class="comment">//这个时候代表同时候的其他线程已经load db并回设到缓存了，这时候重试获取缓存值即可</span></span><br><span class="line">                      sleep(<span class="number">50</span>);</span><br><span class="line">                      get(key);  <span class="comment">//重试</span></span><br><span class="line">              &#125;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="keyword">return</span> value;      </span><br><span class="line">          &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -240,6 +211,64 @@
       <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
       <category term="Redis" scheme="http://yoursite.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java面试题汇总（五）Linux</title>
+    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%BA%94%EF%BC%89Linux/"/>
+    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（五）Linux/</id>
+    <published>2019-03-13T03:43:51.000Z</published>
+    <updated>2020-12-02T08:33:05.237Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Java面试题汇总（五）Linux"><a href="#Java面试题汇总（五）Linux" class="headerlink" title="Java面试题汇总（五）Linux"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（五）Linux</h2><h4 id="常用的查看文件内容命令有哪些？"><a href="#常用的查看文件内容命令有哪些？" class="headerlink" title="常用的查看文件内容命令有哪些？"></a>常用的查看文件内容命令有哪些？</h4><p>tail  cat  more  vi  vim</p><h4 id="怎么查找特定的文件？"><a href="#怎么查找特定的文件？" class="headerlink" title="怎么查找特定的文件？"></a>怎么查找特定的文件？</h4><p>find命令</p><p>语法：find path [options] params</p><p>作用：在指定目录下查找文件</p><p>举例：</p><ul><li>find ~ -name “target.java”    //精确查找文件</li><li>find ~ -name “target*”   //模糊查找文件</li><li>find ~ -iname “target*”   //不区分文件名大小写去查找文件</li></ul><h4 id="检索文件内容？"><a href="#检索文件内容？" class="headerlink" title="检索文件内容？"></a>检索文件内容？</h4><p>grep命令（Global Regular Expression Print）</p><p>语法：grep [options] pattern file</p><p>作用：查找文件里符合条件的字符串</p><p>举例：</p><ul><li>grep ‘test’ target.log   //查找target.log文件里有“test”字符串的行</li><li>grep -o ‘[a-zA-Z0-9-]’   //根据正则表达式进行匹配查找</li><li>grep -v ‘test’  //找到不匹配“test”的行</li></ul><p>grep经常搭配 <strong>管道操作符 |</strong></p><p>作用：可将指令连接起来，前一个指令的输出作为后一个指令的输入</p><p>举例：</p><ul><li>ps -ef | grep tomcat   //查找tomcat进程</li></ul><h4 id="对文件内容做统计？"><a href="#对文件内容做统计？" class="headerlink" title="对文件内容做统计？"></a>对文件内容做统计？</h4><p>awk命令</p><p>语法：awk [options] ‘cmd’ file</p><p>作用：</p><ul><li>一次读取一行文本，对输入分隔符进行切片，切成多个组成部分；</li><li>将切片直接保存在内建的变量中，$1,$2…($0表示行的全部)；</li><li>支持对单个切片的判断，支持循环判断，默认分隔符为空格；</li></ul><p>举例：</p><ul><li>awk ‘{print $1,$4}’ netstat.txt   //默认以空格为分隔符对每行数据切片后，输出第1和第4列数据</li><li>awk -F “,” ‘{print $1,$4}’ netstat.txt   //以”,为分隔符对每行数据切片后，输出第1和第4列数据</li><li>awk ‘$1==”tcp” &amp;&amp; $2==1 {print $0}’ netstat.txt   //输出第1列数据为”tcp“，第2列数据为1的所有行数据</li><li>awk ‘{arr[$1]++}END{for(i in arr)print i “\t” arr[i]}’   //定义了一个名字叫arr的数组，$1中遇到相同项就加一，然后循环输出个数</li></ul><h4 id="批量替换文本内容？"><a href="#批量替换文本内容？" class="headerlink" title="批量替换文本内容？"></a>批量替换文本内容？</h4><p>sed命令（stream editor 流编辑器）</p><p>语法：sed [options] ‘sed command’ filename</p><p>作用：适合用于对文本的行内容进行处理</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Java面试题汇总（五）Linux&quot;&gt;&lt;a href=&quot;#Java面试题汇总（五）Linux&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（五）Linux&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13/java面试/Java面试题
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="面试题" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java面试题汇总（三）网络</title>
+    <link href="http://yoursite.com/2019/03/13/java%E9%9D%A2%E8%AF%95/Java%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89%E7%BD%91%E7%BB%9C/"/>
+    <id>http://yoursite.com/2019/03/13/java面试/Java面试题（三）网络/</id>
+    <published>2019-03-13T03:43:51.000Z</published>
+    <updated>2020-12-03T14:41:02.414Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Java面试题汇总（三）网络"><a href="#Java面试题汇总（三）网络" class="headerlink" title="Java面试题汇总（三）网络"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（三）网络</h2><h4 id="OSI-的七层模型都有哪些？"><a href="#OSI-的七层模型都有哪些？" class="headerlink" title="OSI 的七层模型都有哪些？"></a>OSI 的七层模型都有哪些？</h4><ol><li>物理层：主要定义了物理设备的标准，如网线的类型、光纤的接口类型、各种传输介质的传输速率等，主要作用是传输比特流，将0101二进制码转换为电流强弱，传输到目的地后再解析为0101的二级制机器码。<strong>网卡</strong>就是工作在这一层的。</li><li>数据链路层：将比特数据转换成了帧，<strong>交换机</strong>就工作在这一层，对帧解码，并把帧中包含的信息正确的发送到接收方。</li><li>网络层：将网络地址翻译成对应的物理地址，并决定数据如何从发送方路由到接收方。<strong>路由器</strong>、IP协议在这一层。</li><li>传输层：解决了主机间的数据传输，传输质量，流量控制，数据分割传输及排序等。TCP、UDP。</li><li>会话层：建立和管理应用程序之间的通信，自动收发包和寻址。</li><li>表示层：解决不同系统之间通信语法的问题。</li><li>应用层：规定了发送方和接收方使用一个固定的消息头等信息，方便接收方解析发送方的数据。HTTP</li></ol><h4 id="说说TCP的三次握手？"><a href="#说说TCP的三次握手？" class="headerlink" title="说说TCP的三次握手？"></a>说说TCP的三次握手？</h4><p>在TCP/IP协议中，TCP协议提供了可靠的连接服务，采用三次握手建立一个连接。</p><p>第一次握手：建立连接时，客户端发送SYN包（seq=x）到服务器，并进入SYN_SEND状态，等待服务器确认；</p><p>第二次握手：服务端收到SYN包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（seq=y），即SYN+ACK包，此时服务器进入SYN_RECV状态；</p><p>第三次握手：客户端收到服务端的SYN+ACK包，向服务端发送确认包ACK（ack=y+1），此包发送完毕后，客户端和服务端都进入ESTABLISHED状态，完成三次握手。</p><p>之所以需要三次握手，一是为了保证双方都能确认自己和对方的发送和接收是正常的，二是为了初始化sequence number的初始值，因为TCP需要根据该值，保证序号不会乱序，能够正确的拼接数据。</p><p>首次握手的隐患——SYN超时，服务端收到客户端的SYN包，并发送了SYN+ACK包后没有收到回复，服务端会不断重试直至超时，Linux默认63秒后才断开连接。</p><p>同时会有SYN Flood防护机制（SYN Cookie），保活机制（发送保活探测报文）来应对各种情况。</p><h4 id="说说TCP的四次挥手？"><a href="#说说TCP的四次挥手？" class="headerlink" title="说说TCP的四次挥手？"></a>说说TCP的四次挥手？</h4><p>挥手是为了终止连接。</p><p>第一次挥手：客户端发送一个FIN，用来关闭客户端到服务端的数据传输，客户端进入FIN_WAIT_1状态；</p><p>第二次挥手：服务端能收到FIN后，发送一个ACK给到客户端，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），服务端进入CLOSE_WAIT状态；</p><p>第三次挥手：服务端发送一个FIN，用来关闭服务端到客户端的数据传输，服务端进入LAST_ACK状态；</p><p>第四次挥手：客户端收到FIN后，客户端进入TIME_WAIT状态，接着发送一个ACK给服务端，确认序号为收到序号+1，服务端进入CLOSED状态，完成四次挥手。</p><p>之所以有TIME_WAIT状态，一是为了确保有足够的时间让对方收到ACK包，二是避免新旧连接混淆。</p><p>需要四次挥手是因为全双工（通信允许数据在两个方向上同时传输），发送方和接收方都需要FIN报文和ACK报文，所以一方的2次挥手乘以双方，就是四次挥手了。</p><p>举个例⼦：A 和 B 打电话，通话即将结束后，A 说“我没啥要说的了”，B回答“我知道了”，但是 B 可 能还会有要说的话，A 不能要求 B 跟着⾃⼰的节奏结束通话，于是 B 可能⼜巴拉巴拉说了⼀通，最后 B 说“我说完了”，A 回答“知道了”，这样通话才算结束。</p><h4 id="TCP和UDP的区别？"><a href="#TCP和UDP的区别？" class="headerlink" title="TCP和UDP的区别？"></a>TCP和UDP的区别？</h4><ul><li>TCP面向连接，UDP无连接</li><li>TCP可靠，UDP不可靠</li><li>TCP有序，UDP无序</li><li>TCP所需资源多，传输效率比UDP慢</li><li>TCP适合需要可靠传输的场景，比如：文件传输、发送和接收邮件等，UDP适合不需要确认回复的场景，比如即时通信、QQ语音、视频、直播等</li></ul><h4 id="TCP协议如何保证可靠传输？"><a href="#TCP协议如何保证可靠传输？" class="headerlink" title="TCP协议如何保证可靠传输？"></a>TCP协议如何保证可靠传输？</h4><ul><li>数据分割传输，每个包进行编号，接收方进行排序。</li><li><strong>流量控制</strong>：TCP通过<strong>滑动窗口</strong>实现流量控制，流量控制是为了控制发送方发送速率，保证接收方来得及接收。</li><li><strong>阻塞控制</strong>：当网络阻塞时，减少数据的发送。</li><li><strong>ARQ协议</strong>：自动重传请求。基本原理是每发完一个分组就停止发送，等待对方确认，收到确认后再发送下一分组。</li><li><strong>超时重传</strong>：当TCP发出一个段后，启动一个定时器，等待接收端确认收到这个报文段，如果不能及时的收到一个确认，将会重发这个报文段。</li></ul><h4 id="在浏览器中输入url地址-gt-gt-显示主页的过程？"><a href="#在浏览器中输入url地址-gt-gt-显示主页的过程？" class="headerlink" title="在浏览器中输入url地址 -&gt;&gt; 显示主页的过程？"></a>在浏览器中输入url地址 -&gt;&gt; 显示主页的过程？</h4><ol><li><strong>DNS解析</strong>，浏览器查找域名的IP地址（DNS查找过程：浏览器缓存、路由器缓存、DNS缓存）</li><li>TCP连接</li><li>发送HTTP请求</li><li>服务器处理请求并返回HTTP报文</li><li>浏览器解析渲染页面</li><li>连接结束</li></ol><h4 id="状态码有哪些？"><a href="#状态码有哪些？" class="headerlink" title="状态码有哪些？"></a>状态码有哪些？</h4><ul><li>1xx：指示信息——表示请求已接收，正在处理</li><li>2xx：成功——表示请求正常处理完毕</li><li>3xx：重定向——表示需要完成请求必须进行进一步的操作</li><li>4xx：客户端错误——表示请求有语法错误或者请求无法实现</li><li>5xx：服务器端错误——表示服务器处理请求出错</li></ul><h4 id="GET请求和POST请求的区别？"><a href="#GET请求和POST请求的区别？" class="headerlink" title="GET请求和POST请求的区别？"></a>GET请求和POST请求的区别？</h4><ul><li>GET请求的信息放在URL（有长度限制），POST放在请求体。</li><li>GET符合幂等性和安全性，POST不符合。GET一般是查询获取资源的，不会对数据造成改变，相对安全。而POST会对数据发生改变。</li><li>GET可以被缓存（浏览器历史记录）、被存储（浏览器书签），而POST不行。GET请求被缓存，CDN加速，可以缓解服务器压力。</li></ul><p>幂等性：就是用户对于同一操作发起的一次请求或者多次请求的结果是一致的，不会因为多次点击而产生了副作用。</p><h4 id="URI和URL的区别是什么？"><a href="#URI和URL的区别是什么？" class="headerlink" title="URI和URL的区别是什么？"></a>URI和URL的区别是什么？</h4><ul><li><p>URI(Uniform Resource Identifier) 是统⼀资源标志符，可以唯⼀标识⼀个资源。</p></li><li><p>URL(Uniform Resource Location) 是统⼀资源定位符，可以提供该资源的路径。它是⼀种具体的 URI，即 URL 可以⽤来标识⼀个资源，而且还指明了如何定位到这个资源。</p><p>URI的作用像身份证号⼀样，URL的作用更像家庭住址⼀样。URL是⼀种具体的URI，它不仅唯⼀标识资源，而且还提供了定位该资源的信息。</p></li></ul><h4 id="HTTP-和-HTTPS-的区别？"><a href="#HTTP-和-HTTPS-的区别？" class="headerlink" title="HTTP 和 HTTPS 的区别？"></a>HTTP 和 HTTPS 的区别？</h4><h4 id="Cookie的作用是什么，和Session有什么区别？"><a href="#Cookie的作用是什么，和Session有什么区别？" class="headerlink" title="Cookie的作用是什么，和Session有什么区别？"></a>Cookie的作用是什么，和Session有什么区别？</h4><h4 id="HTTP长连接，短连接？"><a href="#HTTP长连接，短连接？" class="headerlink" title="HTTP长连接，短连接？"></a>HTTP长连接，短连接？</h4><h4 id="HTTP是不保存状态的协议-如何保存用户状态？"><a href="#HTTP是不保存状态的协议-如何保存用户状态？" class="headerlink" title="HTTP是不保存状态的协议,如何保存用户状态？"></a>HTTP是不保存状态的协议,如何保存用户状态？</h4>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Java面试题汇总（三）网络&quot;&gt;&lt;a href=&quot;#Java面试题汇总（三）网络&quot; class=&quot;headerlink&quot; title=&quot;Java面试题汇总（三）网络&quot;&gt;&lt;/a&gt;&lt;a href=&quot;/2019/03/13/java面试/Java面试题汇总/&quot;&gt;Java
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="面试题" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -290,6 +319,34 @@
   </entry>
   
   <entry>
+    <title>equals()和hashCode()的区别</title>
+    <link href="http://yoursite.com/2018/06/20/java%E6%8A%80%E6%9C%AF%E6%A0%88/equals%E5%92%8ChashCode/"/>
+    <id>http://yoursite.com/2018/06/20/java技术栈/equals和hashCode/</id>
+    <published>2018-06-20T05:59:19.000Z</published>
+    <updated>2019-02-18T12:47:27.720Z</updated>
+    
+    <content type="html"><![CDATA[<p>equals()和hashCode()的区别</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;equals()和hashCode()的区别&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="技术栈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+      <category term="java基础" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
     <title>equals()和==的区别</title>
     <link href="http://yoursite.com/2018/06/20/java%E6%8A%80%E6%9C%AF%E6%A0%88/equals%E5%92%8C%E7%AD%89%E7%AD%89/"/>
     <id>http://yoursite.com/2018/06/20/java技术栈/equals和等等/</id>
@@ -318,30 +375,16 @@
   </entry>
   
   <entry>
-    <title>equals()和hashCode()的区别</title>
-    <link href="http://yoursite.com/2018/06/20/java%E6%8A%80%E6%9C%AF%E6%A0%88/equals%E5%92%8ChashCode/"/>
-    <id>http://yoursite.com/2018/06/20/java技术栈/equals和hashCode/</id>
-    <published>2018-06-20T05:59:19.000Z</published>
-    <updated>2019-02-18T12:47:27.720Z</updated>
-    
-    <content type="html"><![CDATA[<p>equals()和hashCode()的区别</p>]]></content>
+    <title>springboot目录</title>
+    <link href="http://yoursite.com/2018/06/14/springboot/springboot%E7%9B%AE%E5%BD%95/"/>
+    <id>http://yoursite.com/2018/06/14/springboot/springboot目录/</id>
+    <published>2018-06-14T05:59:19.000Z</published>
+    <updated>2019-02-18T12:47:27.749Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;equals()和hashCode()的区别&lt;/p&gt;
-
-      
-    
     </summary>
     
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="技术栈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
-    
-      <category term="java基础" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
@@ -398,20 +441,6 @@
       <category term="技术栈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
     
       <category term="字符串" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>springboot目录</title>
-    <link href="http://yoursite.com/2018/06/14/springboot/springboot%E7%9B%AE%E5%BD%95/"/>
-    <id>http://yoursite.com/2018/06/14/springboot/springboot目录/</id>
-    <published>2018-06-14T05:59:19.000Z</published>
-    <updated>2019-02-18T12:47:27.749Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
     
   </entry>
   
@@ -517,32 +546,6 @@
       <category term="RabbitMQ" scheme="http://yoursite.com/tags/RabbitMQ/"/>
     
       <category term="中间件" scheme="http://yoursite.com/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo安装部署流程</title>
-    <link href="http://yoursite.com/2018/06/09/install/"/>
-    <id>http://yoursite.com/2018/06/09/install/</id>
-    <published>2018-06-09T00:17:05.270Z</published>
-    <updated>2018-06-09T00:17:05.270Z</updated>
-    
-    <content type="html"><![CDATA[<p>安装部署流程~<br>Work For Java~</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;安装部署流程~&lt;br&gt;Work For Java~&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
-    
-      <category term="bbb" scheme="http://yoursite.com/tags/bbb/"/>
     
   </entry>
   

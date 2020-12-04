@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="Java面试题汇总（四）RedisRedis和Memecache有什么区别？Redis支持 为什么Redis能这么快？Redis的使用场景都有哪些？ 缓存 计数器 排行榜，去top n个数据 pub、sub发布订阅构建实时消息系统 构建消息队列 精确的设置过期时间 各数据类型的应用场景： String：缓存、限流、计数器、分布式锁、分布式Session Hash：存储用户信息、用户主页访问量、组合">
+<meta name="description" content="Java面试题汇总（四）RedisRedis和Memecache有什么区别？ Redis支持的数据类型要比Memecache丰富 Redis支持数据磁盘持久化存储，Memecache不支持持久化 Redis支持主从，Memecache不支持 Redis支持分片，集群。Memecache不支持  为什么Redis能这么快？Redis支持10万+的QPS，能这么快，因为以下几点：  基于内存操作，执行">
 <meta name="keywords" content="java,面试题,面试,Redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java面试题汇总（四）Redis">
 <meta property="og:url" content="http://yoursite.com/2019/03/13/java面试/Java面试题（四）Redis/index.html">
 <meta property="og:site_name" content="Work4j">
-<meta property="og:description" content="Java面试题汇总（四）RedisRedis和Memecache有什么区别？Redis支持 为什么Redis能这么快？Redis的使用场景都有哪些？ 缓存 计数器 排行榜，去top n个数据 pub、sub发布订阅构建实时消息系统 构建消息队列 精确的设置过期时间 各数据类型的应用场景： String：缓存、限流、计数器、分布式锁、分布式Session Hash：存储用户信息、用户主页访问量、组合">
+<meta property="og:description" content="Java面试题汇总（四）RedisRedis和Memecache有什么区别？ Redis支持的数据类型要比Memecache丰富 Redis支持数据磁盘持久化存储，Memecache不支持持久化 Redis支持主从，Memecache不支持 Redis支持分片，集群。Memecache不支持  为什么Redis能这么快？Redis支持10万+的QPS，能这么快，因为以下几点：  基于内存操作，执行">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-12-02T08:33:05.252Z">
+<meta property="og:updated_time" content="2020-12-04T04:43:46.113Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java面试题汇总（四）Redis">
-<meta name="twitter:description" content="Java面试题汇总（四）RedisRedis和Memecache有什么区别？Redis支持 为什么Redis能这么快？Redis的使用场景都有哪些？ 缓存 计数器 排行榜，去top n个数据 pub、sub发布订阅构建实时消息系统 构建消息队列 精确的设置过期时间 各数据类型的应用场景： String：缓存、限流、计数器、分布式锁、分布式Session Hash：存储用户信息、用户主页访问量、组合">
+<meta name="twitter:description" content="Java面试题汇总（四）RedisRedis和Memecache有什么区别？ Redis支持的数据类型要比Memecache丰富 Redis支持数据磁盘持久化存储，Memecache不支持持久化 Redis支持主从，Memecache不支持 Redis支持分片，集群。Memecache不支持  为什么Redis能这么快？Redis支持10万+的QPS，能这么快，因为以下几点：  基于内存操作，执行">
 
 
 
@@ -378,8 +378,20 @@
       
 
       
-        <h2 id="Java面试题汇总（四）Redis"><a href="#Java面试题汇总（四）Redis" class="headerlink" title="Java面试题汇总（四）Redis"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（四）Redis</h2><h4 id="Redis和Memecache有什么区别？"><a href="#Redis和Memecache有什么区别？" class="headerlink" title="Redis和Memecache有什么区别？"></a>Redis和Memecache有什么区别？</h4><p>Redis支持</p>
-<h4 id="为什么Redis能这么快？"><a href="#为什么Redis能这么快？" class="headerlink" title="为什么Redis能这么快？"></a>为什么Redis能这么快？</h4><h4 id="Redis的使用场景都有哪些？"><a href="#Redis的使用场景都有哪些？" class="headerlink" title="Redis的使用场景都有哪些？"></a>Redis的使用场景都有哪些？</h4><ol>
+        <h2 id="Java面试题汇总（四）Redis"><a href="#Java面试题汇总（四）Redis" class="headerlink" title="Java面试题汇总（四）Redis"></a><a href="/2019/03/13/java面试/Java面试题汇总/">Java面试题汇总</a>（四）Redis</h2><h4 id="Redis和Memecache有什么区别？"><a href="#Redis和Memecache有什么区别？" class="headerlink" title="Redis和Memecache有什么区别？"></a>Redis和Memecache有什么区别？</h4><ul>
+<li>Redis支持的数据类型要比Memecache丰富</li>
+<li>Redis支持数据磁盘持久化存储，Memecache不支持持久化</li>
+<li>Redis支持主从，Memecache不支持</li>
+<li>Redis支持分片，集群。Memecache不支持</li>
+</ul>
+<h4 id="为什么Redis能这么快？"><a href="#为什么Redis能这么快？" class="headerlink" title="为什么Redis能这么快？"></a>为什么Redis能这么快？</h4><p>Redis支持10万+的QPS，能这么快，因为以下几点：</p>
+<ul>
+<li>基于内存操作，执行效率高</li>
+<li>数据结构简单，对数据操作也简单</li>
+<li>采用的单线程，单线程也能处理高并发</li>
+<li>使用的多路I/O复用模型，非阻塞IO</li>
+</ul>
+<h4 id="Redis的使用场景都有哪些？"><a href="#Redis的使用场景都有哪些？" class="headerlink" title="Redis的使用场景都有哪些？"></a>Redis的使用场景都有哪些？</h4><ol>
 <li>缓存</li>
 <li>计数器</li>
 <li>排行榜，去top n个数据</li>
@@ -395,6 +407,71 @@
 </ul>
 </li>
 </ol>
+<h4 id="如何从海量的key中查询出某一固定前缀的key？"><a href="#如何从海量的key中查询出某一固定前缀的key？" class="headerlink" title="如何从海量的key中查询出某一固定前缀的key？"></a>如何从海量的key中查询出某一固定前缀的key？</h4><ul>
+<li>keys xx*，但是数据量过多时，会造成卡顿，如果是线上环境，最好不要这样操作。</li>
+<li>scan 游标位置 match xx* count 10，通过scan命令来查询。</li>
+</ul>
+<h4 id="如何通过redis来实现分布式锁？"><a href="#如何通过redis来实现分布式锁？" class="headerlink" title="如何通过redis来实现分布式锁？"></a>如何通过redis来实现分布式锁？</h4><ol>
+<li>setnx key value：如果key不存在，则创建并赋值。成功返回1，否则返回0。配合expire key 秒数来解决key长期有效的问题。但是这样两个命令配合使用后，就不是原子操作了，推荐用第二种方式</li>
+<li>set key value EX 秒数 PX 毫秒数 NX|XX：NX是只有键不存在时，才对键进行操作。XX是只有键存在时，才对键进行操作。操作成功后返回ok，否则返回nil。</li>
+</ol>
+<h4 id="大量的key同时过期的注意事项？"><a href="#大量的key同时过期的注意事项？" class="headerlink" title="大量的key同时过期的注意事项？"></a>大量的key同时过期的注意事项？</h4><p>大量的key同时过期的时候，集中清理时，可能会出现卡顿的情况。可以在批量设置key的时间时，加上随机数来解决。</p>
+<h4 id="如何使用Redis做异步队列？"><a href="#如何使用Redis做异步队列？" class="headerlink" title="如何使用Redis做异步队列？"></a>如何使用Redis做异步队列？</h4><ol>
+<li>使用List作为队列，rpush生产消息，lpop消费消息：缺点很明显，没有等待队列里有值就去消费了，可以sleep机制去调用lpop进行重试。</li>
+<li>还是使用List作为队列，rpush生产消息，但是用blpop来消费消息，blpop key timeout秒数：阻塞直到队列里有消息或者超时。缺点是只能供一个消费者进行消费。</li>
+<li>pub/sub：主题订阅者模式。subscribe 主题，publist 主题 内容，缺点是消息的发布是无状态的，无法保证到达。</li>
+</ol>
+<h4 id="谈谈Redis的持久化？"><a href="#谈谈Redis的持久化？" class="headerlink" title="谈谈Redis的持久化？"></a>谈谈Redis的持久化？</h4><ul>
+<li><p>RDB（快照）持久化：保存某个时间点的全量数据快照，redis默认开启的</p>
+<ul>
+<li>手动触发可以使用两种命令，save和gbsave，save命令会阻塞进程，gbsave会fork一个子进程进行创建rdb，不会阻塞redis服务器进程。</li>
+<li>自动触发的方式：<ol>
+<li>根据redis.conf配置里的save m n定时触发</li>
+<li>主从复制时，主节点自动触发</li>
+<li>执行debug reload</li>
+<li>执行shutdown时且没有开启aof持久化</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>AOF持久化：记录下除了查询以外的操作指令，append到aof文件中。</p>
+<ol>
+<li>开启：修改redis.conf文件中appendonly yes。</li>
+<li>三种aof持久化方式：appendfsync always、everysec、no</li>
+</ol>
+</li>
+<li><p>RDB-AOF混合持久化：BGSAVE做镜像全量持久化，AOF做增量持久化。通过配置aof-use-rdb-preamble来开启。</p>
+<p>preamble</p>
+</li>
+</ul>
+<h4 id="Redis高可用？"><a href="#Redis高可用？" class="headerlink" title="Redis高可用？"></a>Redis高可用？</h4><p>redis主从复制，在redis.conf里配置主节点。</p>
+<p>解决主从同步主节点宕机问题，通过redis哨兵（sentinel），配置sentinel.conf文件，设置多个哨兵，监控各redis节点的状态，如果主节点宕机，自动进行主从切换。</p>
+<h4 id="Redis设置过期时间问题？"><a href="#Redis设置过期时间问题？" class="headerlink" title="Redis设置过期时间问题？"></a>Redis设置过期时间问题？</h4><p>Redis可以通过set key value ex seconds或者expire key seconds设置时间，到期后会自动删除。比如手机验证码、session信息等，可以设置过期时间存在redis里面。</p>
+<p>Redis清除过期key时，有两种方式：</p>
+<ul>
+<li>定期删除：redis默认每隔100ms就随机抽取一部分设置了过期时间的key，判断是否过期，过期则进行删除。之所以是随机抽取，是考虑到当redis里面有大量的key设置的有过期时间时，每100ms就对所有设置了过期时间的key进行遍历的话，会给cpu带来很大的负载。</li>
+<li>惰性删除：对于没有被定期删除的过期key，当查询到这些key的时候，会进行删除。</li>
+</ul>
+<p>通过<strong>定期删除+惰性删除</strong>来清除过期的key，但是当定期删除漏掉了很多过期的key，但是有没有及时的去查，内存中就会有大量的无效key，导致redis的内存耗尽。针对这种情况，redis通过<strong>内存淘汰机制</strong>来应对。</p>
+<h4 id="什么是缓存穿透、缓存雪崩、缓存击穿？"><a href="#什么是缓存穿透、缓存雪崩、缓存击穿？" class="headerlink" title="什么是缓存穿透、缓存雪崩、缓存击穿？"></a>什么是缓存穿透、缓存雪崩、缓存击穿？</h4><ul>
+<li><p>缓存穿透：查询大量不存在的key，缓存中没有，会查询数据库，而数据库里也没有，就不会写入缓存。这样大量的不存在的key查询，就会一直查询数据库，相当于没有了缓存一样。解决方式：</p>
+<ol>
+<li>前端、后台做好<strong>数据格式校验</strong>，比如id不能小于0，邮箱格式错误等，直接将错误信息返回给客户端。</li>
+<li>简单粗暴一些，<strong>缓存无效key</strong>，当数据库没有查询到数据时，也将这个空结果存放在缓存里，设置个比较短的过期时间。SET key value EX 60。</li>
+<li><strong>布隆过滤器</strong>：将所有可能存在的key放在布隆过滤器中，当查询key时，先经过布隆过滤器，判断是否存在，不存在的话直接返回请求参数错误信息给客户端。如果存在再进行下一步。</li>
+</ol>
+</li>
+<li><p>缓存雪崩：当某个时间点大量的key过期时，大量的请求就会直接落在数据库上，导致数据库崩掉。解决方式：</p>
+<ol>
+<li><strong>将失效时间分散开</strong>：设置过期时间时，在原有及过期时间基础上增加一个随机值，这样大量key同时失效的几率就降低了。</li>
+<li>加锁或者队列的方式保证缓存单线程写。</li>
+</ol>
+</li>
+<li><p>缓存击穿：当一个key过期时，大量的请求访问这个key，导致大量的请求落在数据库上，导致数据库崩掉。</p>
+<p>​    常见的做法就是设置互斥锁。当一个key结果为空的时候，不是立即去数据库查询，而是先设置一个互斥锁，再去数据库查询key，查询到写入缓存后再删除锁。常用的命令：set key value EX 秒数 PX 毫秒数 NX|XX。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">(key)</span> </span>&#123;</span><br><span class="line">      String value = redis.get(key);</span><br><span class="line">      <span class="keyword">if</span> (value == <span class="keyword">null</span>) &#123; <span class="comment">//代表缓存值过期</span></span><br><span class="line">          <span class="comment">//设置3min的超时，防止del操作失败的时候，下次缓存过期一直不能load db</span></span><br><span class="line">		  <span class="keyword">if</span> (redis.setnx(key_mutex, <span class="number">1</span>, <span class="number">3</span> * <span class="number">60</span>) == <span class="number">1</span>) &#123;  <span class="comment">//代表设置成功</span></span><br><span class="line">               value = db.get(key);</span><br><span class="line">                      redis.set(key, value, expire_secs);</span><br><span class="line">                      redis.del(key_mutex);</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;  <span class="comment">//这个时候代表同时候的其他线程已经load db并回设到缓存了，这时候重试获取缓存值即可</span></span><br><span class="line">                      sleep(<span class="number">50</span>);</span><br><span class="line">                      get(key);  <span class="comment">//重试</span></span><br><span class="line">              &#125;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="keyword">return</span> value;      </span><br><span class="line">          &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -460,8 +537,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/18/work4j/" rel="next" title="快进来看看">
-                <i class="fa fa-chevron-left"></i> 快进来看看
+              <a href="/2019/03/13/java面试/Java面试题（五）Linux/" rel="next" title="Java面试题汇总（五）Linux">
+                <i class="fa fa-chevron-left"></i> Java面试题汇总（五）Linux
               </a>
             
           </div>
@@ -553,7 +630,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -575,7 +652,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -645,7 +722,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java面试题汇总（四）Redis"><span class="nav-number">1.</span> <span class="nav-text">Java面试题汇总（四）Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis和Memecache有什么区别？"><span class="nav-number">1.0.1.</span> <span class="nav-text">Redis和Memecache有什么区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么Redis能这么快？"><span class="nav-number">1.0.2.</span> <span class="nav-text">为什么Redis能这么快？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis的使用场景都有哪些？"><span class="nav-number">1.0.3.</span> <span class="nav-text">Redis的使用场景都有哪些？</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java面试题汇总（四）Redis"><span class="nav-number">1.</span> <span class="nav-text">Java面试题汇总（四）Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis和Memecache有什么区别？"><span class="nav-number">1.0.1.</span> <span class="nav-text">Redis和Memecache有什么区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么Redis能这么快？"><span class="nav-number">1.0.2.</span> <span class="nav-text">为什么Redis能这么快？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis的使用场景都有哪些？"><span class="nav-number">1.0.3.</span> <span class="nav-text">Redis的使用场景都有哪些？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何从海量的key中查询出某一固定前缀的key？"><span class="nav-number">1.0.4.</span> <span class="nav-text">如何从海量的key中查询出某一固定前缀的key？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何通过redis来实现分布式锁？"><span class="nav-number">1.0.5.</span> <span class="nav-text">如何通过redis来实现分布式锁？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大量的key同时过期的注意事项？"><span class="nav-number">1.0.6.</span> <span class="nav-text">大量的key同时过期的注意事项？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何使用Redis做异步队列？"><span class="nav-number">1.0.7.</span> <span class="nav-text">如何使用Redis做异步队列？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#谈谈Redis的持久化？"><span class="nav-number">1.0.8.</span> <span class="nav-text">谈谈Redis的持久化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis高可用？"><span class="nav-number">1.0.9.</span> <span class="nav-text">Redis高可用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis设置过期时间问题？"><span class="nav-number">1.0.10.</span> <span class="nav-text">Redis设置过期时间问题？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是缓存穿透、缓存雪崩、缓存击穿？"><span class="nav-number">1.0.11.</span> <span class="nav-text">什么是缓存穿透、缓存雪崩、缓存击穿？</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
